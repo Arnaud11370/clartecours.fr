@@ -12,7 +12,7 @@
   const REGLAGES = {
     prof: "Arnaud",
     marque: "Académie Clarté",
-    email: "comprendrepourmieuxexpliquer@gmail.com",
+    email: "contact@clartecours.fr",
     calendly: "https://calendly.com/comprendrepourmieuxexpliquer/30min",
   };
 
