@@ -1,0 +1,1393 @@
+<!doctype html>
+<html lang="fr" data-live="1">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Cours de maths en ligne de la 4ème à la Première. Votre enfant comprend en classe mais bloque seul ? Appel diagnostic offert avec Arnaud, fondateur de Clarté.">
+<meta property="og:title" content="Clarté · Cours de maths avec Arnaud">
+<meta property="og:description" content="Votre enfant comprend en classe. Il bloque seul. Appel diagnostic offert.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="img/portrait.jpg">
+<link rel="icon" type="image/png" href="img/academie-logo.png">
+<link rel="preload" href="fonts/gloock-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "EducationalOrganization", "name": "Clarté", "description": "Cours de maths en ligne et Académie Clarté Objectif Brevet, de la 4ème à la Première.", "founder": {"@type": "Person", "name": "Arnaud Amador"}, "email": "comprendrepourmieuxexpliquer@gmail.com", "telephone": "+33662717143", "sameAs": ["https://www.youtube.com/@clarte-arnaud", "https://www.linkedin.com/in/arnaud-amador-clarte"]}</script>
+<style>@font-face{font-family:'Gloock';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/gloock-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Figtree';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/figtree-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Figtree';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/figtree-latin-500-normal.woff2) format('woff2')}@font-face{font-family:'Figtree';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/figtree-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Figtree';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/figtree-latin-700-normal.woff2) format('woff2')}@font-face{font-family:'Caveat';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/caveat-latin-500-normal.woff2) format('woff2')}@font-face{font-family:'Caveat';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/caveat-latin-700-normal.woff2) format('woff2')}:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Clarté · Cours de maths avec Arnaud</title>
+<style>
+/* Layout: une page de cahier ligné, marge rouge à gauche, annotations manuscrites ; sections empilées, une colonne sur mobile.
+   Les palettes ne définissent que 3 teintes de base (--p-*), tout le reste en découle, en clair comme en sombre. */
+:root{
+  --p-ink:#1B2A4A; --p-gold:#B8862E; --p-margin:#E8B4A6;
+  --paper:#FBFAF6;
+  --line:color-mix(in srgb,var(--p-ink) 12%,#FFFFFF);
+  --margin:var(--p-margin);
+  --ink:var(--p-ink);
+  --ink-soft:color-mix(in srgb,var(--p-ink) 72%,#FFFFFF);
+  --gold:var(--p-gold);
+  --gold-soft:color-mix(in srgb,var(--p-gold) 16%,#FFFFFF);
+  --card:#FFFFFF;
+  --rule:color-mix(in srgb,var(--p-ink) 11%,#FFFFFF);
+  --deep:var(--p-ink);
+  --on-deep:#FBFAF6;
+  --display:"Gloock", Georgia, "Times New Roman", serif;
+  --body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --hand:"Caveat", "Comic Sans MS", cursive;
+}
+:root[data-palette="foret"]{--p-ink:#1F3B33;--p-gold:#B8702A;--p-margin:#E6B9A0}
+:root[data-palette="bordeaux"]{--p-ink:#4A1F2B;--p-gold:#A8823D;--p-margin:#E3B3B8}
+:root[data-palette="ardoise"]{--p-ink:#24313D;--p-gold:#C85B3E;--p-margin:#F0B9A8}
+:root[data-palette="ocean"]{--p-ink:#0F3D4C;--p-gold:#C99A2E;--p-margin:#E8B9A6}
+
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:color-mix(in srgb,var(--p-ink) 70%,#05070C);
+  --line:color-mix(in srgb,var(--p-ink) 60%,#2A3346);
+  --margin:color-mix(in srgb,var(--p-margin) 45%,#2A1518);
+  --ink:#EEF1F7;--ink-soft:#AEB7C8;
+  --gold:color-mix(in srgb,var(--p-gold) 78%,#FFFFFF);
+  --gold-soft:color-mix(in srgb,var(--p-gold) 18%,#0B0F18);
+  --card:color-mix(in srgb,var(--p-ink) 55%,#151B27);
+  --rule:color-mix(in srgb,var(--p-ink) 40%,#3A4358);
+  --deep:color-mix(in srgb,var(--p-ink) 85%,#000000);
+  --on-deep:#EEF1F7;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:color-mix(in srgb,var(--p-ink) 70%,#05070C);
+  --line:color-mix(in srgb,var(--p-ink) 60%,#2A3346);
+  --margin:color-mix(in srgb,var(--p-margin) 45%,#2A1518);
+  --ink:#EEF1F7;--ink-soft:#AEB7C8;
+  --gold:color-mix(in srgb,var(--p-gold) 78%,#FFFFFF);
+  --gold-soft:color-mix(in srgb,var(--p-gold) 18%,#0B0F18);
+  --card:color-mix(in srgb,var(--p-ink) 55%,#151B27);
+  --rule:color-mix(in srgb,var(--p-ink) 40%,#3A4358);
+  --deep:color-mix(in srgb,var(--p-ink) 85%,#000000);
+  --on-deep:#EEF1F7;color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px);background-size:100% 32px;
+  transition:background-color .4s,color .4s;
+}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+.top-in{max-width:1080px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font-family:var(--display);font-size:1.6rem;text-decoration:none}
+.logo span{color:var(--gold);display:inline-block;animation:dot 2.4s ease-in-out infinite}
+@keyframes dot{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.nav{display:flex;gap:22px;font-size:.95rem;font-weight:500}
+.nav a{text-decoration:none;color:var(--ink-soft);position:relative}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.nav a:hover{color:var(--ink)}
+.nav a:hover::after{transform:scaleX(1)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:999px;font-weight:600;font-family:var(--body);font-size:1rem;text-decoration:none;border:2px solid var(--ink);cursor:pointer;transition:transform .18s,box-shadow .18s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 18px -10px color-mix(in srgb,var(--ink) 60%,transparent)}
+.btn-ink{background:var(--deep);color:var(--on-deep);border-color:var(--deep)}
+.btn-line{background:transparent;color:var(--ink)}
+.btn-sm{padding:8px 16px;font-size:.9rem}
+@media (max-width:860px){.nav{display:none}}
+
+/* page */
+.wrap{max-width:1080px;margin:0 auto;padding-inline:20px}
+section{padding-block:72px}
+.eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--gold)}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.08;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.5rem,7vw,4.6rem)}
+h2{font-size:clamp(2rem,4.6vw,3rem)}
+h3{font-size:1.45rem}
+p{margin:0}
+.lead{font-size:1.18rem;color:var(--ink-soft);max-width:58ch}
+.hand{font-family:var(--hand);color:var(--gold);font-weight:700}
+.sec-head{display:grid;gap:14px;margin-bottom:40px}
+
+/* hero */
+.hero{padding-block:56px 64px}
+.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:center}
+.hero-copy{display:grid;gap:24px;min-width:0}
+.hero h1 .strike{position:relative;white-space:nowrap}
+.hero h1 .strike::after{content:"";position:absolute;left:-2%;right:-2%;top:54%;height:5px;background:var(--margin);transform:rotate(-2deg);border-radius:3px;transform-origin:left;animation:strike .6s .9s cubic-bezier(.6,0,.2,1) backwards}
+@keyframes strike{from{transform:rotate(-2deg) scaleX(0)}}
+.hero-copy > *{animation:rise .7s cubic-bezier(.2,.7,.2,1) backwards}
+.hero-copy > *:nth-child(2){animation-delay:.1s}.hero-copy > *:nth-child(3){animation-delay:.2s}.hero-copy > *:nth-child(4){animation-delay:.3s}
+@keyframes rise{from{transform:translateY(14px);opacity:.01}}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px}
+.sheet{background:var(--card);border:1px solid var(--rule);border-radius:6px;padding:26px 24px 22px 54px;position:relative;box-shadow:0 18px 40px -24px rgba(0,0,0,.45);
+  background-image:linear-gradient(var(--line) 1px,transparent 1px);background-size:100% 30px;background-position:0 14px;transform:rotate(1.5deg);transition:transform .4s}
+.sheet:hover{transform:rotate(0deg) scale(1.02)}
+.sheet::before{content:"";position:absolute;left:38px;top:0;bottom:0;width:2px;background:var(--margin)}
+.sheet .hand{font-size:1.5rem;line-height:30px;display:block;color:var(--ink);animation:write .7s steps(18) backwards}
+.sheet .hand:nth-child(1){animation-delay:.4s}.sheet .hand:nth-child(2){animation-delay:1.1s}.sheet .hand:nth-child(3){animation-delay:1.8s}.sheet .hand:nth-child(4){animation-delay:2.5s}
+@keyframes write{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+.sheet .wrong{color:var(--ink-soft);text-decoration:line-through;text-decoration-color:var(--margin);text-decoration-thickness:2px}
+.sheet .ok{color:var(--gold)!important}
+.sheet small{font-size:.8rem;color:var(--ink-soft);display:block;margin-top:10px;line-height:1.4}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr}.sheet{transform:rotate(0)}}
+
+/* proof */
+.proof{display:grid;grid-template-columns:repeat(3,1fr);border-top:2px solid var(--ink);border-bottom:1px solid var(--rule);background:var(--paper)}
+.proof div{padding:20px 16px;border-right:1px solid var(--rule)}
+.proof div:last-child{border-right:0}
+.proof b{font-family:var(--display);font-size:2rem;font-weight:400;display:block;font-variant-numeric:tabular-nums}
+.proof span{font-size:.88rem;color:var(--ink-soft)}
+@media (max-width:860px){.proof div{padding:16px 10px}.proof b{font-size:1.5rem}}
+
+/* illusion */
+.illusion{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.illusion > div{min-width:0;display:grid;gap:18px}
+.gap{display:grid;gap:14px;background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:24px}
+.gap-row{display:grid;gap:6px}
+.gap-row label{display:flex;justify-content:space-between;gap:10px;font-size:.92rem;font-weight:600}
+.bar{height:14px;border-radius:7px;background:var(--rule);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:7px;background:var(--ink)}
+.bar.alt i{background:var(--gold)}
+.gap.in .bar i{animation:grow 1.1s cubic-bezier(.2,.7,.2,1) backwards}
+.gap.in .gap-row:nth-child(3) .bar i{animation-delay:.2s}.gap.in .gap-row:nth-child(4) .bar i{animation-delay:.4s}
+@keyframes grow{from{width:0}}
+.gap p{font-size:.9rem;color:var(--ink-soft)}
+.quotes{display:grid;gap:10px;margin-top:6px}
+.quotes q{font-family:var(--hand);font-size:1.45rem;line-height:1.2;display:block}
+@media (max-width:860px){.illusion{grid-template-columns:1fr}}
+
+/* méthode */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.step{display:grid;gap:10px;padding-top:18px;border-top:2px solid var(--ink);align-content:start}
+.step .k{font-family:var(--hand);font-size:1.5rem;color:var(--gold)}
+.step p{color:var(--ink-soft);font-size:.98rem}
+@media (max-width:860px){.steps{grid-template-columns:1fr}}
+
+/* qui je suis */
+.about{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;align-items:start}
+.about > div{min-width:0;display:grid;gap:18px}
+.photo{aspect-ratio:4/5;max-width:100%;border-radius:10px;border:2px dashed var(--rule);background:var(--card);display:grid;place-items:center;text-align:center;padding:20px;position:relative}
+.photo .hand{font-size:1.6rem;line-height:1.1}
+.photo small{display:block;color:var(--ink-soft);font-size:.85rem;margin-top:6px}
+.photo .tape{position:absolute;top:-12px;left:50%;width:90px;height:26px;transform:translateX(-50%) rotate(-4deg);background:color-mix(in srgb,var(--gold) 35%,transparent)}
+.cv{display:grid;gap:0;border-top:1px solid var(--rule)}
+.cv div{display:grid;grid-template-columns:140px 1fr;gap:16px;padding:12px 0;border-bottom:1px solid var(--rule);font-size:.98rem}
+.cv dt,.cv b{font-weight:700;color:var(--gold);font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;padding-top:2px}
+.cv span{color:var(--ink-soft)}
+.sign{font-family:var(--hand);font-size:2rem;color:var(--ink);transform:rotate(-3deg);display:inline-block}
+@media (max-width:860px){.about{grid-template-columns:1fr}.photo{max-width:320px}.cv div{grid-template-columns:1fr;gap:2px}}
+
+/* offres */
+.offers{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.offer{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:26px;display:flex;flex-direction:column;gap:14px;min-width:0;transition:transform .25s,box-shadow .25s}
+.offer:hover{transform:translateY(-4px);box-shadow:0 18px 36px -22px rgba(0,0,0,.45)}
+.offer.main{background:var(--deep);color:var(--on-deep);border-color:var(--deep)}
+.offer.main .muted,.offer.main li{color:color-mix(in srgb,var(--on-deep) 80%,transparent)}
+.offer .tag{align-self:flex-start;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--gold-soft);color:var(--gold)}
+.offer.main .tag{background:var(--p-gold);color:#FFFFFF}
+.offer ul{margin:0;padding-left:1.1em;display:grid;gap:6px;font-size:.96rem;color:var(--ink-soft)}
+.offer .price{font-family:var(--display);font-size:1.6rem;display:flex;align-items:baseline;gap:10px}
+.offer .price .hand{font-size:1.3rem}
+.offer .muted{font-size:.9rem;color:var(--ink-soft)}
+.offer .btn{margin-top:auto}
+.offer.main .btn{background:var(--p-gold);border-color:var(--p-gold);color:#FFFFFF}
+@media (max-width:900px){.offers{grid-template-columns:1fr}}
+
+/* niveaux */
+.levels{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--card)}
+.level{padding:22px;border-right:1px solid var(--rule);display:grid;gap:8px;align-content:start;transition:background .25s}
+.level:hover{background:var(--gold-soft)}
+.level:last-child{border-right:0}
+.level .n{font-family:var(--display);font-size:2.2rem;line-height:1}
+.level .t{font-family:var(--hand);font-size:1.4rem;color:var(--gold);line-height:1.1}
+.level p{font-size:.92rem;color:var(--ink-soft)}
+@media (max-width:860px){.levels{grid-template-columns:1fr 1fr}.level:nth-child(2){border-right:0}.level:nth-child(-n+2){border-bottom:1px solid var(--rule)}}
+
+/* témoignages */
+.story{display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center;background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:34px;margin-bottom:28px}
+.grade{font-family:var(--display);font-size:clamp(2.6rem,7vw,4.2rem);line-height:1;white-space:nowrap}
+.grade s{color:var(--ink-soft);text-decoration-color:var(--margin);text-decoration-thickness:4px}
+.grade .to{font-family:var(--hand);color:var(--gold);font-size:.7em;margin-inline:8px}
+.story > div{display:grid;gap:12px;min-width:0}
+.story p{color:var(--ink-soft)}
+@media (max-width:860px){.story{grid-template-columns:1fr;padding:24px}}
+.sub{font-family:var(--hand);font-size:1.7rem;color:var(--gold);margin:8px 0 14px}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:36px}
+.review{background:var(--card);border:1.5px dashed var(--rule);border-radius:10px;padding:22px;display:grid;gap:12px;align-content:start;min-width:0}
+.review .stars{color:var(--gold);letter-spacing:3px}
+.review p{font-family:var(--hand);font-size:1.35rem;line-height:1.25;color:var(--ink-soft)}
+.review .who{font-size:.88rem;font-weight:600}
+.review .who span{font-weight:400;color:var(--ink-soft)}
+.videos{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.video{aspect-ratio:9/14;max-width:100%;border-radius:12px;background:var(--deep);color:var(--on-deep);position:relative;overflow:hidden;display:grid;align-content:end;padding:18px;gap:4px;
+  background-image:linear-gradient(color-mix(in srgb,var(--on-deep) 8%,transparent) 1px,transparent 1px);background-size:100% 26px}
+.video .play{position:absolute;top:50%;left:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:var(--p-gold);display:grid;place-items:center;transition:transform .25s}
+.video .play::after{content:"";border-left:18px solid #FFFFFF;border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:5px}
+.video:hover .play{transform:scale(1.12)}
+.video .play::before{content:"";position:absolute;inset:-8px;border-radius:50%;border:2px solid var(--p-gold);animation:pulse 2s ease-out infinite}
+@keyframes pulse{from{transform:scale(.9);opacity:.9}to{transform:scale(1.35);opacity:0}}
+.video b{font-size:1rem}
+.video span{font-size:.85rem;opacity:.75}
+.todo{display:inline-block;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--gold);border:1px solid var(--gold);border-radius:999px;padding:2px 8px;justify-self:start}
+.video .todo{position:absolute;top:14px;left:14px;color:#FFFFFF;border-color:color-mix(in srgb,#FFFFFF 60%,transparent)}
+.more{margin-top:24px;display:flex;flex-wrap:wrap;gap:10px}
+@media (max-width:860px){.reviews{grid-template-columns:1fr}.videos{grid-template-columns:1fr 1fr;}.videos .video:nth-child(3){display:none}}
+
+/* équipe */
+.team{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.member{display:grid;gap:8px;align-content:start}
+.avatar{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-size:1.6rem;background:var(--gold-soft);color:var(--gold);border:2px solid var(--gold);transition:transform .3s}
+.member:hover .avatar{transform:rotate(-8deg) scale(1.08)}
+.member b{font-size:1.05rem}
+.member span{font-size:.9rem;color:var(--ink-soft)}
+@media (max-width:860px){.team{grid-template-columns:1fr 1fr}}
+
+/* pour qui */
+.fit{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.fit > div{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:24px;display:grid;gap:12px;align-content:start}
+.fit ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.fit li{display:grid;grid-template-columns:22px 1fr;gap:8px}
+.fit li::before{font-weight:700}
+.yes li::before{content:"✓";color:var(--gold)}
+.no li::before{content:"✕";color:var(--margin)}
+@media (max-width:860px){.fit{grid-template-columns:1fr}}
+
+/* contact */
+.contact{background:var(--deep);color:var(--on-deep);border-radius:14px;padding:44px;display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.contact .lead{color:color-mix(in srgb,var(--on-deep) 80%,transparent)}
+.contact .eyebrow{color:color-mix(in srgb,var(--p-gold) 70%,#FFFFFF)}
+.contact > div{display:grid;gap:18px;align-content:start;min-width:0}
+#calendly-embed{display:block}
+#calendly-embed iframe{border-radius:10px}
+.facts{display:grid;gap:8px;font-size:.95rem}
+.facts b{color:color-mix(in srgb,var(--p-gold) 70%,#FFFFFF)}
+form{display:grid;gap:14px}
+.field{display:grid;gap:6px}
+.field label{font-size:.85rem;font-weight:600}
+input,select,textarea{font:inherit;font-size:1rem;padding:12px 14px;border-radius:8px;border:1px solid color-mix(in srgb,var(--on-deep) 30%,transparent);background:color-mix(in srgb,var(--on-deep) 8%,transparent);color:var(--on-deep);width:100%}
+input::placeholder,textarea::placeholder{color:color-mix(in srgb,var(--on-deep) 50%,transparent)}
+textarea{min-height:110px;resize:vertical}
+select option{color:#1B2A4A;background:#FFFFFF}
+form .btn{background:var(--p-gold);border-color:var(--p-gold);color:#FFFFFF}
+.note{font-size:.85rem;color:color-mix(in srgb,var(--on-deep) 75%,transparent)}
+.done{background:color-mix(in srgb,var(--p-gold) 25%,transparent);border:1px solid var(--p-gold);border-radius:8px;padding:14px;font-size:.95rem}
+.mail{font-weight:600;word-break:break-all;user-select:all}
+@media (max-width:860px){.contact{grid-template-columns:1fr;padding:26px 20px}}
+
+footer{padding-block:40px 110px;font-size:.88rem;color:var(--ink-soft)}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;border-top:1px solid var(--rule);padding-top:20px}
+.foot a{color:var(--ink-soft)}
+
+/* sélecteur de couleurs (outil d'essai) */
+.palette{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:20;display:flex;align-items:center;gap:10px;padding:8px 10px 8px 16px;border-radius:999px;background:var(--card);border:1px solid var(--rule);box-shadow:0 12px 30px -12px rgba(0,0,0,.4);max-width:calc(100% - 32px)}
+.palette span{font-family:var(--hand);font-size:1.25rem;color:var(--ink);white-space:nowrap}
+.palette .sw{display:flex;gap:6px}
+.palette button{width:30px;height:30px;border-radius:50%;border:2px solid transparent;cursor:pointer;padding:0;position:relative;overflow:hidden;transition:transform .2s}
+.palette button:hover{transform:scale(1.12)}
+.palette button[aria-pressed="true"]{border-color:var(--ink);box-shadow:0 0 0 2px var(--card) inset}
+.palette button i{position:absolute;inset:0}
+@media (max-width:420px){.palette span{display:none}}
+
+/* V3 : symboles flottants, bandeau défilant, soulignés manuscrits, diagnostic, équipe */
+.hero{position:relative}
+.floaters{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.hero-grid{position:relative;z-index:1}
+.floaters span{position:absolute;font-family:var(--display);color:var(--gold);opacity:.16;animation:float 14s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translate(0,0) rotate(0)}33%{transform:translate(14px,-22px) rotate(8deg)}66%{transform:translate(-10px,12px) rotate(-6deg)}}
+.marquee{overflow:hidden;border-bottom:1px solid var(--rule);padding-block:14px;margin-top:8px}
+.marquee-track{display:flex;gap:40px;width:max-content;animation:slide 32s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-track span{font-family:var(--hand);font-size:1.7rem;white-space:nowrap;color:var(--ink-soft)}
+.marquee-track b{font-family:var(--display);font-weight:400;color:var(--gold);font-size:1.4rem}
+@keyframes slide{to{transform:translateX(-50%)}}
+.mark{position:relative;white-space:nowrap;display:inline-block}
+.mark svg{position:absolute;left:-2%;bottom:-.18em;width:104%;height:.38em;overflow:visible}
+.mark path{fill:none;stroke:var(--gold);stroke-width:4;stroke-linecap:round;stroke-dasharray:240}
+.mark.in path{animation:draw 1s .15s cubic-bezier(.6,0,.2,1) backwards}
+@keyframes draw{from{stroke-dashoffset:240}}
+.diag{display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:center;background:var(--card);border:2px solid var(--gold);border-radius:12px;padding:26px 30px;margin-bottom:24px;position:relative;overflow:hidden}
+.diag::after{content:"";position:absolute;top:0;bottom:0;width:60px;left:-80px;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--gold) 22%,transparent),transparent);transform:skewX(-20deg);animation:shine 5s ease-in-out infinite}
+@keyframes shine{0%,60%{left:-80px}100%{left:110%}}
+.diag .badge{font-family:var(--hand);font-size:2rem;color:var(--gold);transform:rotate(-6deg);line-height:1;text-align:center}
+.diag > div{display:grid;gap:6px;min-width:0}
+.diag p{color:var(--ink-soft);font-size:.98rem}
+@media (max-width:860px){.diag{grid-template-columns:1fr;gap:14px;padding:22px}.diag .badge{text-align:left}}
+.offers.two{grid-template-columns:1fr 1fr}
+@media (max-width:900px){.offers.two{grid-template-columns:1fr}}
+.offer{transform-style:preserve-3d;will-change:transform}
+.teamline{display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center}
+.stack{display:flex}
+.stack .avatar{margin-left:-14px;background:var(--card);animation:bob 3s ease-in-out infinite}
+.stack .avatar:first-child{margin-left:0;background:var(--deep);color:var(--on-deep);border-color:var(--deep)}
+.stack .avatar:nth-child(2){animation-delay:.3s}.stack .avatar:nth-child(3){animation-delay:.6s}.stack .avatar:nth-child(4){animation-delay:.9s}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.teamline > div{display:grid;gap:12px;min-width:0}
+@media (max-width:860px){.teamline{grid-template-columns:1fr;gap:20px}}
+.orbit{position:relative;width:240px;height:240px;flex:none;justify-self:center}
+.orbit .ring{position:absolute;inset:22px;border:2px dashed color-mix(in srgb,var(--gold) 45%,transparent);border-radius:50%;animation:spin 40s linear infinite}
+.orbit .core{position:absolute;inset:78px;border-radius:50%;background:var(--deep);color:var(--on-deep);display:grid;place-items:center;font-family:var(--display);font-size:2.4rem;z-index:2;box-shadow:0 10px 24px -10px rgba(0,0,0,.5)}
+.orbit .core::before,.orbit .core::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:2px solid var(--p-gold);animation:pulse 2.6s ease-out infinite}
+.orbit .core::after{animation-delay:1.3s}
+.orbit .core small{position:absolute;bottom:-26px;font-family:var(--hand);font-size:1.2rem;color:var(--gold);white-space:nowrap}
+.orbit .sat{position:absolute;inset:0;animation:spin 16s linear infinite}
+.orbit .sat:nth-child(4){animation-delay:-5.333s}
+.orbit .sat:nth-child(5){animation-delay:-10.666s}
+.orbit .sat .avatar{position:absolute;top:0;left:50%;margin-left:-26px;width:52px;height:52px;font-size:1.3rem;background:var(--card);animation:spin 16s linear infinite reverse;animation-delay:inherit}
+.orbit .sat:nth-child(4) .avatar{animation-delay:-5.333s}
+.orbit .sat:nth-child(5) .avatar{animation-delay:-10.666s}
+.orbit:hover .sat,.orbit:hover .sat .avatar,.orbit:hover .ring{animation-play-state:paused}
+.orbit .sat .avatar{transition:transform .3s,background .3s}
+.orbit .spark{position:absolute;width:8px;height:8px;border-radius:50%;background:var(--p-gold);top:22px;left:50%;margin-left:-4px;transform-origin:4px 98px;animation:spin 7s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.orbit .sat .avatar{transform-origin:center}
+/* V5 : photos, avis réels, filtres */
+.about-media{display:grid;gap:22px;min-width:0}
+.portrait{margin:0;position:relative;max-width:420px}
+.portrait img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:10px;border:6px solid var(--card);box-shadow:0 20px 40px -24px rgba(0,0,0,.5);transform:rotate(-1.5deg);transition:transform .4s}
+.portrait:hover img{transform:rotate(0) scale(1.02)}
+.portrait .tape{z-index:2}
+.polas{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:420px}
+.pola{margin:0;background:var(--card);padding:6px 6px 4px;border:1px solid var(--rule);box-shadow:0 10px 22px -14px rgba(0,0,0,.5);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.pola img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover}
+.pola figcaption{font-family:var(--hand);font-size:1.05rem;text-align:center;color:var(--ink);line-height:1.4}
+.pola.p1{transform:rotate(-5deg)}.pola.p2{transform:rotate(3deg) translateY(8px)}.pola.p3{transform:rotate(-2deg)}
+.pola:hover{transform:rotate(0) scale(1.12);z-index:3;position:relative}
+.caption{font-size:1.35rem;line-height:1.25;max-width:420px}
+.results{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:36px}
+.results .story{margin:0;grid-template-columns:1fr;gap:16px;padding:28px}
+.results .grade{font-size:clamp(2.4rem,6vw,3.4rem)}
+@media (max-width:860px){.results{grid-template-columns:1fr}}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.chip{font:inherit;font-size:.9rem;font-weight:600;padding:8px 16px;border-radius:999px;border:1.5px solid var(--rule);background:var(--card);color:var(--ink);cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+.chip:hover{transform:translateY(-2px)}
+.chip[aria-pressed="true"]{background:var(--deep);color:var(--on-deep);border-color:var(--deep)}
+.chip small{opacity:.65;font-weight:500;margin-left:4px}
+.reviews{align-items:start}
+.review{border-style:solid;position:relative}
+.review .head{display:flex;align-items:center;gap:10px}
+.review .ini{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-weight:700;background:var(--gold-soft);color:var(--gold);flex:none}
+.review .who{display:grid;line-height:1.3}
+.review p{font-family:var(--body);font-size:.97rem;line-height:1.6;color:var(--ink-soft);display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden}
+.review.open p{-webkit-line-clamp:unset;display:block}
+.review .readmore{font:inherit;font-size:.88rem;font-weight:600;color:var(--gold);background:none;border:0;padding:0;cursor:pointer;justify-self:start}
+.review .q{position:absolute;top:6px;right:16px;font-family:var(--display);font-size:3.4rem;line-height:1;color:var(--gold-soft)}
+.review.pop{animation:popin .45s cubic-bezier(.2,.7,.2,1) backwards}
+@keyframes popin{from{transform:translateY(16px) scale(.97);opacity:.01}}
+.showall{margin-top:18px}
+.videos{grid-template-columns:repeat(4,1fr)}
+.video .who-v{font-family:var(--hand);font-size:1.5rem;line-height:1.1}
+.video .initial{position:absolute;top:22%;left:50%;transform:translateX(-50%);font-family:var(--display);font-size:5rem;opacity:.12}
+@media (max-width:860px){.videos{grid-template-columns:1fr 1fr}.videos .video:nth-child(3){display:grid}}
+/* V7 : photos en arche + éventail, accroche tournante, barre de lecture, dessins */
+.portrait{max-width:380px;margin-top:10px}
+.portrait .tape{display:none}
+.portrait::before{content:"";position:absolute;inset:0;border:2px solid var(--gold);border-radius:200px 200px 14px 14px;transform:translate(14px,14px);transition:transform .4s}
+.portrait:hover::before{transform:translate(8px,8px)}
+.portrait img{aspect-ratio:4/5;border-radius:200px 200px 14px 14px;border:0;transform:none;position:relative}
+.portrait:hover img{transform:none}
+.portrait .badge-hand{position:absolute;right:-6px;bottom:22px;z-index:2;background:var(--card);border:1.5px solid var(--gold);border-radius:999px;padding:4px 14px;font-family:var(--hand);font-size:1.3rem;color:var(--ink);transform:rotate(-6deg);box-shadow:0 8px 18px -10px rgba(0,0,0,.4)}
+.polas{display:flex;justify-content:center;max-width:420px;padding-block:14px 6px;grid-template-columns:none}
+.pola{width:40%;flex:none;margin-left:-8%}
+.pola:first-child{margin-left:0}
+.pola.p1{transform:rotate(-8deg) translateY(6px)}.pola.p2{transform:rotate(1deg) translateY(-8px);z-index:1;position:relative}.pola.p3{transform:rotate(8deg) translateY(8px)}
+.pola img{aspect-ratio:4/5}
+.polas.in .pola{animation:fan .8s cubic-bezier(.2,.7,.2,1) backwards}
+.polas.in .p1{animation-name:fanL}.polas.in .p3{animation-name:fanR}
+@keyframes fanL{from{transform:translateX(70%) rotate(0)}}
+@keyframes fanR{from{transform:translateX(-70%) rotate(0)}}
+@keyframes fan{from{transform:rotate(0)}}
+.pola:hover{transform:rotate(0) translateY(-14px) scale(1.1);z-index:3;position:relative}
+.hook{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.rot{font-family:var(--hand);font-size:1.65rem;font-weight:700;color:var(--gold);line-height:1.1;display:inline-block;min-height:1.1em}
+.rot.swap{animation:swap .5s cubic-bezier(.2,.7,.2,1)}
+@keyframes swap{from{transform:translateY(60%);opacity:.01;clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
+.progress{position:absolute;left:0;bottom:-1px;height:3px;width:100%;background:var(--gold);transform-origin:left;transform:scaleX(0)}
+.divider{display:flex;align-items:center;justify-content:center;gap:16px;padding-block:8px;color:var(--gold)}
+.divider svg{height:24px;width:min(32vw,220px);overflow:visible}
+.divider path{fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-dasharray:300}
+.divider span{font-family:var(--display);font-size:1.9rem;line-height:1;color:var(--gold);display:inline-block}
+.divider.in path{animation:drawl 1.2s cubic-bezier(.6,0,.2,1) backwards}
+.divider.in span{animation:spinin .8s .3s cubic-bezier(.2,.7,.2,1) backwards}
+@keyframes drawl{from{stroke-dashoffset:300}}
+@keyframes spinin{from{transform:rotate(-180deg) scale(.3);opacity:.01}}
+.sec-head{position:relative}
+.doodle{position:absolute;right:0;top:-10px;width:230px;height:150px;color:var(--gold);opacity:.75;pointer-events:none}
+.doodle path,.doodle line,.doodle circle{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-dasharray:400}
+.doodle text{fill:currentColor;font-family:var(--hand);font-size:20px;stroke:none}
+.doodle.in path,.doodle.in line,.doodle.in circle{animation:drawd 1.6s cubic-bezier(.6,0,.2,1) backwards}
+@keyframes drawd{from{stroke-dashoffset:400}}
+@media (max-width:980px){.doodle{display:none}}
+/* V8 : Académie avec logo et photo */
+.offer.main{padding-top:0;overflow:hidden}
+.acad-photo{margin:0 -26px 6px;position:relative}
+.acad-photo img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.offer.main:hover .acad-photo img{transform:scale(1.05)}
+.acad-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,transparent 55%,var(--deep))}
+.acad-badge{position:absolute;left:26px;bottom:-30px;width:72px;height:72px;border-radius:50%;background:#FBFAF6;display:grid;place-items:center;z-index:2;box-shadow:0 10px 24px -10px rgba(0,0,0,.6)}
+.acad-badge::before{content:"";position:absolute;inset:-6px;border-radius:50%;border:2px solid var(--p-gold);animation:pulse 2.6s ease-out infinite}
+.acad-mark{width:46px;height:38px;background:#1B2A4A;-webkit-mask:url(img/academie-logo.png) center/contain no-repeat;mask:url(img/academie-logo.png) center/contain no-repeat;animation:twinkle 4s ease-in-out infinite}
+@keyframes twinkle{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-3px) scale(1.06)}}
+.acad-tag{margin-top:26px}
+.acad-stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid color-mix(in srgb,var(--on-deep) 20%,transparent);border-bottom:1px solid color-mix(in srgb,var(--on-deep) 20%,transparent)}
+.acad-stats div{padding:10px 4px;display:grid;text-align:center;border-right:1px solid color-mix(in srgb,var(--on-deep) 20%,transparent)}
+.acad-stats div:last-child{border-right:0}
+.acad-stats b{font-family:var(--display);font-weight:400;font-size:1.6rem;color:color-mix(in srgb,var(--p-gold) 70%,#FFFFFF);font-variant-numeric:tabular-nums}
+.acad-stats span{font-size:.8rem;opacity:.8}
+/* V9 */
+.offer.main{padding-top:26px}
+.acad-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:4px 6px 2px 6px}
+.acad-head .acad-badge{position:relative;left:auto;bottom:auto;width:64px;height:64px}
+.acad-head .tag{align-self:center}
+.portrait img{aspect-ratio:5/6}
+.pola img{aspect-ratio:3/4}
+.deco{position:absolute;font-family:var(--display);color:var(--gold);opacity:.16;pointer-events:none;z-index:0;animation:float 14s ease-in-out infinite;line-height:1}
+section.wrap,.divider{position:relative}
+section.wrap{overflow-x:clip}
+html,body{overflow-x:clip}
+section.wrap > :not(.deco):not(.floaters){position:relative;z-index:1}
+@media (max-width:980px){
+  .doodle{display:block;position:static;width:150px;height:98px;margin:0 0 4px auto;opacity:.6}
+  section{padding-block:56px}
+}
+/* V12 : défi, semaine, FAQ, barre d'appel, pages légales */
+.defi{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:start}
+.defi > div{min-width:0;display:grid;gap:16px}
+.board{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:22px 22px 18px 58px;position:relative;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px);background-size:100% 40px;background-position:0 19px;box-shadow:0 18px 40px -26px rgba(0,0,0,.45)}
+.board::before{content:"";position:absolute;left:40px;top:0;bottom:0;width:2px;background:var(--margin)}
+.board-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px}
+.board-top .lvl{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--gold)}
+.score{font-family:var(--hand);font-size:1.3rem;color:var(--ink-soft)}
+.prompt{font-family:var(--hand);font-size:1.45rem;line-height:40px;color:var(--ink)}
+.lines{display:grid;gap:0;margin:0;padding:0;list-style:none}
+.lines button{all:unset;box-sizing:border-box;display:block;width:100%;font-family:var(--hand);font-size:1.6rem;line-height:40px;color:var(--ink);cursor:pointer;padding:0 10px;border-radius:6px;position:relative;transition:background .2s}
+.lines button:hover{background:var(--gold-soft)}
+.lines button:focus-visible{outline:2px solid var(--gold)}
+.lines button.bad{color:var(--ink-soft);text-decoration:line-through;text-decoration-color:var(--margin);text-decoration-thickness:3px;animation:shake .4s}
+.lines button.good::after{content:"✓";position:absolute;right:10px;color:var(--gold);font-weight:700}
+.lines button.miss{animation:shake .4s}
+@keyframes shake{20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+.feedback{min-height:3.2em;font-size:.98rem;color:var(--ink-soft);margin-top:10px;line-height:1.5}
+.feedback b{color:var(--ink)}
+.feedback .fix{font-family:var(--hand);font-size:1.35rem;color:var(--gold)}
+.board-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;position:relative;padding-top:28px}
+.week::before{content:"";position:absolute;left:4%;right:4%;top:11px;height:3px;background:var(--rule);border-radius:2px}
+.week::after{content:"";position:absolute;left:4%;right:4%;top:11px;height:3px;background:var(--gold);border-radius:2px;transform-origin:left;transform:scaleX(1)}
+.week.in::after{animation:wk 2.2s cubic-bezier(.4,0,.2,1) backwards}
+@keyframes wk{from{transform:scaleX(0)}}
+.day{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:14px 12px;display:grid;gap:6px;align-content:start;position:relative;min-width:0}
+.day::before{content:"";position:absolute;top:-23px;left:50%;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--paper);border:3px solid var(--gold)}
+.day.key{background:var(--deep);color:var(--on-deep);border-color:var(--deep)}
+.day.key p{color:color-mix(in srgb,var(--on-deep) 80%,transparent)}
+.day .d{font-family:var(--hand);font-size:1.35rem;color:var(--gold);line-height:1}
+.day.key .d{color:color-mix(in srgb,var(--p-gold) 70%,#FFFFFF)}
+.day b{font-size:.95rem;line-height:1.25}
+.day p{font-size:.82rem;color:var(--ink-soft);line-height:1.4}
+.week.in .day{animation:rise .6s cubic-bezier(.2,.7,.2,1) backwards}
+.week.in .day:nth-child(2){animation-delay:.25s}.week.in .day:nth-child(3){animation-delay:.5s}.week.in .day:nth-child(4){animation-delay:.75s}.week.in .day:nth-child(5){animation-delay:1s}.week.in .day:nth-child(6){animation-delay:1.25s}.week.in .day:nth-child(7){animation-delay:1.5s}
+.week-note{margin-top:14px;font-size:.88rem;color:var(--ink-soft)}
+@media (max-width:900px){
+  .defi{grid-template-columns:1fr}
+  .week{grid-template-columns:1fr;padding-top:0;padding-left:30px;gap:12px}
+  .week::before,.week::after{left:9px;right:auto;top:6px;bottom:6px;width:3px;height:auto}
+  .week::after{transform-origin:top;transform:scaleY(1)}
+  .week.in::after{animation-name:wkv}
+  .day::before{top:16px;left:-28px;margin-left:0}
+}
+@keyframes wkv{from{transform:scaleY(0)}}
+.faq{display:grid;gap:10px;max-width:780px}
+.faq details{background:var(--card);border:1px solid var(--rule);border-radius:10px;overflow:hidden;transition:border-color .2s}
+.faq details[open]{border-color:var(--gold)}
+.faq summary{list-style:none;cursor:pointer;padding:18px 54px 18px 20px;font-weight:600;font-size:1.04rem;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:20px;top:50%;transform:translateY(-50%);font-family:var(--display);font-size:1.7rem;color:var(--gold);transition:transform .3s}
+.faq details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+.faq .ans{padding:0 20px 18px;color:var(--ink-soft);display:grid;gap:10px}
+.faq details[open] .ans{animation:rise .4s cubic-bezier(.2,.7,.2,1)}
+.faq .ans ul{margin:0;padding-left:1.1em;display:grid;gap:4px}
+.callbar{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(10px);border-top:1px solid var(--rule);display:flex;gap:10px;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.callbar.away{transform:translateY(110%)}
+.callbar .btn-ink{background:var(--p-gold);border-color:var(--p-gold);color:#FFFFFF;white-space:nowrap;font-size:.95rem}
+.callbar .btn{flex:1;padding:12px 10px}
+.callbar .wa{flex:0 0 auto;background:#25D366;border-color:#25D366;color:#0B2E1A}
+.callbar .wa svg{width:20px;height:20px;fill:currentColor}
+@media (min-width:861px){.callbar{left:20px;right:auto;bottom:20px;border:1px solid var(--rule);border-radius:999px;padding:8px;box-shadow:0 14px 30px -14px rgba(0,0,0,.45)}.callbar .btn{flex:0 0 auto}}
+.legal{border:0;border-radius:14px;padding:0;max-width:min(720px,calc(100vw - 32px));max-height:85vh;background:var(--card);color:var(--ink);box-shadow:0 30px 60px -20px rgba(0,0,0,.5)}
+.legal::backdrop{background:rgba(10,14,24,.55)}
+.legal-in{padding:28px 26px;display:grid;gap:14px;overflow:auto;max-height:85vh}
+.legal h2{font-size:1.8rem}
+.legal h3{font-family:var(--body);font-weight:700;font-size:1rem;margin-top:6px}
+.legal p,.legal li{font-size:.94rem;color:var(--ink-soft)}
+.legal ul{margin:0;padding-left:1.1em;display:grid;gap:4px}
+.legal .fill{background:var(--gold-soft);color:var(--gold);font-weight:700;padding:0 6px;border-radius:4px}
+.legal .close{justify-self:end;position:sticky;top:0}
+.foot button.linkish{all:unset;cursor:pointer;color:var(--ink-soft);text-decoration:underline}
+.foot button.linkish:focus-visible{outline:2px solid var(--gold)}
+footer{padding-block:40px 120px}
+.cal{width:62px;height:66px;border-radius:10px;background:#FBFAF6;color:#1B2A4A;display:grid;place-items:center;align-content:center;line-height:1;border-top:10px solid var(--p-gold);flex:none;animation:twinkle 4s ease-in-out infinite}
+.cal b{font-family:var(--display);font-size:1.7rem;font-weight:400}
+.stage-top .cal b{font-size:1.25rem}
+.cal small{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em}
+/* Émilie : assistante IA des parents */
+.emi-ava{width:40px;height:40px;border-radius:50%;flex:none;display:grid;place-items:center;background:var(--p-gold);color:#1B2A4A;font-family:var(--display);font-size:1.3rem;line-height:1}
+.emi-fab{position:fixed;right:16px;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:31;display:flex;align-items:center;gap:10px;padding:8px;border-radius:999px;border:1px solid var(--rule);background:var(--card);color:var(--ink);cursor:pointer;font:inherit;box-shadow:0 14px 30px -12px rgba(0,0,0,.45);transition:transform .25s,bottom .35s cubic-bezier(.2,.7,.2,1)}
+.callbar.away ~ .emi-fab{bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+.emi-fab:hover{transform:translateY(-3px)}
+.emi-fab .emi-ava{width:46px;height:46px;font-size:1.5rem;position:relative}
+.emi-fab .emi-ava::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:2px solid var(--p-gold);animation:pulse 2.6s ease-out infinite}
+.emi-fab-txt{display:grid;text-align:left;line-height:1.2;padding-right:10px}
+.emi-fab-txt small{font-size:.8rem;color:var(--ink-soft)}
+.emi-fab-txt b{font-size:.98rem}
+@media (max-width:860px){
+  .emi-fab{padding:6px}
+  .emi-fab-txt{position:absolute;right:calc(100% + 10px);top:50%;transform:translateY(-50%);white-space:nowrap;background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:8px 12px;box-shadow:0 10px 24px -12px rgba(0,0,0,.4);opacity:0;pointer-events:none;animation:emiTip 7s 2.5s ease both}
+}
+@keyframes emiTip{0%{opacity:0;transform:translate(8px,-50%)}10%,85%{opacity:1;transform:translate(0,-50%)}100%{opacity:0}}
+.emi-panel{position:fixed;z-index:40;right:20px;bottom:20px;width:min(390px,calc(100vw - 32px));height:min(620px,calc(100dvh - 40px));display:flex;flex-direction:column;background:var(--card);color:var(--ink);border:1px solid var(--rule);border-radius:16px;box-shadow:0 30px 60px -20px rgba(0,0,0,.5);overflow:hidden;animation:emiIn .35s cubic-bezier(.2,.7,.2,1)}
+@keyframes emiIn{from{transform:translateY(20px) scale(.97);opacity:.01}}
+@media (max-width:860px){.emi-panel{left:0;right:0;bottom:0;width:auto;height:min(88dvh,680px);border-radius:16px 16px 0 0;padding-bottom:env(safe-area-inset-bottom,0px)}}
+.emi-head{display:flex;align-items:center;gap:12px;padding:14px 14px 12px 16px;background:var(--deep);color:var(--on-deep)}
+.emi-head > div{display:grid;line-height:1.25;flex:1;min-width:0}
+.emi-head b{font-size:1rem}
+.emi-head span{font-size:.8rem;opacity:.75}
+.emi-x{all:unset;cursor:pointer;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-size:1.4rem;line-height:1}
+.emi-x:hover,.emi-x:focus-visible{background:color-mix(in srgb,var(--on-deep) 14%,transparent)}
+.emi-warn{font-size:.78rem;color:var(--ink-soft);padding:8px 16px;border-bottom:1px solid var(--rule);background:var(--gold-soft)}
+.emi-log{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;overscroll-behavior:contain;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px);background-size:100% 28px}
+.emi-msg{max-width:86%;padding:10px 13px;border-radius:14px;font-size:.95rem;line-height:1.5;overflow-wrap:anywhere;animation:popin .3s cubic-bezier(.2,.7,.2,1)}
+.emi-msg.bot{align-self:flex-start;background:var(--paper);border:1px solid var(--rule);border-bottom-left-radius:4px}
+.emi-msg.me{align-self:flex-end;background:var(--deep);color:var(--on-deep);border-bottom-right-radius:4px}
+.emi-msg.err{align-self:center;background:transparent;border:1px dashed var(--margin);color:var(--ink-soft);font-size:.85rem;text-align:center}
+.emi-msg a{color:var(--gold);font-weight:600}
+.emi-msg.me a{color:inherit}
+.emi-msg ul{margin:4px 0;padding-left:1.1em}
+.emi-typing{display:flex;gap:4px;align-items:center}
+.emi-typing i{width:7px;height:7px;border-radius:50%;background:var(--ink-soft);animation:emiDot 1.2s infinite}
+.emi-typing i:nth-child(2){animation-delay:.15s}.emi-typing i:nth-child(3){animation-delay:.3s}
+@keyframes emiDot{0%,60%,100%{opacity:.25;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
+.emi-chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 10px}
+.emi-chips button{font:inherit;font-size:.85rem;padding:7px 12px;border-radius:999px;border:1.5px solid var(--gold);background:var(--card);color:var(--ink);cursor:pointer;transition:background .2s}
+.emi-chips button:hover{background:var(--gold-soft)}
+.emi-form{display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--rule)}
+.emi-form textarea{flex:1;width:auto;min-height:0;height:44px;resize:none;font:inherit;font-size:16px;line-height:1.4;padding:10px 12px;border-radius:12px;border:1px solid var(--rule);background:var(--paper);color:var(--ink);max-height:110px}
+.emi-send{flex:none;width:44px;height:44px;align-self:flex-end;border-radius:50%;border:0;background:var(--p-gold);color:#FFFFFF;cursor:pointer;display:grid;place-items:center}
+.emi-send:disabled{opacity:.5;cursor:default}
+.emi-send svg{width:20px;height:20px;fill:currentColor}
+.emi-book{display:block;text-align:center;padding:10px 12px 12px;font-size:.9rem;font-weight:600;color:var(--gold);text-decoration:none;border-top:1px solid var(--rule)}
+.emi-book:hover{text-decoration:underline}
+.emi-left{font-size:.75rem;color:var(--ink-soft);text-align:center;padding:0 16px 6px}
+/* Parcours en frise + stages */
+.tl{list-style:none;margin:4px 0 0;padding:0;display:grid;gap:0;position:relative}
+.tl::before{content:"";position:absolute;left:83px;top:10px;bottom:10px;width:2px;background:var(--rule)}
+.tl li{display:grid;grid-template-columns:72px 1fr;gap:22px;padding:9px 0;position:relative}
+.tl li::before{content:"";position:absolute;left:78px;top:16px;width:12px;height:12px;border-radius:50%;background:var(--paper);border:2.5px solid var(--gold)}
+.tl li.now::before{background:var(--gold)}
+.tl .y{font-family:var(--hand);font-size:1.3rem;color:var(--gold);line-height:1.2;text-align:right;white-space:nowrap}
+.tl li > div{display:grid;gap:2px;min-width:0}
+.tl b{font-size:.98rem;line-height:1.35}
+.tl li > div span{font-size:.88rem;color:var(--ink-soft);line-height:1.45}
+.tl.in li{animation:rise .55s cubic-bezier(.2,.7,.2,1) backwards}
+.tl.in li:nth-child(2){animation-delay:.12s}.tl.in li:nth-child(3){animation-delay:.24s}.tl.in li:nth-child(4){animation-delay:.36s}.tl.in li:nth-child(5){animation-delay:.48s}.tl.in li:nth-child(6){animation-delay:.6s}
+.tl-note{font-size:.92rem;color:var(--ink-soft)}
+.tl-note b{color:var(--gold);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase}
+@media (max-width:520px){.tl::before{left:63px}.tl li{grid-template-columns:52px 1fr;gap:20px}.tl li::before{left:58px}.tl .y{font-size:1.1rem;white-space:normal}}
+.stage{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.stage-copy{display:grid;gap:18px;min-width:0}
+.stage-ctas{display:flex;flex-wrap:wrap;align-items:center;gap:14px}
+.stage-places{font-family:var(--hand);font-size:1.35rem;color:var(--gold)}
+.stage-card{background:var(--deep);color:var(--on-deep);border-radius:14px;padding:26px;display:grid;gap:18px;position:relative;overflow:hidden}
+.stage-card::after{content:"";position:absolute;inset:0;background-image:linear-gradient(color-mix(in srgb,var(--on-deep) 6%,transparent) 1px,transparent 1px);background-size:100% 28px;pointer-events:none}
+.stage-card > *{position:relative;z-index:1}
+.stage-top{display:flex;align-items:center;gap:14px}
+.stage-top > div{display:grid}
+.stage-top span:not(.cal){font-size:.9rem;opacity:.75}
+.formules{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.formules li{display:grid;justify-items:center;text-align:center;gap:2px;padding:14px 6px;border-radius:10px;border:1px solid color-mix(in srgb,var(--on-deep) 22%,transparent);transition:transform .25s,background .25s}
+.formules li:hover{transform:translateY(-4px);background:color-mix(in srgb,var(--p-gold) 22%,transparent)}
+.formules b{font-family:var(--display);font-weight:400;font-size:2.2rem;line-height:1;color:color-mix(in srgb,var(--p-gold) 70%,#FFFFFF)}
+.formules span{font-size:.85rem;font-weight:600}
+.formules small{font-size:.74rem;opacity:.72;line-height:1.3}
+.parrain{font-size:.9rem;color:color-mix(in srgb,var(--on-deep) 82%,transparent);border-top:1px dashed color-mix(in srgb,var(--on-deep) 25%,transparent);padding-top:14px}
+.parrain b{color:color-mix(in srgb,var(--p-gold) 70%,#FFFFFF)}
+@media (max-width:900px){.stage{grid-template-columns:1fr}.formules{grid-template-columns:1fr 1fr}}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:40px 0 20px;border-bottom:1px solid var(--rule)}
+.tab{font:inherit;font-weight:600;font-size:.98rem;padding:10px 4px;margin-right:18px;background:none;border:0;border-bottom:3px solid transparent;color:var(--ink-soft);cursor:pointer;margin-bottom:-1px}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--gold)}
+.tab:hover{color:var(--ink)}
+.pane-lead{color:var(--ink-soft);margin-bottom:22px;max-width:62ch}
+.pane:not([hidden]){animation:rise .4s cubic-bezier(.2,.7,.2,1)}
+.foot-acad{display:inline-flex;align-items:center;gap:8px}
+.foot-acad i{width:22px;height:18px;background:var(--ink-soft);-webkit-mask:url(img/academie-logo.png) center/contain no-repeat;mask:url(img/academie-logo.png) center/contain no-repeat}
+.li{display:inline-flex;align-items:center;gap:8px}
+.li svg{width:18px;height:18px;fill:currentColor}
+.about-links{display:flex;flex-wrap:wrap;align-items:center;gap:18px}
+a.video{text-decoration:none}
+.step .k{display:inline-block;transition:transform .3s}
+.step:hover .k{transform:rotate(-4deg) scale(1.08)}
+.review{transition:transform .25s,border-color .25s}
+.review:hover{transform:translateY(-4px) rotate(-.6deg);border-color:var(--gold)}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* Mobile : carrousels à faire glisser pour raccourcir la page */
+.swipe-hint{display:none}
+@media (max-width:860px){
+  .reviews,.videos{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin-inline:-20px;padding:4px 20px 14px;scrollbar-width:none}
+  .reviews::-webkit-scrollbar,.videos::-webkit-scrollbar,.week::-webkit-scrollbar{display:none}
+  .reviews > .review{flex:0 0 84%;scroll-snap-align:center}
+  .videos > .video{flex:0 0 46%;scroll-snap-align:start}
+  .videos .video:nth-child(3){display:grid}
+  .showall{display:none}
+  .swipe-hint{display:block;font-family:var(--hand);font-size:1.15rem;color:var(--ink-soft);margin:-6px 0 6px}
+  .week{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin-inline:-20px;padding:4px 20px 14px;scrollbar-width:none}
+  .week::before,.week::after,.day::before{display:none}
+  .week > .day{flex:0 0 62%;scroll-snap-align:start}
+  .portrait{max-width:260px}
+  .polas{max-width:330px}
+  .results .story{padding:20px}
+}
+.portrait img,.pola img{height:auto}
+.story > .grade{display:block}
+@media (max-width:860px){.results .story{grid-template-columns:auto 1fr;align-items:center;gap:16px}.results .grade{font-size:2.1rem}.results h3{font-size:1.1rem}}
+</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="top-in">
+    <a class="logo" href="#accueil">Clarté<span>.</span></a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#methode">Méthode</a>
+      <a href="#temoignages">Témoignages</a>
+      <a href="#defi">Défi</a>
+      <a href="#offres">Formules</a>
+      <a href="#stages">Stages</a>
+      <a href="#qui">Qui je suis</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-ink btn-sm" href="#contact">Appel offert</a>
+  </div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+</header>
+
+<main id="accueil">
+  <section class="hero wrap">
+    <div class="floaters" aria-hidden="true">
+      <span style="left:4%;top:8%;font-size:3rem">π</span>
+      <span style="left:46%;top:4%;font-size:2.2rem;animation-delay:-3s">√x</span>
+      <span style="left:88%;top:14%;font-size:2.6rem;animation-delay:-6s">x²</span>
+      <span style="left:38%;top:82%;font-size:2.4rem;animation-delay:-9s">÷</span>
+      <span style="left:92%;top:78%;font-size:3rem;animation-delay:-4s">∑</span>
+      <span style="left:2%;top:70%;font-size:2rem;animation-delay:-11s">a/b</span>
+      <span style="left:64%;top:46%;font-size:2rem;animation-delay:-7s">≠</span>
+    </div>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="hook"><span class="eyebrow">Clarté, c'est pour</span><span class="rot" id="rot" aria-live="off">l'élève qui travaille mais stagne</span></div>
+        <h1>Votre enfant comprend en classe. Il <span class="strike">bloque</span> seul.</h1>
+        <p class="lead">Je l'aide à passer de « j'ai compris quand le prof l'a fait » à « je sais le refaire tout seul, même quand l'exercice change ». Pas juste un prof. Un traducteur.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-ink" href="#contact">Réserver mon appel diagnostic offert</a>
+          <a class="btn btn-line" href="#offres">Voir les formules</a>
+        </div>
+      </div>
+      <aside class="sheet" aria-label="Exemple de correction">
+        <span class="hand">Résoudre 3x + 5 = 20</span>
+        <span class="hand wrong">x = 20 − 5 + 3</span>
+        <span class="hand">3x = 15</span>
+        <span class="hand ok">x = 5 ✓ on vérifie : 3×5+5 = 20</span>
+        <small>Le but n'est pas la bonne réponse. C'est de savoir pourquoi la deuxième ligne est fausse.</small>
+      </aside>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="proof" role="list">
+      <div role="listitem"><b data-to="50" data-suf="+">50+</b><span>familles accompagnées</span></div>
+      <div role="listitem"><b data-to="500" data-suf=" h+">500 h+</b><span>de cours donnés</span></div>
+      <div role="listitem"><b>5,0 ★</b><span>sur Superprof, 15 avis</span></div>
+    </div>
+  </div>
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>comprendre</span><b>≠</b><span>réciter</span><b>·</b><span>savoir refaire seul</span><b>·</b><span>moins de stress en cours</span><b>·</b><span>plus de confiance</span><b>·</b><span>une méthode, pas des recettes</span><b>·</b>
+      <span>comprendre</span><b>≠</b><span>réciter</span><b>·</b><span>savoir refaire seul</span><b>·</b><span>moins de stress en cours</span><b>·</b><span>plus de confiance</span><b>·</b><span>une méthode, pas des recettes</span><b>·</b>
+    </div>
+  </div>
+
+  <section class="wrap" id="methode">
+    <div class="illusion">
+      <div>
+        <span class="eyebrow">Le vrai problème</span>
+        <h2>L'illusion de <span class="mark">compréhension<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 Q50 2 100 7 T198 5"/></svg></span></h2>
+        <p class="lead">Beaucoup d'élèves suivent très bien en classe. Ils hochent la tête, recopient la correction, tout semble clair. Puis devant la copie, seuls, plus rien ne vient.</p>
+        <p class="lead">Ajouter des heures ne règle pas ça. Il faut repérer ce qui est cru compris, le reconstruire, et l'entraîner jusqu'à l'autonomie.</p>
+        <div class="quotes">
+          <q>« Il ne comprend pas quand il est seul. »</q>
+          <q>« Les maths, c'est toujours la bagarre. »</q>
+          <q>« Il stagne, alors qu'il travaille. »</q>
+        </div>
+      </div>
+      <div class="gap" aria-label="Schéma de l'écart entre comprendre et refaire seul">
+        <span class="hand" style="font-size:1.6rem">Ce que je vois souvent au début :</span>
+        <div class="gap-row"><label><span>Suit la correction en classe</span><span>Ça va</span></label><div class="bar"><i style="width:85%"></i></div></div>
+        <div class="gap-row"><label><span>Refait un exercice identique</span><span>Moyen</span></label><div class="bar"><i style="width:55%"></i></div></div>
+        <div class="gap-row"><label><span>Résout un exercice nouveau, seul</span><span>Bloque</span></label><div class="bar alt"><i style="width:22%"></i></div></div>
+        <p>C'est ce dernier palier que le brevet évalue. C'est là que je travaille.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="temoignages">
+    <div class="sec-head">
+      <svg class="doodle" viewBox="0 0 230 150" aria-hidden="true"><path d="M120 20 l12 26 l28 3 l-21 19 l6 28 l-25 -14 l-25 14 l6 -28 l-21 -19 l28 -3 z"/><circle cx="60" cy="110" r="22"/><path d="M48 112 l9 9 l16 -18"/><text x="150" y="130">5,0 ★</text></svg>
+      <span class="eyebrow">Témoignages</span>
+      <h2>Ce qu'en disent les <span class="mark">familles<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 Q50 2 100 7 T198 5"/></svg></span></h2>
+    </div>
+    <div class="results">
+      <div class="story">
+        <div class="grade"><s>11</s><span class="to">→</span>TB</div>
+        <div><h3>Angélina, de 11/20 à la mention très bien au brevet, en un trimestre.</h3></div>
+      </div>
+      <div class="story">
+        <div class="grade"><s>8</s><span class="to">→</span>12</div>
+        <div><h3>Gabin pensait avoir 8 ou 9 à l'épreuve de spé maths. Il a obtenu 12.</h3></div>
+      </div>
+    </div>
+
+    <div class="sub">Avis écrits</div>
+    <div class="chips" role="group" aria-label="Filtrer les avis">
+      <button class="chip" type="button" data-f="all" aria-pressed="true">Tous<small>14</small></button>
+      <button class="chip" type="button" data-f="famille" aria-pressed="false">Familles<small>5</small></button>
+      <button class="chip" type="button" data-f="eleve" aria-pressed="false">Élèves<small>4</small></button>
+      <button class="chip" type="button" data-f="autre" aria-pressed="false">Ils recommandent<small>5</small></button>
+    </div>
+    <p class="swipe-hint" aria-hidden="true">← faites glisser →</p>
+    <div class="reviews" id="reviews">
+      <article class="review" data-c="famille"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">I</span><div class="who">Isabelle<span>maman · préparation au brevet</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Nous recommandons Arnaud, jeune professeur qui accompagne ma fille de 15 ans pour le brevet, avec beaucoup de sérieux et de bienveillance. Il a su mettre en place un récapitulatif systématique sur feuille blanche, ce qui lui permet de vérifier les acquis, de structurer les notions et de consolider les révisions de manière très efficace. Pour nous, d'avoir un retour sur la séance, sa gentillesse, sa patience et sa pédagogie mettent ma fille en confiance. Elle apprécie sincèrement les moments d'accompagnement et progresse avec plus de sérénité.</p></article>
+      <article class="review" data-c="eleve"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">S</span><div class="who">Sara<span>élève de Première · spé maths</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Mes parents et moi avons décidé de faire appel à un professeur de maths afin de m'aider à rattraper mon retard. Arnaud est très pédagogue et comprend rapidement mes besoins. Il adapte ses explications en fonction de mes difficultés, ce qui m'aide à mieux comprendre les notions travaillées. Je me sens déjà mieux accompagnée dans mon travail.</p></article>
+      <article class="review" data-c="famille"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">G</span><div class="who">Famille de Gabin<span>Première · spé maths</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Gabin avait pris du retard sur certains chapitres de la spécialité mathématiques. Il avait du mal à comprendre les notions et surtout à les appliquer aux exercices. Donc il ne se sentait pas prêt pour l'épreuve. Ce qui a bien marché, c'est que tu sois très à l'écoute de ses besoins, et surtout la façon d'aller à l'essentiel. Il a obtenu la note de 12 alors qu'il pensait avant tes cours avoir 8/9. Il a repris tes explications et cela lui a permis de travailler plus sereinement.</p></article>
+      <article class="review" data-c="autre"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">S</span><div class="who">Stéphane<span>collègue enseignant</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Arnaud est un collègue passionné et rigoureux. Empathique avec ses élèves, sa pédagogie et ses résultats sont étonnants. Je le recommande !</p></article>
+      <article class="review" data-c="famille"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">O</span><div class="who">Océane<span>maman</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Parfait ! Professeur très à l'écoute, professionnel et accessible. Il propose des méthodes modernes, s'adapte au niveau de mon fils et met en place une approche pédagogique efficace pour l'aider à progresser. Son travail est réfléchi et ses explications sont toujours claires. Il sait également tenir compte des difficultés que rencontre mon fils, prendre le temps de réexpliquer si nécessaire et instaurer un climat de confiance. Une excellente pédagogie et un accompagnement de qualité. Je recommande fortement.</p></article>
+      <article class="review" data-c="eleve"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">C</span><div class="who">Charline<span>élève de Première · maths tronc commun</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Je suis une élève de première générale avec maths en tronc commun, et j'ai commencé les cours particuliers à quelques semaines des épreuves. Honnêtement, ça m'a vraiment aidée à tout remettre à niveau sur les chapitres de l'année. Arnaud explique très bien, de façon claire et structurée, ce qui permet de comprendre même les notions les plus compliquées. Il prend le temps de revenir sur les points non compris sans jamais mettre de pression, ce qui rend les séances très agréables et efficaces. La méthode de travail est très bonne : les exercices sont bien choisis, progressifs et adaptés à mon niveau. Tout est bien organisé, et les supports et documents envoyés sont propres et utiles pour réviser ensuite. Grâce à cet accompagnement, je me sens beaucoup plus en confiance en mathématiques à l'approche du bac. Je recommande vivement Arnaud.</p></article>
+      <article class="review" data-c="autre"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">E</span><div class="who">Emma<span>recommandation</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Je recommande vivement Arnaud pour la qualité de son accompagnement en cours particuliers. Il possède une réelle capacité à mettre ses élèves en confiance dès les premières séances. Grâce à son écoute attentive, sa patience et sa bienveillance, il crée un climat rassurant qui permet à chacun de progresser à son rythme sans crainte de l'erreur. Arnaud sait valoriser les efforts autant que les résultats, ce qui renforce l'estime de soi et la motivation de ses élèves. Il prend le temps d'expliquer différemment lorsque cela est nécessaire et adapte sa pédagogie aux besoins spécifiques de chacun. Son attitude positive et encourageante aide les élèves à croire en leurs capacités et à gagner en autonomie. Au-delà des compétences académiques, Arnaud transmet confiance et méthode, deux éléments essentiels pour réussir durablement.</p></article>
+      <article class="review" data-c="eleve"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">L</span><div class="who">Louise<span>élève</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Parfait ! Le cours était très bien organisé et cela m'a permis de bien comprendre les notions et d'ensuite pouvoir m'exercer. C'était très intéressant !</p></article>
+      <article class="review" data-c="famille"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">C</span><div class="who">Chantal<span>grand-mère</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Arnaud a été un super prof pendant les grandes vacances pour ma petite-fille, sa pédagogie et sa gentillesse l'ont beaucoup aidée pendant les 4 ans pour sa progression en maths.</p></article>
+      <article class="review" data-c="autre"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">W</span><div class="who">Willy<span>recommandation</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Arnaud est un professeur très sympathique et professionnel. Il explique les notions de manière simple et donne de bons conseils pour progresser. Les cours sont agréables et efficaces !</p></article>
+      <article class="review" data-c="famille"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">C</span><div class="who">Caroline<span>maman de Juliette</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Parfait ! Mon premier cours avec Arnaud s'est très bien déroulé, il est à l'écoute, calme et agréable.</p></article>
+      <article class="review" data-c="eleve"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">D</span><div class="who">Dorian<span>élève</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Si vous avez des lacunes en maths ou pour du perfectionnement, c'est la meilleure personne à contacter. Explication, compréhension, il a tout.</p></article>
+      <article class="review" data-c="autre"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">C</span><div class="who">Clément<span>recommandation</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Un excellent prof ! Je le recommande vivement pour un accompagnement vers le brevet.</p></article>
+      <article class="review" data-c="autre"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">R</span><div class="who">Rédha<span>recommandation</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Lors de mes échanges avec Arnaud, j'ai directement ressenti sa passion pour l'enseignement. Il a tout pour être un superprof !</p></article>
+    </div>
+    <button class="btn btn-line btn-sm showall" type="button" id="showall">Voir les 14 avis</button>
+
+    <div class="sub" style="margin-top:44px">Témoignages vidéo</div>
+    <p class="swipe-hint" aria-hidden="true">← faites glisser →</p>
+    <div class="videos">
+      <a class="video" href="https://www.youtube.com/shorts/Nyf6q9Bo00g" target="_blank" rel="noopener"><span class="initial" aria-hidden="true">L</span><div class="play" aria-hidden="true"></div><span class="who-v">Lyse</span><span>élève de sixième</span></a>
+      <a class="video" href="https://www.youtube.com/shorts/-ofgHubeCqM" target="_blank" rel="noopener"><span class="initial" aria-hidden="true">T</span><div class="play" aria-hidden="true"></div><span class="who-v">Tiffanie</span><span>maman de Tylan, élève de cinquième</span></a>
+      <a class="video" href="https://www.youtube.com/shorts/HOoTnnO0ihk" target="_blank" rel="noopener"><span class="initial" aria-hidden="true">E</span><div class="play" aria-hidden="true"></div><span class="who-v">Emma</span><span>grande sœur</span></a>
+      <a class="video" href="https://www.youtube.com/shorts/6UgavqLpO6Q" target="_blank" rel="noopener"><span class="initial" aria-hidden="true">L</span><div class="play" aria-hidden="true"></div><span class="who-v">Laura</span><span>collègue enseignante</span></a>
+    </div>
+    <div class="more">
+      <a class="btn btn-line btn-sm li" href="https://g.page/r/CSAvg_P2otibECE/review" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.35 11.1H12v2.98h5.35c-.23 1.4-1.66 4.1-5.35 4.1a5.9 5.9 0 0 1 0-11.8c1.82 0 3.04.78 3.74 1.45l2.55-2.45C16.67 3.86 14.55 3 12 3a9 9 0 1 0 0 18c5.2 0 8.64-3.65 8.64-8.8 0-.6-.07-1.05-.15-1.5z"/></svg>Nos avis Google</a>
+      <a class="btn btn-line btn-sm" href="https://www.youtube.com/@clarte-arnaud" target="_blank" rel="noopener">Chaîne YouTube</a>
+    </div>
+  </section>
+
+  <section class="wrap" id="defi">
+    <div class="defi">
+      <div>
+        <span class="eyebrow">Défi du mercredi · à essayer</span>
+        <h2>Trouve <span class="mark">l'erreur<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 Q50 2 100 7 T198 5"/></svg></span></h2>
+        <p class="lead">Un élève a rédigé cette correction. Une ligne est fausse. Touche-la.</p>
+        <p class="lead">C'est exactement ce qu'on travaille dans l'Académie : repérer pourquoi une étape est fausse, pas seulement trouver la bonne réponse.</p>
+      </div>
+      <div class="board" id="board" aria-live="polite">
+        <div class="board-top"><span class="lvl" id="d-lvl">Niveau 4ème</span><span class="score" id="d-score">Défi 1 / 4</span></div>
+        <div class="prompt" id="d-prompt">Développer et réduire :</div>
+        <ol class="lines" id="d-lines"></ol>
+        <div class="feedback" id="d-fb">Quelle ligne contient l'erreur ?</div>
+        <div class="board-actions">
+          <button class="btn btn-ink btn-sm" type="button" id="d-next" hidden>Défi suivant</button>
+          <a class="btn btn-line btn-sm" href="#contact" id="d-cta" hidden>Réserver l'appel offert</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true"><svg viewBox="0 0 220 24" preserveAspectRatio="none"><path d="M2 12 C30 2 50 22 80 12 S130 2 160 12 S200 20 218 12"/></svg><span>√</span><svg viewBox="0 0 220 24" preserveAspectRatio="none"><path d="M2 12 C30 2 50 22 80 12 S130 2 160 12 S200 20 218 12"/></svg></div>
+
+  <section class="wrap" id="offres">
+    <div class="sec-head">
+      <svg class="doodle" viewBox="0 0 230 150" aria-hidden="true"><line x1="20" y1="130" x2="220" y2="130"/><line x1="40" y1="145" x2="40" y2="10"/><path d="M60 25 Q130 230 200 25"/><circle cx="130" cy="127" r="4"/><text x="150" y="70">f(x) = x²</text></svg>
+      <span class="eyebrow">Formules</span>
+      <h2>Deux façons de travailler ensemble</h2>
+      <p class="lead">Tout commence par un appel diagnostic offert. On choisit ensuite la formule qui correspond à votre enfant. Les deux se complètent : les cours traitent ses blocages en direct, l'Académie l'entraîne entre les séances.</p>
+    </div>
+    <div class="diag">
+      <div class="badge">Offert</div>
+      <div>
+        <h3>D'abord, l'appel diagnostic</h3>
+        <p>Un échange en visio avec le parent et l'élève, sans engagement. On repère ce qui est compris et ce qui est cru compris, et vous repartez avec des pistes concrètes.</p>
+      </div>
+      <a class="btn btn-ink" href="#contact">Réserver mon appel</a>
+    </div>
+    <div class="offers two">
+      <article class="offer main" id="academie">
+        <div class="acad-head">
+          <div class="acad-badge"><span class="acad-mark" role="img" aria-label="Logo de l'Académie Clarté"></span></div>
+          <span class="tag">Collège · Brevet</span>
+        </div>
+        <h3>Académie Clarté Objectif Brevet</h3>
+        <p class="muted">La formation en ligne pour la 4ème et la 3ème, avec un vrai suivi.</p>
+        <div class="acad-stats"><div><b>Mer.</b><span>live chaque semaine</span></div><div><b>Parents</b><span>plan d'action partagé</span></div><div><b>Étapes</b><span>je suis son avancée</span></div></div>
+        <ul>
+          <li>Cours en vidéo que j'explique moi-même, leçons PDF et fiches à niveaux</li>
+          <li>Live chaque mercredi avec le défi de la semaine</li>
+          <li>Escape game, situations concrètes, chasse à l'erreur</li>
+          <li>Plans d'action partagés avec les parents</li>
+          <li>Communauté d'entraide entre élèves</li>
+        </ul>
+        <a class="btn" href="#contact">Réserver un appel diagnostic</a>
+      </article>
+      <article class="offer">
+        <span class="tag">Sur mesure</span>
+        <h3>Cours particuliers</h3>
+        <p class="muted">Pour un accompagnement individuel, de la 4ème à la Première.</p>
+        <ul>
+          <li>4ème, 3ème, Seconde, Première (autres niveaux : parlons-en à l'appel)</li>
+          <li>Préparation brevet et orientation lycée</li>
+          <li>Option Bachibac (maths en espagnol)</li>
+          <li>Stages de renforcement pendant les vacances</li>
+        </ul>
+        <a class="btn btn-line" href="#contact">Me contacter</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap" id="stages">
+    <div class="stage">
+      <div class="stage-copy">
+        <span class="eyebrow">Pendant les vacances</span>
+        <h2>Les stages de <span class="mark">renforcement<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 Q50 2 100 7 T198 5"/></svg></span></h2>
+        <p class="lead">Une semaine de vacances pour combler les lacunes, reprendre confiance et repartir du bon pied. En visio, avec moi, sur les chapitres qui posent problème.</p>
+        <div class="stage-ctas">
+          <a class="btn btn-ink" href="#contact" rel="noopener">Demander les dates</a>
+          <span class="stage-places">Places limitées à chaque session</span>
+        </div>
+      </div>
+      <div class="stage-card">
+        <div class="stage-top"><span class="cal" aria-hidden="true"><b>1h30</b><small>séance</small></span><div><b>4 formules au choix</b><span>séances d'1 h 30, selon le besoin de votre enfant</span></div></div>
+        <ul class="formules">
+          <li><b>1</b><span>séance</span><small>pour débloquer un point précis</small></li>
+          <li><b>3</b><span>séances</span><small>pour reprendre un chapitre</small></li>
+          <li><b>4</b><span>séances</span><small>pour consolider plusieurs notions</small></li>
+          <li><b>6</b><span>séances</span><small>pour une vraie remise à niveau</small></li>
+        </ul>
+        <p class="parrain"><b>Parrainage</b> · Une séance offerte pour chaque proche recommandé qui démarre un accompagnement Clarté.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="comment">
+    <div class="sec-head">
+      <svg class="doodle" viewBox="0 0 230 150" aria-hidden="true"><path d="M40 120 L40 30 L170 120 Z"/><path d="M40 106 L54 106 L54 120"/><text x="70" y="60">a² + b² = c²</text><path d="M180 40 q12 -14 24 0 t24 0"/></svg>
+      <span class="eyebrow">Comment ça se passe</span>
+      <h2>Trois étapes, toujours dans cet ordre</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><span class="k">1. Diagnostiquer</span><h3>On repère les faux savoirs</h3><p>Un appel offert pour comprendre la situation : ce qui est vraiment compris, ce qui est cru compris, et ce qui bloquera plus tard.</p></div>
+      <div class="step"><span class="k">2. Reconstruire</span><h3>On explique autrement</h3><p>Jusqu'à ce que l'élève puisse réexpliquer lui-même. Pas de par cœur, pas de recettes : comprendre, puis appliquer.</p></div>
+      <div class="step"><span class="k">3. Rendre autonome</span><h3>On entraîne seul</h3><p>Exercices à niveaux, défis, chasse à l'erreur. Les parents suivent la progression avec un plan d'action clair.</p></div>
+    </div>
+    <div class="tabs" role="tablist" aria-label="En savoir plus">
+      <button class="tab" type="button" role="tab" id="tab-semaine" aria-controls="pane-semaine" aria-selected="true">Une semaine dans l'Académie</button>
+      <button class="tab" type="button" role="tab" id="tab-niveaux" aria-controls="pane-niveaux" aria-selected="false">Le programme par niveau</button>
+    </div>
+    <div class="pane" role="tabpanel" id="pane-semaine" aria-labelledby="tab-semaine">
+      <p class="pane-lead">Votre enfant n'est jamais seul devant l'écran : chaque étape est cochée, suivie, et vous savez où il en est.</p>
+    <p class="swipe-hint" aria-hidden="true">← faites glisser →</p>
+    <div class="week" id="week">
+      <div class="day"><span class="d">Lundi</span><b>La vidéo et la leçon</b><p>J'explique la notion en vidéo, l'élève a la leçon en PDF.</p></div>
+      <div class="day"><span class="d">Mardi</span><b>La fiche à niveaux</b><p>Exercices ●○○ ●●○ ●●●, corrigés.</p></div>
+      <div class="day key"><span class="d">Mercredi</span><b>Le live</b><p>En direct avec moi, avec le défi du mercredi.</p></div>
+      <div class="day"><span class="d">Jeudi</span><b>Je m'entraîne autrement</b><p>Chasse à l'erreur, atelier de rédaction, situations concrètes.</p></div>
+      <div class="day"><span class="d">Vendredi</span><b>Les étapes cochées</b><p>Je vois l'avancée de chaque élève.</p></div>
+      <div class="day"><span class="d">Samedi</span><b>La communauté</b><p>Questions et entraide entre élèves.</p></div>
+      <div class="day key"><span class="d">Dimanche</span><b>Le plan d'action</b><p>Partagé dans le groupe avec les parents.</p></div>
+    </div>
+    <p class="week-note">Exemple de semaine type : le rythme s'adapte à chaque élève.</p>
+    </div>
+    <div class="pane" role="tabpanel" id="pane-niveaux" aria-labelledby="tab-niveaux" hidden>
+    <div class="levels">
+      <div class="level"><span class="n">4e</span><span class="t">L'année du déclic</span><p>14 modules du programme officiel, un module « Fondations » pour reprendre les bases, et un escape game final.</p></div>
+      <div class="level"><span class="n">3e</span><span class="t">Le saut de palier</span><p>Consolider toute l'année et s'entraîner sur ce que le brevet demande vraiment.</p></div>
+      <div class="level"><span class="n">2de</span><span class="t">Le passage au lycée</span><p>Solidifier le calcul et les fonctions, prendre le rythme du lycée et préparer le choix des spécialités.</p></div>
+      <div class="level"><span class="n">1re</span><span class="t">Spé maths</span><p>Second degré, suites, dérivation, exponentielle, probabilités, puis l'expertise de spécialité.</p></div>
+    </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="qui">
+    <div class="about">
+      <div class="about-media">
+        <figure class="portrait"><img src="img/portrait.jpg" alt="Portrait d'Arnaud, fondateur de Clarté" width="640" height="800"><span class="badge-hand" aria-hidden="true">fondateur de Clarté</span></figure>
+        <div class="polas">
+          <figure class="pola p1"><img src="img/tdf-sourire.jpg" alt="Arnaud en animation sur le Tour de France" width="600" height="800" loading="lazy"><figcaption>Tour de France</figcaption></figure>
+          <figure class="pola p2"><img src="img/tdf-echange.jpg" alt="Arnaud en échange avec le public sur le Tour de France" width="600" height="800" loading="lazy"><figcaption>expliquer à tous</figcaption></figure>
+          <figure class="pola p3"><img src="img/tdf-course.jpg" alt="Arnaud sur le parcours du Tour de France" width="600" height="800" loading="lazy"><figcaption>en plein air</figcaption></figure>
+        </div>
+        <p class="hand caption">Été 2026 : animateur avec EF Education First sur le Tour de France. Capter l'attention et expliquer simplement, à tous les âges.</p>
+      </div>
+      <div>
+        <span class="eyebrow">Qui je suis</span>
+        <h2>Bonjour, moi c'est <span class="mark">Arnaud<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 Q50 2 100 7 T198 5"/></svg></span>.</h2>
+        <p class="lead">J'ai toujours aimé expliquer. Au fil des cours, j'ai vu beaucoup d'élèves travailler dur, réussir parfois, sans jamais vraiment comprendre. Le jour où l'exercice change, tout s'écroule.</p>
+        <p class="lead">J'ai compris que le problème n'était pas les maths, mais la façon d'apprendre à penser. C'est pour ça que j'ai créé Clarté : faire comprendre pour de vrai, puis rendre l'élève capable de se débrouiller seul.</p>
+        <ol class="tl" id="tl">
+          <li><span class="y">2020</span><div><b>Bac S mention très bien</b><span>19/20 en maths, 20/20 en espagnol · Brevet d'initiation aéronautique (BIA)</span></div></li>
+          <li><span class="y">2020 – 22</span><div><b>Cycle préparatoire intégré en école d'ingénieurs</b><span>ENIT (École nationale d'ingénieurs de Tarbes) : maths, physique, sciences de l'ingénieur</span></div></li>
+          <li><span class="y">2022</span><div><b>Premiers élèves en ligne</b><span>Professeur de maths en visio chez GoStudent, du collège au lycée</span></div></li>
+          <li><span class="y">2024</span><div><b>Licence de mathématiques, parcours métiers de l'enseignement</b><span>Université de Toulouse : didactique et enseignement des maths</span></div></li>
+          <li><span class="y">2025</span><div><b>Création de Clarté</b><span>Plus de 50 familles accompagnées et plus de 500 heures de cours depuis</span></div></li>
+          <li class="now"><span class="y">2026</span><div><b>L'Académie Clarté et une équipe</b><span>Ambassadeur EF Education First, animateur EF sur le Tour de France · Formation continue en pédagogie avec Les Nouveaux Profs</span></div></li>
+        </ol>
+        <p class="tl-note"><b>Spécialité</b> · de la 4ème à la Première : brevet, passage au lycée, spé maths et orientation. <b>Langues</b> · accompagnement Bachibac possible en espagnol.</p>
+        <div class="about-links">
+          <span class="sign">Arnaud</span>
+          <a class="btn btn-line btn-sm li" href="https://www.linkedin.com/in/arnaud-amador-clarte" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.5c0-1.3-.02-3-1.83-3-1.84 0-2.12 1.43-2.12 2.9V21H9z"/></svg>Mon LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="equipe">
+    <div class="teamline">
+      <div class="orbit" aria-hidden="true">
+        <div class="ring"></div>
+        <div class="spark"></div>
+        <div class="sat"><div class="avatar">M</div></div>
+        <div class="sat"><div class="avatar">J</div></div>
+        <div class="sat"><div class="avatar">L</div></div>
+        <div class="core">A<small>l'équipe Clarté</small></div>
+      </div>
+      <div>
+        <span class="eyebrow">Clarté, c'est aussi une équipe</span>
+        <h2>Vous n'êtes jamais seul face à un seul prof</h2>
+        <p class="lead">Je reste votre interlocuteur principal, mais une petite équipe travaille avec moi pour que chaque élève et chaque famille soit bien suivi.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true"><svg viewBox="0 0 220 24" preserveAspectRatio="none"><path d="M2 12 C30 2 50 22 80 12 S130 2 160 12 S200 20 218 12"/></svg><span>Δ</span><svg viewBox="0 0 220 24" preserveAspectRatio="none"><path d="M2 12 C30 2 50 22 80 12 S130 2 160 12 S200 20 218 12"/></svg></div>
+
+  <section class="wrap">
+    <div class="fit">
+      <div class="yes"><h3>C'est pour vous si…</h3><ul><li>votre enfant comprend quand on lui explique, mais pas seul</li><li>il bloque dès que l'exercice change</li><li>vous voulez qu'il devienne autonome avant le brevet</li></ul></div>
+      <div class="no"><h3>Ce n'est pas pour vous si…</h3><ul><li>vous cherchez seulement plus d'heures de cours</li><li>il vous faut une solution express la veille d'un contrôle</li><li>vous voulez des recettes à apprendre par cœur</li></ul></div>
+    </div>
+  </section>
+
+  <section class="wrap" id="faq">
+    <div class="sec-head">
+      <span class="eyebrow">Questions fréquentes</span>
+      <h2>Ce que les parents me demandent</h2>
+    </div>
+    <div class="faq">
+      <details open><summary>Mon enfant ne va-t-il pas décrocher, seul devant l'écran ?</summary><div class="ans"><p>C'est la crainte numéro un, et toute l'Académie est construite contre ça :</p><ul><li>chaque leçon a des étapes que l'élève coche, et je vois qui avance et qui bloque ;</li><li>le live du mercredi permet de poser ses questions en direct ;</li><li>un plan d'action est partagé dans un groupe qui inclut les parents ;</li><li>une petite équipe m'aide à suivre chaque famille.</li></ul></div></details>
+      <details><summary>La visio, c'est aussi efficace qu'en présentiel ?</summary><div class="ans"><p>Oui, à condition que l'élève soit actif, et la visio y aide :</p><ul><li>on travaille sur le même document à l'écran, et votre enfant rédige lui-même pendant que je corrige en direct ;</li><li>il garde une trace écrite de chaque séance, à relire avant un contrôle ;</li><li>pas de trajet : les séances se calent plus facilement, même en semaine ;</li><li>entre les séances, les ressources de l'Académie et le live du mercredi prennent le relais.</li></ul><p>L'appel diagnostic, lui aussi en visio, vous permet de vous faire une idée sans engagement.</p></div></details>
+      <details><summary>Combien ça coûte ?</summary><div class="ans"><p>Le tarif dépend de la formule et du besoin de votre enfant. On en parle pendant l'appel diagnostic, une fois que j'ai compris la situation. L'appel est offert et sans engagement.</p></div></details>
+      <details><summary>Y a-t-il un engagement ?</summary><div class="ans"><p>Aucun pour l'appel diagnostic. L'Académie fonctionne en abonnement : votre enfant garde l'accès tant que vous le souhaitez. Les modalités exactes vous sont expliquées pendant l'appel.</p></div></details>
+      <details><summary>Comment se passe le paiement ?</summary><div class="ans"><p>Par virement. Les cours particuliers sont réglés par forfait, avant les séances, en début de mois ou de trimestre. L'Académie fonctionne en abonnement payé d'avance. Le tarif adapté à votre enfant est défini pendant l'appel diagnostic.</p></div></details>
+      <details><summary>Cours particuliers ou Académie : que choisir ?</summary><div class="ans"><p>Les deux se complètent. Les cours particuliers traitent en direct les blocages de votre enfant. L'Académie lui donne de quoi s'entraîner seul entre les séances, avec un suivi de son avancée. On décide ensemble de la bonne formule pendant l'appel diagnostic.</p></div></details>
+      <details><summary>Que se passe-t-il pendant l'appel diagnostic ?</summary><div class="ans"><p>On échange avec vous et votre enfant : ses notes, ce qui le bloque, ce qu'il a déjà essayé. Je repère ce qui est compris et ce qui est seulement « cru compris », puis je vous propose la formule adaptée, ou je vous oriente ailleurs si ce n'est pas le bon choix.</p></div></details>
+      <details><summary>Mon enfant a déjà un bon niveau, c'est utile ?</summary><div class="ans"><p>Oui. Beaucoup d'élèves passent de « bon » à « très bon » quand ils arrêtent d'appliquer des recettes et comprennent vraiment. C'est souvent ce qui fait la différence au brevet et pour l'orientation au lycée.</p></div></details>
+      <details><summary>Quels niveaux accompagnez-vous ?</summary><div class="ans"><p>Je suis spécialisé de la 4ème à la Première : préparation au brevet, passage au lycée, spécialité maths. L'accompagnement en espagnol pour le Bachibac est aussi possible. J'ai déjà accompagné des élèves d'autres niveaux : si votre enfant est plus jeune, parlons-en pendant l'appel.</p></div></details>
+    </div>
+  </section>
+
+  <section class="wrap" id="contact">
+    <div class="contact">
+      <div>
+        <span class="eyebrow">Premier pas</span>
+        <h2>Parlons de votre enfant</h2>
+        <p class="lead">L'appel diagnostic est offert et sans engagement. Choisissez directement un créneau de 30 minutes dans mon agenda.</p>
+        <div class="facts">
+          <span><b>Format</b> · en visio, où que vous soyez</span>
+          <span><b>Email</b> · <span class="mail">comprendrepourmieuxexpliquer@gmail.com</span></span>
+          <span><b>Téléphone</b> · <span class="mail">06 62 71 71 43</span></span>
+          <span><b>WhatsApp</b> · <a href="https://wa.me/33662717143" target="_blank" rel="noopener">m'écrire sur WhatsApp</a></span>
+          <span><b>Avis</b> · <a href="https://g.page/r/CSAvg_P2otibECE/review" target="_blank" rel="noopener">Google</a> · 5,0 ★ sur Superprof</span>
+          <span><b>YouTube</b> · <a href="https://www.youtube.com/@clarte-arnaud" target="_blank" rel="noopener">@clarte-arnaud</a></span>
+          <span><b>LinkedIn</b> · <a href="https://www.linkedin.com/in/arnaud-amador-clarte" target="_blank" rel="noopener">Arnaud, Clarté</a></span>
+        </div>
+      </div>
+      <div id="calendly-embed" style="min-width:320px;height:700px;"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <div class="foot">
+    <span>© 2026 Clarté · Arnaud, professeur de mathématiques</span>
+    <span class="foot-acad"><i aria-hidden="true"></i>Académie Clarté Objectif Brevet</span>
+    <span><button class="linkish" type="button" data-open="dlg-mentions">Mentions légales</button> · <button class="linkish" type="button" data-open="dlg-privacy">Confidentialité</button> · <button class="linkish" type="button" data-open="dlg-cgv">CGV</button></span>
+  </div>
+</footer>
+
+<div class="callbar" id="callbar">
+  <a class="btn btn-ink" href="#contact">Réserver mon appel offert</a>
+</div>
+
+<button class="emi-fab" type="button" id="emi-fab" aria-haspopup="dialog" aria-controls="emi-panel">
+  <span class="emi-ava" aria-hidden="true">É</span>
+  <span class="emi-fab-txt"><small>Une question ?</small><b>Demandez à Émilie</b></span>
+</button>
+
+<div class="emi-panel" id="emi-panel" role="dialog" aria-modal="false" aria-labelledby="emi-title" hidden>
+  <div class="emi-head">
+    <span class="emi-ava" aria-hidden="true">É</span>
+    <div><b id="emi-title">Émilie</b><span>assistante IA de l'Académie Clarté</span></div>
+    <button class="emi-x" type="button" id="emi-close" aria-label="Fermer la discussion">×</button>
+  </div>
+  <p class="emi-warn">Elle peut se tromper. Pour toute décision, parlez-en avec Arnaud.</p>
+  <div class="emi-log" id="emi-log" aria-live="polite"></div>
+  <div class="emi-chips" id="emi-chips">
+    <button type="button">Comment préparer le brevet ?</button>
+    <button type="button">C'est quoi le Bachibac ?</button>
+    <button type="button">Comment se passe l'accompagnement ?</button>
+  </div>
+  <p class="emi-left" id="emi-left" hidden></p>
+  <form class="emi-form" id="emi-form">
+    <label for="emi-input" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Votre question</label>
+    <textarea id="emi-input" rows="1" maxlength="1500" placeholder="Posez votre question…"></textarea>
+    <button class="emi-send" type="submit" id="emi-send" aria-label="Envoyer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.4 20.4 21 12 3.4 3.6 3.4 10l12.6 2-12.6 2z"/></svg></button>
+  </form>
+  <a class="emi-book" href="#contact" >Réserver l'appel diagnostic offert →</a>
+</div>
+
+<dialog class="legal" id="dlg-mentions" aria-labelledby="mt">
+  <div class="legal-in">
+    <button class="btn btn-line btn-sm close" type="button" data-close>Fermer</button>
+    <h2 id="mt">Mentions légales</h2>
+    <h3>Éditeur du site</h3>
+    <ul>
+      <li>Arnaud Amador, entrepreneur individuel (micro-entreprise), exerçant sous le nom commercial Clarté</li>
+      <li>SIRET : 92298501500028</li>
+      <li>Adresse : 76 bis route de Narbonne 31400 (résidence le Prado)</li>
+      <li>Email : comprendrepourmieuxexpliquer@gmail.com · Téléphone : 06 62 71 71 43</li>
+      <li>Directeur de la publication : Arnaud Amador</li>
+    </ul>
+    <h3>Hébergement</h3>
+    <p>Netlify, Inc., 512 2nd Street, Suite 200, San Francisco, CA 94107, États-Unis · netlify.com</p>
+    <h3>Propriété intellectuelle</h3>
+    <p>Les textes, ressources pédagogiques, logos et visuels de ce site appartiennent à Clarté, sauf mention contraire. Toute reproduction sans autorisation écrite est interdite.</p>
+    <h3>Témoignages</h3>
+    <p>Les avis et vidéos publiés sont ceux de familles, d'élèves et de collègues qui ont accepté leur diffusion. Ils peuvent demander leur retrait à tout moment par email.</p>
+  </div>
+</dialog>
+
+<dialog class="legal" id="dlg-cgv" aria-labelledby="ct">
+  <div class="legal-in">
+    <button class="btn btn-line btn-sm close" type="button" data-close>Fermer</button>
+    <h2 id="ct">Conditions générales de vente</h2>
+    <p>En vigueur au 17/10/2026.</p>
+
+    <h3>1. Qui vend</h3>
+    <p>Arnaud Amador, entrepreneur individuel exerçant sous le nom commercial Clarté, SIRET 92298501500028, 76 bis route de Narbonne 31400 (résidence le Prado), comprendrepourmieuxexpliquer@gmail.com, 06 62 71 71 43. Ces conditions s'appliquent à toutes les prestations vendues à des particuliers.</p>
+
+    <h3>2. Les prestations</h3>
+    <ul>
+      <li><b>Appel diagnostic</b> : 30 minutes en visio, gratuit et sans engagement.</li>
+      <li><b>Cours particuliers</b> : séances individuelles en visio, principalement de la 4ème à la Première.</li>
+      <li><b>Académie Clarté Objectif Brevet</b> : accès à une plateforme en ligne (vidéos, leçons, fiches, ressources, lives, communauté) hébergée chez un prestataire tiers (SchoolMaker).</li>
+      <li><b>Stages de révision</b> : sessions collectives pendant les vacances scolaires.</li>
+    </ul>
+
+    <h3>3. Prix</h3>
+    <p>Les prix sont en euros, TVA non applicable (article 293 B du CGI). Ils sont communiqués par écrit (email ou message) avant toute commande. Le prix applicable est celui accepté au moment de la commande.</p>
+
+    <h3>4. Commande</h3>
+    <p>La commande est confirmée par l'acceptation écrite de l'offre et des présentes CGV, puis par le paiement. Pour un élève mineur, la commande est passée par son parent ou représentant légal, qui en est responsable.</p>
+
+    <h3>5. Paiement</h3>
+    <p>Le paiement se fait par virement bancaire. Cours particuliers : vendus par forfait, payable avant les séances, en début de mois ou de trimestre. Académie : abonnement <span class="fill">mensuel</span>, payable d'avance. En cas d'impayé, l'accès peut être suspendu après relance restée sans réponse.</p>
+
+    <h3>6. Droit de rétractation (14 jours)</h3>
+    <p>Vous disposez de 14 jours à compter de la commande pour vous rétracter, sans justification, par simple email ou avec le formulaire ci-dessous.</p>
+    <ul>
+      <li>Si vous demandez expressément que des cours commencent avant la fin de ce délai, puis vous rétractez, vous payez uniquement les séances déjà effectuées (article L221-25 du Code de la consommation).</li>
+      <li>Pour l'Académie, si vous demandez un accès immédiat aux contenus numériques et reconnaissez perdre ainsi votre droit de rétractation, celui-ci ne s'applique plus une fois l'accès ouvert (article L221-28, 13°).</li>
+    </ul>
+    <p>Le remboursement intervient sous 14 jours, par le même moyen de paiement.</p>
+
+    <h3>7. Report d'un cours</h3>
+    <p>Une séance réservée n'est ni annulable ni remboursable. Elle peut être reportée à une autre date si vous prévenez au moins 24 h avant. Passé ce délai, la séance est due et décomptée du forfait, sauf cas de force majeure (maladie justifiée, urgence familiale). Si Arnaud ne peut pas assurer une séance, elle est reportée ou remboursée.</p>
+
+    <h3>8. Résiliation de l'abonnement à l'Académie</h3>
+    <p>L'abonnement peut être résilié <span class="fill">à tout moment</span> par email. La résiliation prend effet à la fin de la période déjà payée, sans remboursement de la période en cours.</p>
+
+    <h3>9. Engagement de Clarté</h3>
+    <p>Clarté s'engage à mettre en œuvre tous les moyens pour faire progresser l'élève (obligation de moyens). Les progrès dépendant aussi du travail de l'élève, aucune note ni aucun résultat à un examen ne peut être garanti.</p>
+
+    <h3>10. Accès à la plateforme et aux lives</h3>
+    <p>L'accès est personnel et réservé à l'élève inscrit : il ne peut pas être partagé. Dans la communauté et les lives, chacun reste respectueux ; un comportement inapproprié peut entraîner une exclusion après avertissement. Clarté n'est pas responsable des interruptions dues à la connexion internet de l'utilisateur ou à une panne de la plateforme tierce.</p>
+
+    <h3>10 bis. Parrainage</h3>
+    <p>Pour chaque personne recommandée qui démarre un accompagnement payant (cours particuliers, Académie ou stage), le client qui l'a recommandée reçoit une séance offerte. La séance est ajoutée à son forfait en cours ou au suivant. Elle n'est ni échangeable ni remboursable en argent.</p>
+    <h3>11. Propriété intellectuelle</h3>
+    <p>Vidéos, fiches, exercices et ressources restent la propriété de Clarté. Ils sont réservés à l'usage personnel de l'élève et ne peuvent être ni copiés, ni diffusés, ni revendus.</p>
+
+    <h3>12. Données personnelles</h3>
+    <p>Voir la politique de confidentialité du site.</p>
+
+    <h3>Modèle de formulaire de rétractation</h3>
+    <p>À l'attention d'Arnaud Amador (Clarté), comprendrepourmieuxexpliquer@gmail.com : je vous notifie par la présente ma rétractation du contrat portant sur la prestation suivante : … Commandée le : … Nom du client : … Adresse : … Date : … Signature (si envoi papier).</p>
+  </div>
+</dialog>
+
+<dialog class="legal" id="dlg-privacy" aria-labelledby="pt">
+  <div class="legal-in">
+    <button class="btn btn-line btn-sm close" type="button" data-close>Fermer</button>
+    <h2 id="pt">Politique de confidentialité</h2>
+    <h3>Données collectées</h3>
+    <p>La prise de rendez-vous se fait via Calendly, qui recueille votre nom, votre adresse email et les informations que vous choisissez d'indiquer. Calendly agit comme prestataire et applique sa propre politique de confidentialité (calendly.com/privacy). Si vous écrivez par email ou WhatsApp, seules les informations contenues dans votre message sont utilisées.</p>
+    <h3>Émilie, l'assistante IA</h3>
+    <p>Les questions posées à Émilie sont transmises à Anthropic, fournisseur de l'intelligence artificielle, uniquement pour produire la réponse, selon sa propre politique de confidentialité. Clarté n'enregistre pas ces conversations : elles restent dans votre navigateur et disparaissent quand vous fermez la page. Un simple compteur du nombre de questions du jour est gardé dans votre navigateur. Évitez d'y indiquer des informations personnelles (nom complet, coordonnées, santé).</p>
+    <h3>Pourquoi</h3>
+    <p>Uniquement pour répondre à votre demande et organiser l'appel diagnostic. Ces informations ne sont jamais vendues ni transmises à des tiers à des fins commerciales.</p>
+    <h3>Base légale et durée</h3>
+    <p>Le traitement repose sur les mesures précontractuelles prises à votre demande. Les données sont conservées 3 ans après le dernier contact, puis supprimées.</p>
+    <h3>Responsable du traitement</h3>
+    <p>Arnaud Amador (Clarté), joignable à comprendrepourmieuxexpliquer@gmail.com.</p>
+    <h3>Vos droits</h3>
+    <p>Vous pouvez accéder à vos données, les rectifier, les supprimer ou vous opposer à leur traitement en écrivant à l'adresse ci-dessus. Vous pouvez aussi adresser une réclamation à la CNIL (cnil.fr).</p>
+    <h3>Cookies</h3>
+    <p>Ce site n'utilise ni cookies publicitaires ni outil de mesure d'audience, et ses polices sont hébergées sur le site lui-même. L'agenda Calendly est intégré à la section de prise de rendez-vous ; Calendly peut déposer les cookies nécessaires à la prise de rendez-vous.</p>
+  </div>
+</dialog>
+
+<script>
+(function(){
+  document.documentElement.removeAttribute('data-palette');
+
+  /* Défi : trouve l'erreur */
+  var DEFIS=[
+    {lvl:'4ème · Calcul littéral',prompt:'Développer et réduire A = 3(x + 4) − 2x',lines:['A = 3(x + 4) − 2x','A = 3x + 4 − 2x','A = x + 4'],bad:1,why:"Le 3 multiplie <b>tout</b> ce qu'il y a dans la parenthèse, donc aussi le 4.",fix:'A = 3x + 12 − 2x = x + 12'},
+    {lvl:'4ème · Nombres relatifs',prompt:'Calculer B = −3 − (−5)',lines:['B = −3 − (−5)','B = −3 − 5','B = −8'],bad:1,why:"Soustraire un nombre, c'est ajouter son opposé : <b>− (−5)</b> devient <b>+ 5</b>.",fix:'B = −3 + 5 = 2'},
+    {lvl:'4ème · Fractions',prompt:'Calculer C = 2/3 + 1/4',lines:['C = 2/3 + 1/4','C = (2 + 1) / (3 + 4)','C = 3/7'],bad:1,why:"On n'additionne <b>jamais</b> les dénominateurs : il faut d'abord les mettre au même dénominateur.",fix:'C = 8/12 + 3/12 = 11/12'},
+    {lvl:'4ème · Pythagore',prompt:'ABC rectangle en A, AB = 3 cm, AC = 4 cm. Calculer BC.',lines:['BC² = AB² + AC²','BC² = 9 + 16 = 25','BC = 25 cm'],bad:2,why:"25, c'est <b>BC²</b>, pas BC. Il manque la racine carrée.",fix:'BC = √25 = 5 cm'}
+  ];
+  var di=0, firstTry=0, tried=false, solved=false;
+  var dl=document.getElementById('d-lines'), dfb=document.getElementById('d-fb'), dnext=document.getElementById('d-next'), dcta=document.getElementById('d-cta');
+  function showDefi(){
+    var d=DEFIS[di]; tried=false; solved=false;
+    document.getElementById('d-lvl').textContent='Niveau '+d.lvl;
+    document.getElementById('d-score').textContent='Défi '+(di+1)+' / '+DEFIS.length;
+    document.getElementById('d-prompt').textContent=d.prompt;
+    dl.innerHTML=''; dnext.hidden=true; dcta.hidden=true;
+    dfb.innerHTML="Quelle ligne contient l'erreur ?";
+    d.lines.forEach(function(t,i){
+      var li=document.createElement('li'), b=document.createElement('button'); b.type='button'; b.textContent=t;
+      b.addEventListener('click',function(){
+        if(solved) return;
+        if(i===d.bad){
+          solved=true; if(!tried) firstTry++;
+          b.classList.add('bad');
+          dfb.innerHTML='<b>Bien vu !</b> '+d.why+'<br><span class="fix">'+d.fix+'</span>';
+          if(di<DEFIS.length-1){ dnext.hidden=false; } else {
+            dfb.innerHTML+='<br><b>'+firstTry+' / '+DEFIS.length+'</b> trouvées du premier coup. Votre enfant hésite sur ce genre d\'erreur ? C\'est exactement ce qu\'on travaille ensemble.';
+            dcta.hidden=false; dnext.hidden=false; dnext.textContent='Recommencer';
+          }
+        } else {
+          tried=true; b.classList.remove('miss'); void b.offsetWidth; b.classList.add('miss');
+          dfb.innerHTML="Pas celle-ci : cette ligne est juste. Cherche encore.";
+        }
+      });
+      li.appendChild(b); dl.appendChild(li);
+    });
+  }
+  dnext.addEventListener('click',function(){
+    if(di>=DEFIS.length-1){ di=0; firstTry=0; dnext.textContent='Défi suivant'; } else di++;
+    showDefi();
+  });
+  showDefi();
+
+  /* Barre d'appel : cachée quand le contact est à l'écran */
+  var cb=document.getElementById('callbar');
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){ es.forEach(function(e){ cb.classList.toggle('away',e.isIntersecting); }); },{threshold:.15}).observe(document.getElementById('contact'));
+  }
+
+  /* Émilie : assistante IA des parents (serveur : /api/coach, coach "emilie") */
+  (function(){
+    var LIVE=document.documentElement.getAttribute('data-live')==='1';
+    var LIMITE=20, CAL='https://calendly.com/comprendrepourmieuxexpliquer/30min';
+    var BIENVENUE="Bonjour, je suis Émilie, l'assistante IA de l'Académie Clarté. Je réponds à vos questions sur le brevet, l'orientation au lycée, le Bachibac ou l'accompagnement proposé par Arnaud. Que souhaitez-vous savoir ?";
+    var fab=document.getElementById('emi-fab'), panel=document.getElementById('emi-panel'), log=document.getElementById('emi-log'),
+        form=document.getElementById('emi-form'), input=document.getElementById('emi-input'), send=document.getElementById('emi-send'),
+        chips=document.getElementById('emi-chips'), left=document.getElementById('emi-left');
+    var hist=[], busy=false, memo={d:'',n:0};
+
+    function today(){ var d=new Date(); return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(); }
+    function compteur(){ var c; try{ c=JSON.parse(localStorage.getItem('emilie-jour')||'null'); }catch(e){ c=memo; } if(!c||c.d!==today()) c={d:today(),n:0}; return c; }
+    function compter(){ var c=compteur(); c.n++; memo=c; try{ localStorage.setItem('emilie-jour',JSON.stringify(c)); }catch(e){} return c.n; }
+    function majRestant(){
+      var r=LIMITE-compteur().n;
+      if(r<=5){ left.hidden=false; left.textContent= r>0 ? (r+' question'+(r>1?'s':'')+' restante'+(r>1?'s':'')+' aujourd\'hui') : "Vous avez atteint la limite du jour. Pour aller plus loin, réservez l'appel avec Arnaud."; }
+      var off=r<=0; input.disabled=off; send.disabled=off||busy;
+    }
+
+    function esc(s){ return s.replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+    function rendu(t){
+      var h=esc(t.trim());
+      h=h.replace(/\*\*(.+?)\*\*/g,'<b>$1</b>');
+      h=h.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
+      h=h.replace(/(^|[\s(])((?:https?:\/\/|www\.)[^\s<)]+[^\s<).,;:!?])/g,function(m,p,u){ return p+'<a href="'+(u.indexOf('http')===0?u:'https://'+u)+'" target="_blank" rel="noopener">'+u.replace(/^https?:\/\//,'')+'</a>'; });
+      h=h.replace(/(^|\s)([\w.+-]+@[\w-]+\.[\w.]+[\w])/g,'$1<b>$2</b>');
+      h=h.replace(/(?:^|\n)((?:[-•] .+(?:\n|$))+)/g,function(m,b){ return '\n<ul>'+b.trim().split('\n').map(function(l){return '<li>'+l.replace(/^[-•] /,'')+'</li>';}).join('')+'</ul>'; });
+      return h.replace(/\n{2,}/g,'<br><br>').replace(/\n/g,'<br>').replace(/<br>(<ul>)/g,'$1').replace(/(<\/ul>)<br>/g,'$1');
+    }
+    function bulle(cls,html){ var d=document.createElement('div'); d.className='emi-msg '+cls; d.innerHTML=html; log.appendChild(d); log.scrollTop=log.scrollHeight; return d; }
+
+    function ouvrir(){
+      panel.hidden=false; fab.hidden=true;
+      if(!log.childElementCount) bulle('bot',rendu(BIENVENUE));
+      majRestant(); setTimeout(function(){ input.focus(); },50);
+    }
+    function fermer(){ panel.hidden=true; fab.hidden=false; fab.focus(); }
+    fab.addEventListener('click',ouvrir);
+    document.getElementById('emi-close').addEventListener('click',fermer);
+    panel.addEventListener('keydown',function(e){ if(e.key==='Escape') fermer(); });
+
+    async function poser(q){
+      q=q.trim(); if(!q||busy) return;
+      if(compteur().n>=LIMITE){ majRestant(); return; }
+      busy=true; chips.hidden=true; input.value=''; input.style.height='';
+      bulle('me',esc(q)); hist.push({role:'user',text:q}); compter();
+      var t=bulle('bot','<span class="emi-typing" aria-label="Émilie écrit"><i></i><i></i><i></i></span>'); majRestant();
+      try{
+        var rep;
+        if(!LIVE){
+          await new Promise(function(r){setTimeout(r,900)});
+          rep="Ceci est un aperçu : sur le site en ligne, je répondrai ici à votre question. En attendant, vous pouvez réserver l'appel diagnostic offert : "+CAL;
+        } else {
+          var ctl=new AbortController(), to=setTimeout(function(){ctl.abort()},45000);
+          var r=await fetch('/api/coach',{method:'POST',signal:ctl.signal,headers:{'content-type':'application/json'},body:JSON.stringify({coach:'emilie',messages:hist.slice(-16)})});
+          clearTimeout(to);
+          var data=await r.json().catch(function(){return {};});
+          if(!r.ok||!data.reply) throw new Error(data.erreur||"Émilie n'a pas pu répondre. Réessayez dans un instant.");
+          rep=data.reply;
+        }
+        t.innerHTML=rendu(rep); hist.push({role:'assistant',text:rep});
+      }catch(err){
+        t.remove(); hist.pop();
+        bulle('err',esc(err.name==='AbortError'?"La réponse prend trop de temps. Réessayez dans un instant.":err.message));
+        input.value=q;
+      }
+      busy=false; majRestant(); log.scrollTop=log.scrollHeight;
+      if(!input.disabled) input.focus();
+    }
+    form.addEventListener('submit',function(e){ e.preventDefault(); poser(input.value); });
+    input.addEventListener('keydown',function(e){ if(e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); poser(input.value); } });
+    input.addEventListener('input',function(){ input.style.height='auto'; input.style.height=Math.min(input.scrollHeight,110)+'px'; });
+    chips.querySelectorAll('button').forEach(function(b){ b.addEventListener('click',function(){ poser(b.textContent); }); });
+  })();
+
+  /* Onglets : semaine type / programme par niveau */
+  document.querySelectorAll('.tab').forEach(function(t){ t.addEventListener('click',function(){
+    document.querySelectorAll('.tab').forEach(function(x){ var on=x===t; x.setAttribute('aria-selected',on?'true':'false'); document.getElementById(x.getAttribute('aria-controls')).hidden=!on; });
+  }); });
+
+  /* Pages légales */
+  document.querySelectorAll('[data-open]').forEach(function(b){ b.addEventListener('click',function(){
+    var d=document.getElementById(b.dataset.open); if(d.showModal) d.showModal(); else d.setAttribute('open','');
+  }); });
+  document.querySelectorAll('.legal').forEach(function(d){
+    d.querySelector('[data-close]').addEventListener('click',function(){ d.close ? d.close() : d.removeAttribute('open'); });
+    d.addEventListener('click',function(e){ if(e.target===d && d.close) d.close(); });
+  });
+
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if('IntersectionObserver' in window && !reduce){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(!e.isIntersecting) return;
+        var el=e.target; io.unobserve(el);
+        if(!el.dataset.to){ el.classList.add('in'); return; }
+        var to=+el.dataset.to, suf=el.dataset.suf||'', t0=null;
+        if(!to) return;
+        function step(t){ if(!t0)t0=t; var k=Math.min(1,(t-t0)/1200); var v=Math.round(to*(1-Math.pow(1-k,3))); el.textContent=v+suf; if(k<1) requestAnimationFrame(step); }
+        requestAnimationFrame(step);
+      });
+    },{threshold:.4});
+    document.querySelectorAll('.gap,.mark,.divider,.doodle,.polas,.week,.tl,[data-to]').forEach(function(el){io.observe(el)});
+    var rot=document.getElementById('rot'), phrases=["l'élève qui travaille mais stagne","celui qui comprend en classe et bloque seul","le collégien qui prépare le brevet","le lycéen en spé maths","les familles fatiguées de la bagarre des devoirs"], ri=0;
+    setInterval(function(){ ri=(ri+1)%phrases.length; rot.textContent=phrases[ri]; rot.classList.remove('swap'); void rot.offsetWidth; rot.classList.add('swap'); },3200);
+    if(window.matchMedia('(hover: hover)').matches){
+      document.querySelectorAll('.offer').forEach(function(c){
+        c.addEventListener('mousemove',function(e){
+          var r=c.getBoundingClientRect(), x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+          c.style.transform='perspective(800px) rotateY('+(x*6)+'deg) rotateX('+(-y*6)+'deg) translateY(-4px)';
+        });
+        c.addEventListener('mouseleave',function(){c.style.transform=''});
+      });
+    }
+  }
+
+  (function(){
+    var syms=['π','√','x²','∑','÷','≈','∞','%','a/b','Δ','∫','≠','3x','θ','±','½'];
+    var seed=7; function rnd(){ seed=(seed*9301+49297)%233280; return seed/233280; }
+    document.querySelectorAll('section.wrap').forEach(function(sec,i){
+      for(var k=0;k<2;k++){
+        var s=document.createElement('span'); s.className='deco'; s.setAttribute('aria-hidden','true');
+        s.textContent=syms[(i*3+k)%syms.length];
+        var side=k%2? (88+rnd()*8) : (rnd()*8);
+        s.style.left=side+'%'; s.style.top=(k===2? 82+rnd()*12 : 2+rnd()*10)+'%';
+        s.style.fontSize=(1.4+rnd()*1.6)+'rem'; s.style.animationDelay=(-rnd()*14)+'s';
+        if(k===2) s.style.left=(30+rnd()*40)+'%';
+        sec.insertBefore(s,sec.firstChild);
+      }
+    });
+  })();
+  var bar=document.getElementById('progress');
+  function prog(){ var h=document.documentElement.scrollHeight-innerHeight; bar.style.transform='scaleX('+(h>0?Math.min(1,scrollY/h):0)+')'; }
+  addEventListener('scroll',prog,{passive:true}); prog();
+  var cards=[].slice.call(document.querySelectorAll('#reviews .review')), chips=document.querySelectorAll('.chip'), more=document.getElementById('showall');
+  var filter='all', expanded=false, LIMIT=window.matchMedia('(max-width:860px)').matches?99:6;
+  cards.forEach(function(c){
+    var b=document.createElement('button'); b.type='button'; b.className='readmore'; b.textContent='Lire la suite'; b.hidden=true;
+    b.addEventListener('click',function(){ var o=c.classList.toggle('open'); b.textContent=o?'Réduire':'Lire la suite'; });
+    c.appendChild(b); c._rm=b;
+  });
+  function render(anim){
+    var shown=0;
+    cards.forEach(function(c){
+      var match=filter==='all'||c.dataset.c===filter;
+      var vis=match && (expanded||filter!=='all'||shown<LIMIT);
+      if(match&&vis) shown++;
+      var was=!c.hidden; c.hidden=!vis;
+      if(vis&&anim&&!was){ c.classList.remove('pop'); void c.offsetWidth; c.classList.add('pop'); }
+    });
+    more.hidden = filter!=='all' || expanded;
+    requestAnimationFrame(function(){ cards.forEach(function(c){ if(c.hidden) return; var p=c.querySelector('p'); c._rm.hidden = c.classList.contains('open') ? false : p.scrollHeight<=p.clientHeight+2; }); });
+  }
+  chips.forEach(function(ch){ ch.addEventListener('click',function(){
+    filter=ch.dataset.f; chips.forEach(function(x){x.setAttribute('aria-pressed',x===ch?'true':'false')});
+    cards.forEach(function(c){c.hidden=true}); render(true);
+  }); });
+  more.addEventListener('click',function(){ expanded=true; render(true); });
+  render(false);
+  window.addEventListener('resize',function(){render(false)});
+})();
+</script>
+
+<script src="https://assets.calendly.com/assets/external/widget.js"></script>
+<script>
+  Calendly.initInlineWidget({
+    url: 'https://calendly.com/comprendrepourmieuxexpliquer/30min?hide_gdpr_banner=1&primary_color=b8862e',
+    parentElement: document.getElementById('calendly-embed'),
+    resize: true
+  });
+</script>
+
+</body>
+</html>
