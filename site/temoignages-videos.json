@@ -1,0 +1,11 @@
+[
+  { "nom": "Alicia", "video": "https://youtu.be/rw_hegBMC1w", "classe": "1ère" },
+  { "nom": "Gabin", "video": "https://youtu.be/UrYL_kjdtP0", "classe": "1ère" },
+  { "nom": "Lana", "video": "https://youtu.be/JURx-ofG8qA", "classe": "CM2" },
+  { "nom": "Sara", "video": "https://youtu.be/lXMiN4w76u8", "classe": "1ère" },
+  { "nom": "Jean-Camille", "video": "https://youtu.be/azvG8K-EeTI?is=BBRkbpfdZjgU_3h1", "classe": "1ère" },
+  { "nom": "Lyse", "video": "https://www.youtube.com/shorts/Nyf6q9Bo00g", "classe": "6ème" },
+  { "nom": "Tiffanie", "video": "https://www.youtube.com/shorts/-ofgHubeCqM", "classe": "5ème", "legende": "maman de Tylan" },
+  { "nom": "Emma", "video": "https://www.youtube.com/shorts/HOoTnnO0ihk", "classe": "", "legende": "grande sœur" },
+  { "nom": "Laura", "video": "https://www.youtube.com/shorts/6UgavqLpO6Q", "classe": "", "legende": "collègue enseignante" }
+]
