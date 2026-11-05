@@ -56,6 +56,9 @@ const jsonLd = {
 <meta property="og:image" content={ogImageUrl}>
 <link rel="icon" type="image/png" href="/img/academie-logo.png">
 <link rel="preload" href="/fonts/gloock-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<!-- Agenda Calendly (bloc #contact) : connexions ouvertes dès le début du chargement pour gagner du temps sur l'iframe -->
+<link rel="preconnect" href="https://calendly.com">
+<link rel="preconnect" href="https://assets.calendly.com">
 <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
 <title>{title}</title>
 <slot name="head" />

@@ -126,7 +126,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ## Réservation (Calendly)
 
 - C'est la conversion principale de la page d'accueil, qui sert de landing page aux campagnes Meta et Google Ads.
-- Tout bouton de réservation porte `data-calendly` avec `href="/#contact"` (ou `#contact` dans la page d'accueil) : `scripts/site.ts` ouvre alors l'agenda en popup (`CALENDLY_EMBED`). Sur une page qui ne charge pas le script Calendly, le lien mène simplement à l'agenda intégré dans `#contact`.
+- Tout bouton de réservation porte `data-calendly` avec `href="/#contact"` (ou `#contact` dans la page d'accueil) : le script de `Contact.astro` affiche alors en plein écran l'agenda déjà chargé dans `#contact`. On ne crée jamais de seconde iframe (pas d'`initPopupWidget`) : l'agenda Calendly pèse ~3 Mo, le recharger au clic ajoutait plusieurs secondes d'attente. Sur une page sans `<Contact />`, le lien mène simplement à `/#contact`.
+- L'iframe reste masquée derrière un placeholder (`.cal-wait`) jusqu'à ce que Calendly signale qu'il est affiché (`data-pret`).
 - Bloc `#contact` : pas de lien qui fasse quitter la page (réseaux sociaux, email, avis) à côté de l'agenda ; seuls le téléphone et WhatsApp restent, en secondaire.
 
 ## Émilie (assistante IA)

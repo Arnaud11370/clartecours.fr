@@ -233,13 +233,9 @@ p{margin:0}
 .contact{background:var(--deep);color:var(--on-deep);border-radius:14px;padding:44px;display:grid;grid-template-columns:1fr 1fr;grid-template-areas:"head cal" "more cal";grid-template-rows:auto 1fr;gap:28px 40px}
 .contact-head{grid-area:head}
 .contact-more{grid-area:more}
-#calendly-embed{grid-area:cal}
 .contact .lead{color:color-mix(in srgb,var(--on-deep) 80%,transparent)}
 .contact .eyebrow{color:color-mix(in srgb,var(--p-gold) 70%,#FFFFFF)}
 .contact > div{display:grid;gap:18px;align-content:start;min-width:0}
-/* position + isolation : le loader de Calendly (absolu, z-index -1) reste caché derrière l'agenda au lieu de flotter au milieu du bloc */
-#calendly-embed{display:block;position:relative;isolation:isolate}
-#calendly-embed iframe{border-radius:10px}
 form{display:grid;gap:14px}
 .field{display:grid;gap:6px}
 .field label{font-size:.85rem;font-weight:600}

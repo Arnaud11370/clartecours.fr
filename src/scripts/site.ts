@@ -1,26 +1,6 @@
 // Comportements communs à toutes les pages (chargé par BaseLayout).
-import { CALENDLY_EMBED } from '../data/site';
-
-declare global {
-  interface Window { Calendly?: { initPopupWidget(options: { url: string }): void } }
-}
 
 document.documentElement.removeAttribute('data-palette');
-
-/* Boutons de réservation [data-calendly] : l'agenda s'ouvre en popup, sans faire défiler jusqu'en bas.
-   Sur une page qui ne charge pas le script Calendly, le lien mène simplement à /#contact. */
-const calendly = window.Calendly;
-if (calendly) {
-  const css = document.createElement('link');
-  css.rel = 'stylesheet'; css.href = 'https://assets.calendly.com/assets/external/widget.css';
-  document.head.appendChild(css);
-  document.addEventListener('click', function (e) {
-    const lien = (e.target as Element).closest('[data-calendly]');
-    if (!lien || e.ctrlKey || e.metaKey || e.shiftKey) return;
-    e.preventDefault();
-    calendly.initPopupWidget({ url: CALENDLY_EMBED });
-  });
-}
 
 /* Barre d'appel : cachée tant qu'un autre accès à la réservation est à l'écran (boutons du hero, section contact) */
 const cb = document.getElementById('callbar');
