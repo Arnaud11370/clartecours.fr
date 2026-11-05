@@ -4,7 +4,7 @@
 //   ANTHROPIC_API_KEY  ta clé API Claude (console.anthropic.com)
 //   CODES_PARENTS      facultatif : codes parents. Vide = Émilie ouverte à tous les visiteurs
 //   MODELE             facultatif : modèle Claude (par défaut claude-sonnet-5-5)
-import "../../site/coachs.js";
+import "../shared/coachs.js";
 
 const { COACHS, systeme } = globalThis.ClarteCoachs;
 

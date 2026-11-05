@@ -1,1 +1,46 @@
+# Dépendances
+node_modules/
+
+# Gestionnaire de paquets : pnpm uniquement (pnpm-lock.yaml est commité)
+package-lock.json
+yarn.lock
+bun.lockb
+bun.lock
+.pnpm-store/
+.pnpm-debug.log*
+
+# Build et caches
+dist/
+.astro/
+.netlify/
+.cache/
+*.tsbuildinfo
+
+# Secrets et variables d'environnement (ANTHROPIC_API_KEY, CODES_PARENTS…)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Éditeurs et système
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+.directory
+
+# Outils IA locaux
 .claude/
+.impeccable/hook.cache.json

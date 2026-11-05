@@ -1,6 +1,10 @@
 [build]
-  publish = "site"
+  command = "pnpm build"
+  publish = "dist"
   functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "24"
 
 [functions]
   node_bundler = "esbuild"

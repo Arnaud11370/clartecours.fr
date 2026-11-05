@@ -1,0 +1,104 @@
+---
+// Fenêtres des pages légales, ouvertes par les boutons [data-open] du pied de page (voir scripts/site.ts)
+import { SITE } from "../data/site";
+---
+<dialog class="legal" id="dlg-mentions" aria-labelledby="mt">
+  <div class="legal-in">
+    <button class="btn btn-line btn-sm close" type="button" data-close>Fermer</button>
+    <h2 id="mt">Mentions légales</h2>
+    <h3>Éditeur du site</h3>
+    <ul>
+      <li>Arnaud Amador, entrepreneur individuel (micro-entreprise), exerçant sous le nom commercial Clarté</li>
+      <li>SIRET : 92298501500028</li>
+      <li>Adresse : 76 bis route de Narbonne 31400 (résidence le Prado)</li>
+      <li>Email : <a class="email-link" href={`mailto:${SITE.email}`}>{SITE.email}</a> · Téléphone : <a href={`tel:${SITE.phone.tel}`}>{SITE.phone.display}</a></li>
+      <li>Directeur de la publication : Arnaud Amador</li>
+    </ul>
+    <h3>Hébergement</h3>
+    <p>Netlify, Inc., 512 2nd Street, Suite 200, San Francisco, CA 94107, États-Unis · netlify.com</p>
+    <h3>Propriété intellectuelle</h3>
+    <p>Les textes, ressources pédagogiques, logos et visuels de ce site appartiennent à Clarté, sauf mention contraire. Toute reproduction sans autorisation écrite est interdite.</p>
+    <h3>Témoignages</h3>
+    <p>Les avis et vidéos publiés sont ceux de familles, d'élèves et de collègues qui ont accepté leur diffusion. Ils peuvent demander leur retrait à tout moment par email.</p>
+  </div>
+</dialog>
+
+<dialog class="legal" id="dlg-cgv" aria-labelledby="ct">
+  <div class="legal-in">
+    <button class="btn btn-line btn-sm close" type="button" data-close>Fermer</button>
+    <h2 id="ct">Conditions générales de vente</h2>
+    <p>En vigueur au 17/10/2026.</p>
+
+    <h3>1. Qui vend</h3>
+    <p>Arnaud Amador, entrepreneur individuel exerçant sous le nom commercial Clarté, SIRET 92298501500028, 76 bis route de Narbonne 31400 (résidence le Prado), <a class="email-link" href={`mailto:${SITE.email}`}>{SITE.email}</a>, <a href={`tel:${SITE.phone.tel}`}>{SITE.phone.display}</a>. Ces conditions s'appliquent à toutes les prestations vendues à des particuliers.</p>
+
+    <h3>2. Les prestations</h3>
+    <ul>
+      <li><b>Appel diagnostic</b> : 30 minutes en visio, gratuit et sans engagement.</li>
+      <li><b>Cours particuliers</b> : séances individuelles en visio, principalement de la 4ème à la Première.</li>
+      <li><b>Académie Clarté Objectif Brevet</b> : accès à une plateforme en ligne (vidéos, leçons, fiches, ressources, lives, communauté) hébergée chez un prestataire tiers (SchoolMaker).</li>
+      <li><b>Stages de révision</b> : sessions collectives pendant les vacances scolaires.</li>
+    </ul>
+
+    <h3>3. Prix</h3>
+    <p>Les prix sont en euros, TVA non applicable (article 293 B du CGI). Ils sont communiqués par écrit (email ou message) avant toute commande. Le prix applicable est celui accepté au moment de la commande.</p>
+
+    <h3>4. Commande</h3>
+    <p>La commande est confirmée par l'acceptation écrite de l'offre et des présentes CGV, puis par le paiement. Pour un élève mineur, la commande est passée par son parent ou représentant légal, qui en est responsable.</p>
+
+    <h3>5. Paiement</h3>
+    <p>Le paiement se fait par virement bancaire. Cours particuliers : vendus par forfait, payable avant les séances, en début de mois ou de trimestre. Académie : abonnement <span class="fill">mensuel</span>, payable d'avance. En cas d'impayé, l'accès peut être suspendu après relance restée sans réponse.</p>
+
+    <h3>6. Droit de rétractation (14 jours)</h3>
+    <p>Vous disposez de 14 jours à compter de la commande pour vous rétracter, sans justification, par simple email ou avec le formulaire ci-dessous.</p>
+    <ul>
+      <li>Si vous demandez expressément que des cours commencent avant la fin de ce délai, puis vous rétractez, vous payez uniquement les séances déjà effectuées (article L221-25 du Code de la consommation).</li>
+      <li>Pour l'Académie, si vous demandez un accès immédiat aux contenus numériques et reconnaissez perdre ainsi votre droit de rétractation, celui-ci ne s'applique plus une fois l'accès ouvert (article L221-28, 13°).</li>
+    </ul>
+    <p>Le remboursement intervient sous 14 jours, par le même moyen de paiement.</p>
+
+    <h3>7. Report d'un cours</h3>
+    <p>Une séance réservée n'est ni annulable ni remboursable. Elle peut être reportée à une autre date si vous prévenez au moins 24 h avant. Passé ce délai, la séance est due et décomptée du forfait, sauf cas de force majeure (maladie justifiée, urgence familiale). Si Arnaud ne peut pas assurer une séance, elle est reportée ou remboursée.</p>
+
+    <h3>8. Résiliation de l'abonnement à l'Académie</h3>
+    <p>L'abonnement peut être résilié <span class="fill">à tout moment</span> par email. La résiliation prend effet à la fin de la période déjà payée, sans remboursement de la période en cours.</p>
+
+    <h3>9. Engagement de Clarté</h3>
+    <p>Clarté s'engage à mettre en œuvre tous les moyens pour faire progresser l'élève (obligation de moyens). Les progrès dépendant aussi du travail de l'élève, aucune note ni aucun résultat à un examen ne peut être garanti.</p>
+
+    <h3>10. Accès à la plateforme et aux lives</h3>
+    <p>L'accès est personnel et réservé à l'élève inscrit : il ne peut pas être partagé. Dans la communauté et les lives, chacun reste respectueux ; un comportement inapproprié peut entraîner une exclusion après avertissement. Clarté n'est pas responsable des interruptions dues à la connexion internet de l'utilisateur ou à une panne de la plateforme tierce.</p>
+
+    <h3>10 bis. Parrainage</h3>
+    <p>Pour chaque personne recommandée qui démarre un accompagnement payant (cours particuliers, Académie ou stage), le client qui l'a recommandée reçoit une séance offerte. La séance est ajoutée à son forfait en cours ou au suivant. Elle n'est ni échangeable ni remboursable en argent.</p>
+    <h3>11. Propriété intellectuelle</h3>
+    <p>Vidéos, fiches, exercices et ressources restent la propriété de Clarté. Ils sont réservés à l'usage personnel de l'élève et ne peuvent être ni copiés, ni diffusés, ni revendus.</p>
+
+    <h3>12. Données personnelles</h3>
+    <p>Voir la politique de confidentialité du site.</p>
+
+    <h3>Modèle de formulaire de rétractation</h3>
+    <p>À l'attention d'Arnaud Amador (Clarté), <a class="email-link" href={`mailto:${SITE.email}`}>{SITE.email}</a> : je vous notifie par la présente ma rétractation du contrat portant sur la prestation suivante : … Commandée le : … Nom du client : … Adresse : … Date : … Signature (si envoi papier).</p>
+  </div>
+</dialog>
+
+<dialog class="legal" id="dlg-privacy" aria-labelledby="pt">
+  <div class="legal-in">
+    <button class="btn btn-line btn-sm close" type="button" data-close>Fermer</button>
+    <h2 id="pt">Politique de confidentialité</h2>
+    <h3>Données collectées</h3>
+    <p>La prise de rendez-vous se fait via Calendly, qui recueille votre nom, votre adresse email et les informations que vous choisissez d'indiquer. Calendly agit comme prestataire et applique sa propre politique de confidentialité (calendly.com/privacy). Si vous écrivez par email ou WhatsApp, seules les informations contenues dans votre message sont utilisées.</p>
+    <h3>Émilie, l'assistante IA</h3>
+    <p>Les questions posées à Émilie sont transmises à Anthropic, fournisseur de l'intelligence artificielle, uniquement pour produire la réponse, selon sa propre politique de confidentialité. Clarté n'enregistre pas ces conversations : elles restent dans votre navigateur et disparaissent quand vous fermez la page. Un simple compteur du nombre de questions du jour est gardé dans votre navigateur. Évitez d'y indiquer des informations personnelles (nom complet, coordonnées, santé).</p>
+    <h3>Pourquoi</h3>
+    <p>Uniquement pour répondre à votre demande et organiser l'appel diagnostic. Ces informations ne sont jamais vendues ni transmises à des tiers à des fins commerciales.</p>
+    <h3>Base légale et durée</h3>
+    <p>Le traitement repose sur les mesures précontractuelles prises à votre demande. Les données sont conservées 3 ans après le dernier contact, puis supprimées.</p>
+    <h3>Responsable du traitement</h3>
+    <p>Arnaud Amador (Clarté), joignable à <a class="email-link" href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+    <h3>Vos droits</h3>
+    <p>Vous pouvez accéder à vos données, les rectifier, les supprimer ou vous opposer à leur traitement en écrivant à l'adresse ci-dessus. Vous pouvez aussi adresser une réclamation à la CNIL (cnil.fr).</p>
+    <h3>Cookies</h3>
+    <p>Ce site n'utilise ni cookies publicitaires ni outil de mesure d'audience, et ses polices sont hébergées sur le site lui-même. L'agenda Calendly est intégré à la section de prise de rendez-vous ; Calendly peut déposer les cookies nécessaires à la prise de rendez-vous. Les témoignages vidéo sont lus avec le lecteur YouTube en mode confidentialité renforcée (youtube-nocookie.com), chargé uniquement quand vous lancez une vidéo.</p>
+  </div>
+</dialog>

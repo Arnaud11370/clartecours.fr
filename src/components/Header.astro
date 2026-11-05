@@ -1,0 +1,13 @@
+---
+import { NAV } from "../data/site";
+---
+<header class="top">
+  <div class="top-in">
+    <a class="logo" href="/#accueil">Clarté<span>.</span></a>
+    <nav class="nav" aria-label="Navigation principale">
+      {NAV.map((item) => <a href={item.href}>{item.label}</a>)}
+    </nav>
+    <a class="btn btn-ink btn-sm" href="/#contact">Appel offert</a>
+  </div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+</header>

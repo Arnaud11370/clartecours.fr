@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "border-accent-on-rounded",
+        "value": "*",
+        "files": [
+          "src/styles/global.css"
+        ],
+        "createdAt": "2026-11-05T14:04:43.029Z",
+        "reason": "Claude judged false positive: L221 is the CSS-border triangle of the video play icon, L528 is the gold top bar of the calendar-date icon (.cal); both copied verbatim from the pre-migration index.html"
+      }
+    ]
+  }
+}

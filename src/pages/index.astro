@@ -1,0 +1,380 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE } from "../data/site";
+
+const calendlyUrl = `${SITE.calendly}?hide_gdpr_banner=1&primary_color=b8862e`;
+---
+<BaseLayout>
+  <section class="hero wrap">
+    <div class="floaters" aria-hidden="true">
+      <span style="left:4%;top:8%;font-size:3rem">π</span>
+      <span style="left:46%;top:4%;font-size:2.2rem;animation-delay:-3s">√x</span>
+      <span style="left:88%;top:14%;font-size:2.6rem;animation-delay:-6s">x²</span>
+      <span style="left:38%;top:82%;font-size:2.4rem;animation-delay:-9s">÷</span>
+      <span style="left:92%;top:78%;font-size:3rem;animation-delay:-4s">∑</span>
+      <span style="left:2%;top:70%;font-size:2rem;animation-delay:-11s">a/b</span>
+      <span style="left:64%;top:46%;font-size:2rem;animation-delay:-7s">≠</span>
+    </div>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="hook"><span class="eyebrow">Clarté, c'est pour</span><span class="rot" id="rot" aria-live="off">l'élève qui travaille mais stagne</span></div>
+        <h1>Votre enfant comprend en classe. Il <span class="strike">bloque</span> seul.</h1>
+        <p class="lead">Je l'aide à passer de « j'ai compris quand le prof l'a fait » à « je sais le refaire tout seul, même quand l'exercice change ». Pas juste un prof. Un traducteur.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-ink" href="#contact">Réserver mon appel diagnostic offert</a>
+          <a class="btn btn-line" href="#offres">Voir les formules</a>
+        </div>
+      </div>
+      <aside class="sheet" aria-label="Exemple de correction">
+        <span class="hand">Résoudre 3x + 5 = 20</span>
+        <span class="hand wrong">x = 20 − 5 + 3</span>
+        <span class="hand">3x = 15</span>
+        <span class="hand ok">x = 5 ✓ on vérifie : 3×5+5 = 20</span>
+        <small>Le but n'est pas la bonne réponse. C'est de savoir pourquoi la deuxième ligne est fausse.</small>
+      </aside>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="proof" role="list">
+      <div role="listitem"><b data-to="60" data-suf="+">60+</b><span>familles accompagnées</span></div>
+      <div role="listitem"><b data-to="600" data-suf=" h+">600 h+</b><span>de cours donnés</span></div>
+      <div role="listitem"><b>5,0 ★</b><span>sur Superprof, 15 avis</span></div>
+    </div>
+  </div>
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>comprendre</span><b>≠</b><span>réciter</span><b>·</b><span>savoir refaire seul</span><b>·</b><span>moins de stress en cours</span><b>·</b><span>plus de confiance</span><b>·</b><span>une méthode, pas des recettes</span><b>·</b>
+      <span>comprendre</span><b>≠</b><span>réciter</span><b>·</b><span>savoir refaire seul</span><b>·</b><span>moins de stress en cours</span><b>·</b><span>plus de confiance</span><b>·</b><span>une méthode, pas des recettes</span><b>·</b>
+    </div>
+  </div>
+
+  <section class="wrap" id="methode">
+    <div class="illusion">
+      <div>
+        <span class="eyebrow">Le vrai problème</span>
+        <h2>L'illusion de <span class="mark">compréhension<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 Q50 2 100 7 T198 5"/></svg></span></h2>
+        <p class="lead">Beaucoup d'élèves suivent très bien en classe. Ils hochent la tête, recopient la correction, tout semble clair. Puis devant la copie, seuls, plus rien ne vient.</p>
+        <p class="lead">Ajouter des heures ne règle pas ça. Il faut repérer ce qui est cru compris, le reconstruire, et l'entraîner jusqu'à l'autonomie.</p>
+        <div class="quotes">
+          <q>« Il ne comprend pas quand il est seul. »</q>
+          <q>« Les maths, c'est toujours la bagarre. »</q>
+          <q>« Il stagne, alors qu'il travaille. »</q>
+        </div>
+      </div>
+      <div class="gap" aria-label="Schéma de l'écart entre comprendre et refaire seul">
+        <span class="hand" style="font-size:1.6rem">Ce que je vois souvent au début :</span>
+        <div class="gap-row"><label><span>Suit la correction en classe</span><span>Ça va</span></label><div class="bar"><i style="width:85%"></i></div></div>
+        <div class="gap-row"><label><span>Refait un exercice identique</span><span>Moyen</span></label><div class="bar"><i style="width:55%"></i></div></div>
+        <div class="gap-row"><label><span>Résout un exercice nouveau, seul</span><span>Bloque</span></label><div class="bar alt"><i style="width:22%"></i></div></div>
+        <p>C'est ce dernier palier que le brevet évalue. C'est là que je travaille.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="temoignages">
+    <div class="sec-head">
+      <svg class="doodle" viewBox="0 0 230 150" aria-hidden="true"><path d="M120 20 l12 26 l28 3 l-21 19 l6 28 l-25 -14 l-25 14 l6 -28 l-21 -19 l28 -3 z"/><circle cx="60" cy="110" r="22"/><path d="M48 112 l9 9 l16 -18"/><text x="150" y="130">5,0 ★</text></svg>
+      <span class="eyebrow">Témoignages</span>
+      <h2>Ce qu'en disent les <span class="mark">familles<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 Q50 2 100 7 T198 5"/></svg></span></h2>
+    </div>
+    <div class="results">
+      <div class="story">
+        <div class="grade"><s>11</s><span class="to">→</span>TB</div>
+        <div><h3>Angélina, de 11/20 à la mention très bien au brevet, en un trimestre.</h3></div>
+      </div>
+      <div class="story">
+        <div class="grade"><s>8</s><span class="to">→</span>12</div>
+        <div><h3>Gabin pensait avoir 8 ou 9 à l'épreuve de spé maths. Il a obtenu 12.</h3></div>
+      </div>
+    </div>
+
+    <div class="sub">Avis écrits</div>
+    <div class="chips" role="group" aria-label="Filtrer les avis">
+      <button class="chip" type="button" data-f="all" aria-pressed="true">Tous<small>14</small></button>
+      <button class="chip" type="button" data-f="famille" aria-pressed="false">Familles<small>5</small></button>
+      <button class="chip" type="button" data-f="eleve" aria-pressed="false">Élèves<small>4</small></button>
+      <button class="chip" type="button" data-f="autre" aria-pressed="false">Ils recommandent<small>5</small></button>
+    </div>
+    <p class="swipe-hint" aria-hidden="true">← faites glisser →</p>
+    <div class="reviews" id="reviews">
+      <article class="review" data-c="famille"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">I</span><div class="who">Isabelle<span>maman · préparation au brevet</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Nous recommandons Arnaud, jeune professeur qui accompagne ma fille de 15 ans pour le brevet, avec beaucoup de sérieux et de bienveillance. Il a su mettre en place un récapitulatif systématique sur feuille blanche, ce qui lui permet de vérifier les acquis, de structurer les notions et de consolider les révisions de manière très efficace. Pour nous, d'avoir un retour sur la séance, sa gentillesse, sa patience et sa pédagogie mettent ma fille en confiance. Elle apprécie sincèrement les moments d'accompagnement et progresse avec plus de sérénité.</p></article>
+      <article class="review" data-c="eleve"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">S</span><div class="who">Sara<span>élève de Première · spé maths</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Mes parents et moi avons décidé de faire appel à un professeur de maths afin de m'aider à rattraper mon retard. Arnaud est très pédagogue et comprend rapidement mes besoins. Il adapte ses explications en fonction de mes difficultés, ce qui m'aide à mieux comprendre les notions travaillées. Je me sens déjà mieux accompagnée dans mon travail.</p></article>
+      <article class="review" data-c="famille"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">G</span><div class="who">Famille de Gabin<span>Première · spé maths</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Gabin avait pris du retard sur certains chapitres de la spécialité mathématiques. Il avait du mal à comprendre les notions et surtout à les appliquer aux exercices. Donc il ne se sentait pas prêt pour l'épreuve. Ce qui a bien marché, c'est que tu sois très à l'écoute de ses besoins, et surtout la façon d'aller à l'essentiel. Il a obtenu la note de 12 alors qu'il pensait avant tes cours avoir 8/9. Il a repris tes explications et cela lui a permis de travailler plus sereinement.</p></article>
+      <article class="review" data-c="autre"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">S</span><div class="who">Stéphane<span>collègue enseignant</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Arnaud est un collègue passionné et rigoureux. Empathique avec ses élèves, sa pédagogie et ses résultats sont étonnants. Je le recommande !</p></article>
+      <article class="review" data-c="famille"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">O</span><div class="who">Océane<span>maman</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Parfait ! Professeur très à l'écoute, professionnel et accessible. Il propose des méthodes modernes, s'adapte au niveau de mon fils et met en place une approche pédagogique efficace pour l'aider à progresser. Son travail est réfléchi et ses explications sont toujours claires. Il sait également tenir compte des difficultés que rencontre mon fils, prendre le temps de réexpliquer si nécessaire et instaurer un climat de confiance. Une excellente pédagogie et un accompagnement de qualité. Je recommande fortement.</p></article>
+      <article class="review" data-c="eleve"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">C</span><div class="who">Charline<span>élève de Première · maths tronc commun</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Je suis une élève de première générale avec maths en tronc commun, et j'ai commencé les cours particuliers à quelques semaines des épreuves. Honnêtement, ça m'a vraiment aidée à tout remettre à niveau sur les chapitres de l'année. Arnaud explique très bien, de façon claire et structurée, ce qui permet de comprendre même les notions les plus compliquées. Il prend le temps de revenir sur les points non compris sans jamais mettre de pression, ce qui rend les séances très agréables et efficaces. La méthode de travail est très bonne : les exercices sont bien choisis, progressifs et adaptés à mon niveau. Tout est bien organisé, et les supports et documents envoyés sont propres et utiles pour réviser ensuite. Grâce à cet accompagnement, je me sens beaucoup plus en confiance en mathématiques à l'approche du bac. Je recommande vivement Arnaud.</p></article>
+      <article class="review" data-c="autre"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">E</span><div class="who">Emma<span>recommandation</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Je recommande vivement Arnaud pour la qualité de son accompagnement en cours particuliers. Il possède une réelle capacité à mettre ses élèves en confiance dès les premières séances. Grâce à son écoute attentive, sa patience et sa bienveillance, il crée un climat rassurant qui permet à chacun de progresser à son rythme sans crainte de l'erreur. Arnaud sait valoriser les efforts autant que les résultats, ce qui renforce l'estime de soi et la motivation de ses élèves. Il prend le temps d'expliquer différemment lorsque cela est nécessaire et adapte sa pédagogie aux besoins spécifiques de chacun. Son attitude positive et encourageante aide les élèves à croire en leurs capacités et à gagner en autonomie. Au-delà des compétences académiques, Arnaud transmet confiance et méthode, deux éléments essentiels pour réussir durablement.</p></article>
+      <article class="review" data-c="eleve"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">L</span><div class="who">Louise<span>élève</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Parfait ! Le cours était très bien organisé et cela m'a permis de bien comprendre les notions et d'ensuite pouvoir m'exercer. C'était très intéressant !</p></article>
+      <article class="review" data-c="famille"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">C</span><div class="who">Chantal<span>grand-mère</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Arnaud a été un super prof pendant les grandes vacances pour ma petite-fille, sa pédagogie et sa gentillesse l'ont beaucoup aidée pendant les 4 ans pour sa progression en maths.</p></article>
+      <article class="review" data-c="autre"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">W</span><div class="who">Willy<span>recommandation</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Arnaud est un professeur très sympathique et professionnel. Il explique les notions de manière simple et donne de bons conseils pour progresser. Les cours sont agréables et efficaces !</p></article>
+      <article class="review" data-c="famille"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">C</span><div class="who">Caroline<span>maman de Juliette</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Parfait ! Mon premier cours avec Arnaud s'est très bien déroulé, il est à l'écoute, calme et agréable.</p></article>
+      <article class="review" data-c="eleve"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">D</span><div class="who">Dorian<span>élève</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Si vous avez des lacunes en maths ou pour du perfectionnement, c'est la meilleure personne à contacter. Explication, compréhension, il a tout.</p></article>
+      <article class="review" data-c="autre"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">C</span><div class="who">Clément<span>recommandation</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Un excellent prof ! Je le recommande vivement pour un accompagnement vers le brevet.</p></article>
+      <article class="review" data-c="autre"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">R</span><div class="who">Rédha<span>recommandation</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Lors de mes échanges avec Arnaud, j'ai directement ressenti sa passion pour l'enseignement. Il a tout pour être un superprof !</p></article>
+    </div>
+    <button class="btn btn-line btn-sm showall" type="button" id="showall">Voir les 14 avis</button>
+
+    <div class="sub" style="margin-top:44px">Témoignages vidéo</div>
+    <p class="swipe-hint" aria-hidden="true">← faites glisser →</p>
+    <div class="videos" id="videos"></div>
+    <button class="btn btn-line btn-sm showall" type="button" id="showvideos" hidden>Voir toutes les vidéos</button>
+    <div class="more">
+      <a class="btn btn-line btn-sm li" href="https://g.page/r/CSAvg_P2otibECE/review" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.35 11.1H12v2.98h5.35c-.23 1.4-1.66 4.1-5.35 4.1a5.9 5.9 0 0 1 0-11.8c1.82 0 3.04.78 3.74 1.45l2.55-2.45C16.67 3.86 14.55 3 12 3a9 9 0 1 0 0 18c5.2 0 8.64-3.65 8.64-8.8 0-.6-.07-1.05-.15-1.5z"/></svg>Nos avis Google</a>
+      <a class="btn btn-line btn-sm" href="https://www.youtube.com/@clarte-arnaud" target="_blank" rel="noopener">Chaîne YouTube</a>
+    </div>
+  </section>
+
+  <section class="wrap" id="defi">
+    <div class="defi">
+      <div>
+        <span class="eyebrow">Défi du mercredi · à essayer</span>
+        <h2>Trouve <span class="mark">l'erreur<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 Q50 2 100 7 T198 5"/></svg></span></h2>
+        <p class="lead">Un élève a rédigé cette correction. Une ligne est fausse. Touche-la.</p>
+        <p class="lead">C'est exactement ce qu'on travaille dans l'Académie : repérer pourquoi une étape est fausse, pas seulement trouver la bonne réponse.</p>
+      </div>
+      <div class="board" id="board" aria-live="polite">
+        <div class="board-top"><span class="lvl" id="d-lvl">Niveau 4ème</span><span class="score" id="d-score">Défi 1 / 4</span></div>
+        <div class="prompt" id="d-prompt">Développer et réduire :</div>
+        <ol class="lines" id="d-lines"></ol>
+        <div class="feedback" id="d-fb">Quelle ligne contient l'erreur ?</div>
+        <div class="board-actions">
+          <button class="btn btn-ink btn-sm" type="button" id="d-next" hidden>Défi suivant</button>
+          <a class="btn btn-line btn-sm" href="#contact" id="d-cta" hidden>Réserver l'appel offert</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true"><svg viewBox="0 0 220 24" preserveAspectRatio="none"><path d="M2 12 C30 2 50 22 80 12 S130 2 160 12 S200 20 218 12"/></svg><span>√</span><svg viewBox="0 0 220 24" preserveAspectRatio="none"><path d="M2 12 C30 2 50 22 80 12 S130 2 160 12 S200 20 218 12"/></svg></div>
+
+  <section class="wrap" id="offres">
+    <div class="sec-head">
+      <svg class="doodle" viewBox="0 0 230 150" aria-hidden="true"><line x1="20" y1="130" x2="220" y2="130"/><line x1="40" y1="145" x2="40" y2="10"/><path d="M60 25 Q130 230 200 25"/><circle cx="130" cy="127" r="4"/><text x="150" y="70">f(x) = x²</text></svg>
+      <span class="eyebrow">Formules</span>
+      <h2>Deux façons de travailler ensemble</h2>
+      <p class="lead">Tout commence par un appel diagnostic offert. On choisit ensuite la formule qui correspond à votre enfant. Les deux se complètent : les cours traitent ses blocages en direct, l'Académie l'entraîne entre les séances.</p>
+    </div>
+    <div class="diag">
+      <div class="badge">Offert</div>
+      <div>
+        <h3>D'abord, l'appel diagnostic</h3>
+        <p>Un échange en visio avec le parent et l'élève, sans engagement. On repère ce qui est compris et ce qui est cru compris, et vous repartez avec des pistes concrètes.</p>
+      </div>
+      <a class="btn btn-ink" href="#contact">Réserver mon appel</a>
+    </div>
+    <div class="offers two">
+      <article class="offer main" id="academie">
+        <div class="acad-head">
+          <div class="acad-badge"><span class="acad-mark" role="img" aria-label="Logo de l'Académie Clarté"></span></div>
+          <span class="tag">Collège · Brevet</span>
+        </div>
+        <h3>Académie Clarté Objectif Brevet</h3>
+        <p class="muted">La formation en ligne pour la 4ème et la 3ème, avec un vrai suivi.</p>
+        <div class="acad-stats"><div><b>Mer.</b><span>live chaque semaine</span></div><div><b>Parents</b><span>plan d'action partagé</span></div><div><b>Étapes</b><span>je suis son avancée</span></div></div>
+        <ul>
+          <li>Cours en vidéo que j'explique moi-même, leçons PDF et fiches à niveaux</li>
+          <li>Live chaque mercredi avec le défi de la semaine</li>
+          <li>Escape game, situations concrètes, chasse à l'erreur</li>
+          <li>Plans d'action partagés avec les parents</li>
+          <li>Communauté d'entraide entre élèves</li>
+        </ul>
+        <a class="btn" href="#contact">Réserver un appel diagnostic</a>
+      </article>
+      <article class="offer">
+        <span class="tag">Sur mesure</span>
+        <h3>Cours particuliers</h3>
+        <p class="muted">Pour un accompagnement individuel, de la 4ème à la Première.</p>
+        <ul>
+          <li>4ème, 3ème, Seconde, Première (autres niveaux : parlons-en à l'appel)</li>
+          <li>Préparation brevet et orientation lycée</li>
+          <li>Option Bachibac (maths en espagnol)</li>
+          <li>Stages de renforcement pendant les vacances</li>
+        </ul>
+        <a class="btn btn-line" href="#contact">Me contacter</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap" id="stages">
+    <div class="stage">
+      <div class="stage-copy">
+        <span class="eyebrow">Pendant les vacances</span>
+        <h2>Les stages de <span class="mark">renforcement<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 Q50 2 100 7 T198 5"/></svg></span></h2>
+        <p class="lead">Une semaine de vacances pour combler les lacunes, reprendre confiance et repartir du bon pied. En visio, avec moi, sur les chapitres qui posent problème.</p>
+        <div class="stage-ctas">
+          <a class="btn btn-ink" href="#contact" rel="noopener">Demander les dates</a>
+          <span class="stage-places">Places limitées à chaque session</span>
+        </div>
+      </div>
+      <div class="stage-card">
+        <div class="stage-top"><span class="cal" aria-hidden="true"><b>1h30</b><small>séance</small></span><div><b>4 formules au choix</b><span>séances d'1 h 30, selon le besoin de votre enfant</span></div></div>
+        <ul class="formules">
+          <li><b>1</b><span>séance</span><small>pour débloquer un point précis</small></li>
+          <li><b>3</b><span>séances</span><small>pour reprendre un chapitre</small></li>
+          <li><b>4</b><span>séances</span><small>pour consolider plusieurs notions</small></li>
+          <li><b>6</b><span>séances</span><small>pour une vraie remise à niveau</small></li>
+        </ul>
+        <p class="parrain"><b>Parrainage</b> · Une séance offerte pour chaque proche recommandé qui démarre un accompagnement Clarté.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="comment">
+    <div class="sec-head">
+      <svg class="doodle" viewBox="0 0 230 150" aria-hidden="true"><path d="M40 120 L40 30 L170 120 Z"/><path d="M40 106 L54 106 L54 120"/><text x="70" y="60">a² + b² = c²</text><path d="M180 40 q12 -14 24 0 t24 0"/></svg>
+      <span class="eyebrow">Comment ça se passe</span>
+      <h2>Trois étapes, toujours dans cet ordre</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><span class="k">1. Diagnostiquer</span><h3>On repère les faux savoirs</h3><p>Un appel offert pour comprendre la situation : ce qui est vraiment compris, ce qui est cru compris, et ce qui bloquera plus tard.</p></div>
+      <div class="step"><span class="k">2. Reconstruire</span><h3>On explique autrement</h3><p>Jusqu'à ce que l'élève puisse réexpliquer lui-même. Pas de par cœur, pas de recettes : comprendre, puis appliquer.</p></div>
+      <div class="step"><span class="k">3. Rendre autonome</span><h3>On entraîne seul</h3><p>Exercices à niveaux, défis, chasse à l'erreur. Les parents suivent la progression avec un plan d'action clair.</p></div>
+    </div>
+    <div class="tabs" role="tablist" aria-label="En savoir plus">
+      <button class="tab" type="button" role="tab" id="tab-semaine" aria-controls="pane-semaine" aria-selected="true">Une semaine dans l'Académie</button>
+      <button class="tab" type="button" role="tab" id="tab-niveaux" aria-controls="pane-niveaux" aria-selected="false">Le programme par niveau</button>
+    </div>
+    <div class="pane" role="tabpanel" id="pane-semaine" aria-labelledby="tab-semaine">
+      <p class="pane-lead">Votre enfant n'est jamais seul devant l'écran : chaque étape est cochée, suivie, et vous savez où il en est.</p>
+    <p class="swipe-hint" aria-hidden="true">← faites glisser →</p>
+    <div class="week" id="week">
+      <div class="day"><span class="d">Lundi</span><b>La vidéo et la leçon</b><p>J'explique la notion en vidéo, l'élève a la leçon en PDF.</p></div>
+      <div class="day"><span class="d">Mardi</span><b>La fiche à niveaux</b><p>Exercices ●○○ ●●○ ●●●, corrigés.</p></div>
+      <div class="day key"><span class="d">Mercredi</span><b>Le live</b><p>En direct avec moi, avec le défi du mercredi.</p></div>
+      <div class="day"><span class="d">Jeudi</span><b>Je m'entraîne autrement</b><p>Chasse à l'erreur, atelier de rédaction, situations concrètes.</p></div>
+      <div class="day"><span class="d">Vendredi</span><b>Les étapes cochées</b><p>Je vois l'avancée de chaque élève.</p></div>
+      <div class="day"><span class="d">Samedi</span><b>La communauté</b><p>Questions et entraide entre élèves.</p></div>
+      <div class="day key"><span class="d">Dimanche</span><b>Le plan d'action</b><p>Partagé dans le groupe avec les parents.</p></div>
+    </div>
+    <p class="week-note">Exemple de semaine type : le rythme s'adapte à chaque élève.</p>
+    </div>
+    <div class="pane" role="tabpanel" id="pane-niveaux" aria-labelledby="tab-niveaux" hidden>
+    <div class="levels">
+      <div class="level"><span class="n">4e</span><span class="t">L'année du déclic</span><p>14 modules du programme officiel, un module « Fondations » pour reprendre les bases, et un escape game final.</p></div>
+      <div class="level"><span class="n">3e</span><span class="t">Le saut de palier</span><p>Consolider toute l'année et s'entraîner sur ce que le brevet demande vraiment.</p></div>
+      <div class="level"><span class="n">2de</span><span class="t">Le passage au lycée</span><p>Solidifier le calcul et les fonctions, prendre le rythme du lycée et préparer le choix des spécialités.</p></div>
+      <div class="level"><span class="n">1re</span><span class="t">Spé maths</span><p>Second degré, suites, dérivation, exponentielle, probabilités, puis l'expertise de spécialité.</p></div>
+    </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="qui">
+    <div class="about">
+      <div class="about-media">
+        <figure class="portrait"><img src="/img/portrait.jpg" alt="Portrait d'Arnaud, fondateur de Clarté" width="640" height="800"><span class="badge-hand" aria-hidden="true">fondateur de Clarté</span></figure>
+        <div class="polas">
+          <figure class="pola p1"><img src="/img/tdf-sourire.jpg" alt="Arnaud en animation sur le Tour de France" width="600" height="800" loading="lazy"><figcaption>Tour de France</figcaption></figure>
+          <figure class="pola p2"><img src="/img/tdf-echange.jpg" alt="Arnaud en échange avec le public sur le Tour de France" width="600" height="800" loading="lazy"><figcaption>expliquer à tous</figcaption></figure>
+          <figure class="pola p3"><img src="/img/tdf-course.jpg" alt="Arnaud sur le parcours du Tour de France" width="600" height="800" loading="lazy"><figcaption>en plein air</figcaption></figure>
+        </div>
+        <p class="hand caption">Été 2026 : animateur avec EF Education First sur le Tour de France. Capter l'attention et expliquer simplement, à tous les âges.</p>
+      </div>
+      <div>
+        <span class="eyebrow">Qui je suis</span>
+        <h2>Bonjour, moi c'est <span class="mark">Arnaud<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 Q50 2 100 7 T198 5"/></svg></span>.</h2>
+        <p class="lead">J'ai toujours aimé expliquer. Au fil des cours, j'ai vu beaucoup d'élèves travailler dur, réussir parfois, sans jamais vraiment comprendre. Le jour où l'exercice change, tout s'écroule.</p>
+        <p class="lead">J'ai compris que le problème n'était pas les maths, mais la façon d'apprendre à penser. C'est pour ça que j'ai créé Clarté : faire comprendre pour de vrai, puis rendre l'élève capable de se débrouiller seul.</p>
+        <ol class="tl" id="tl">
+          <li><span class="y">2020</span><div><b>Bac S mention très bien</b><span>19/20 en maths, 20/20 en espagnol · Brevet d'initiation aéronautique (BIA)</span></div></li>
+          <li><span class="y">2020 – 22</span><div><b>Cycle préparatoire intégré en école d'ingénieurs</b><span>ENIT (École nationale d'ingénieurs de Tarbes) : maths, physique, sciences de l'ingénieur</span></div></li>
+          <li><span class="y">2022</span><div><b>Premiers élèves en ligne</b><span>Professeur de maths en visio chez GoStudent, du collège au lycée</span></div></li>
+          <li><span class="y">2024</span><div><b>Licence de mathématiques, parcours métiers de l'enseignement</b><span>Université de Toulouse : didactique et enseignement des maths</span></div></li>
+          <li><span class="y">2025</span><div><b>Création de Clarté</b><span>Plus de 60 familles accompagnées et plus de 600 heures de cours depuis</span></div></li>
+          <li class="now"><span class="y">2026</span><div><b>L'Académie Clarté et une équipe</b><span>Ambassadeur EF Education First, animateur EF sur le Tour de France · Formation continue en pédagogie avec Les Nouveaux Profs</span></div></li>
+        </ol>
+        <p class="tl-note"><b>Spécialité</b> · de la 4ème à la Première : brevet, passage au lycée, spé maths et orientation. <b>Langues</b> · accompagnement Bachibac possible en espagnol.</p>
+        <div class="about-links">
+          <span class="sign">Arnaud</span>
+          <a class="btn btn-line btn-sm li" href="https://www.linkedin.com/in/arnaud-amador-clarte" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.5c0-1.3-.02-3-1.83-3-1.84 0-2.12 1.43-2.12 2.9V21H9z"/></svg>Mon LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="equipe">
+    <div class="teamline">
+      <div class="orbit" aria-hidden="true">
+        <div class="ring"></div>
+        <div class="spark"></div>
+        <div class="sat"><div class="avatar">M</div></div>
+        <div class="sat"><div class="avatar">J</div></div>
+        <div class="sat"><div class="avatar">L</div></div>
+        <div class="core">A<small>l'équipe Clarté</small></div>
+      </div>
+      <div>
+        <span class="eyebrow">Clarté, c'est aussi une équipe</span>
+        <h2>Vous n'êtes jamais seul face à un seul prof</h2>
+        <p class="lead">Je reste votre interlocuteur principal, mais une petite équipe travaille avec moi pour que chaque élève et chaque famille soit bien suivi.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true"><svg viewBox="0 0 220 24" preserveAspectRatio="none"><path d="M2 12 C30 2 50 22 80 12 S130 2 160 12 S200 20 218 12"/></svg><span>Δ</span><svg viewBox="0 0 220 24" preserveAspectRatio="none"><path d="M2 12 C30 2 50 22 80 12 S130 2 160 12 S200 20 218 12"/></svg></div>
+
+  <section class="wrap">
+    <div class="fit">
+      <div class="yes"><h3>C'est pour vous si…</h3><ul><li>votre enfant comprend quand on lui explique, mais pas seul</li><li>il bloque dès que l'exercice change</li><li>vous voulez qu'il devienne autonome avant le brevet</li></ul></div>
+      <div class="no"><h3>Ce n'est pas pour vous si…</h3><ul><li>vous cherchez seulement plus d'heures de cours</li><li>il vous faut une solution express la veille d'un contrôle</li><li>vous voulez des recettes à apprendre par cœur</li></ul></div>
+    </div>
+  </section>
+
+  <section class="wrap" id="faq">
+    <div class="sec-head">
+      <span class="eyebrow">Questions fréquentes</span>
+      <h2>Ce que les parents me demandent</h2>
+    </div>
+    <div class="faq">
+      <details open><summary>Mon enfant ne va-t-il pas décrocher, seul devant l'écran ?</summary><div class="ans"><p>C'est la crainte numéro un, et toute l'Académie est construite contre ça :</p><ul><li>chaque leçon a des étapes que l'élève coche, et je vois qui avance et qui bloque ;</li><li>le live du mercredi permet de poser ses questions en direct ;</li><li>un plan d'action est partagé dans un groupe qui inclut les parents ;</li><li>une petite équipe m'aide à suivre chaque famille.</li></ul></div></details>
+      <details><summary>La visio, c'est aussi efficace qu'en présentiel ?</summary><div class="ans"><p>Oui, à condition que l'élève soit actif, et la visio y aide :</p><ul><li>on travaille sur le même document à l'écran, et votre enfant rédige lui-même pendant que je corrige en direct ;</li><li>il garde une trace écrite de chaque séance, à relire avant un contrôle ;</li><li>pas de trajet : les séances se calent plus facilement, même en semaine ;</li><li>entre les séances, les ressources de l'Académie et le live du mercredi prennent le relais.</li></ul><p>L'appel diagnostic, lui aussi en visio, vous permet de vous faire une idée sans engagement.</p></div></details>
+      <details><summary>Combien ça coûte ?</summary><div class="ans"><p>Le tarif dépend de la formule et du besoin de votre enfant. On en parle pendant l'appel diagnostic, une fois que j'ai compris la situation. L'appel est offert et sans engagement.</p></div></details>
+      <details><summary>Y a-t-il un engagement ?</summary><div class="ans"><p>Aucun pour l'appel diagnostic. L'Académie fonctionne en abonnement : votre enfant garde l'accès tant que vous le souhaitez. Les modalités exactes vous sont expliquées pendant l'appel.</p></div></details>
+      <details><summary>Comment se passe le paiement ?</summary><div class="ans"><p>Par virement. Les cours particuliers sont réglés par forfait, avant les séances, en début de mois ou de trimestre. L'Académie fonctionne en abonnement payé d'avance. Le tarif adapté à votre enfant est défini pendant l'appel diagnostic.</p></div></details>
+      <details><summary>Cours particuliers ou Académie : que choisir ?</summary><div class="ans"><p>Les deux se complètent. Les cours particuliers traitent en direct les blocages de votre enfant. L'Académie lui donne de quoi s'entraîner seul entre les séances, avec un suivi de son avancée. On décide ensemble de la bonne formule pendant l'appel diagnostic.</p></div></details>
+      <details><summary>Que se passe-t-il pendant l'appel diagnostic ?</summary><div class="ans"><p>On échange avec vous et votre enfant : ses notes, ce qui le bloque, ce qu'il a déjà essayé. Je repère ce qui est compris et ce qui est seulement « cru compris », puis je vous propose la formule adaptée, ou je vous oriente ailleurs si ce n'est pas le bon choix.</p></div></details>
+      <details><summary>Mon enfant a déjà un bon niveau, c'est utile ?</summary><div class="ans"><p>Oui. Beaucoup d'élèves passent de « bon » à « très bon » quand ils arrêtent d'appliquer des recettes et comprennent vraiment. C'est souvent ce qui fait la différence au brevet et pour l'orientation au lycée.</p></div></details>
+      <details><summary>Quels niveaux accompagnez-vous ?</summary><div class="ans"><p>Je suis spécialisé de la 4ème à la Première : préparation au brevet, passage au lycée, spécialité maths. L'accompagnement en espagnol pour le Bachibac est aussi possible. J'ai déjà accompagné des élèves d'autres niveaux : si votre enfant est plus jeune, parlons-en pendant l'appel.</p></div></details>
+    </div>
+  </section>
+
+  <section class="wrap" id="contact">
+    <div class="contact">
+      <div>
+        <span class="eyebrow">Premier pas</span>
+        <h2>Parlons de votre enfant</h2>
+        <p class="lead">L'appel diagnostic est offert et sans engagement. Choisissez directement un créneau de 30 minutes dans mon agenda.</p>
+        <div class="facts">
+          <span><b>Format</b> · en visio, où que vous soyez</span>
+          <span><b>Email</b> · <a class="mail email-link" href={`mailto:${SITE.email}`}>{SITE.email}</a></span>
+          <span><b>Téléphone</b> · <a class="mail" href={`tel:${SITE.phone.tel}`}>{SITE.phone.display}</a></span>
+          <span><b>WhatsApp</b> · <a href={SITE.whatsapp} class="whatsapplink" target="_blank" rel="noopener">m'écrire sur WhatsApp</a></span>
+          <span><b>Avis</b> · <a href="https://g.page/r/CSAvg_P2otibECE/review" target="_blank" rel="noopener">Google</a> · 5,0 ★ sur Superprof</span>
+          <span><b>YouTube</b> · <a href="https://www.youtube.com/@clarte-arnaud" target="_blank" rel="noopener">@clarte-arnaud</a></span>
+          <span><b>LinkedIn</b> · <a href="https://www.linkedin.com/in/arnaud-amador-clarte" target="_blank" rel="noopener">Arnaud, Clarté</a></span>
+        </div>
+      </div>
+      <div id="calendly-embed" style="min-width:320px;height:700px;"></div>
+    </div>
+  </section>
+
+  <dialog class="vplayer" id="dlg-video" aria-label="Témoignage vidéo" slot="after-main">
+    <div class="vplayer-in">
+      <button class="btn btn-line btn-sm close" type="button" data-close>Fermer</button>
+      <div class="frame"></div>
+    </div>
+  </dialog>
+
+  <Fragment slot="after-main">
+    <script src="https://assets.calendly.com/assets/external/widget.js" is:inline></script>
+    <script is:inline define:vars={{ calendlyUrl }}>
+      Calendly.initInlineWidget({
+        url: calendlyUrl,
+        parentElement: document.getElementById('calendly-embed'),
+        resize: true
+      });
+    </script>
+    <script>
+      import "../scripts/home.ts";
+    </script>
+  </Fragment>
+</BaseLayout>

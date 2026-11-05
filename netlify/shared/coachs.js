@@ -4,7 +4,7 @@
  * C'est LE fichier à modifier pour faire évoluer Émilie :
  *   1. REGLAGES : ton contact et ton lien de prise de rendez-vous
  *   2. COACHS   : la personnalité et les règles d'Émilie
- * Il est utilisé par le serveur Netlify (/api/coach).
+ * Il est utilisé uniquement par le serveur Netlify (/api/coach), il n'est pas publié sur le site.
  */
 (function () {
 

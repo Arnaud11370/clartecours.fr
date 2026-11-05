@@ -1,0 +1,107 @@
+---
+// Émilie : assistante IA des parents (bouton flottant + panneau de discussion).
+// Serveur : netlify/functions/coach.mjs (/api/coach, coach "emilie").
+---
+<button class="emi-fab" type="button" id="emi-fab" aria-haspopup="dialog" aria-controls="emi-panel">
+  <span class="emi-ava" aria-hidden="true">É</span>
+  <span class="emi-fab-txt"><small>Une question ?</small><b>Demandez à Émilie</b></span>
+</button>
+
+<div class="emi-panel" id="emi-panel" role="dialog" aria-modal="false" aria-labelledby="emi-title" hidden>
+  <div class="emi-head">
+    <span class="emi-ava" aria-hidden="true">É</span>
+    <div><b id="emi-title">Émilie</b><span>assistante IA de l'Académie Clarté</span></div>
+    <button class="emi-x" type="button" id="emi-close" aria-label="Fermer la discussion">×</button>
+  </div>
+  <p class="emi-warn">Elle peut se tromper. Pour toute décision, parlez-en avec Arnaud.</p>
+  <div class="emi-log" id="emi-log" aria-live="polite"></div>
+  <div class="emi-chips" id="emi-chips">
+    <button type="button">Comment préparer le brevet ?</button>
+    <button type="button">C'est quoi le Bachibac ?</button>
+    <button type="button">Comment se passe l'accompagnement ?</button>
+  </div>
+  <p class="emi-left" id="emi-left" hidden></p>
+  <form class="emi-form" id="emi-form">
+    <label for="emi-input" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Votre question</label>
+    <textarea id="emi-input" rows="1" maxlength="1500" placeholder="Posez votre question…"></textarea>
+    <button class="emi-send" type="submit" id="emi-send" aria-label="Envoyer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.4 20.4 21 12 3.4 3.6 3.4 10l12.6 2-12.6 2z"/></svg></button>
+  </form>
+  <a class="emi-book" href="/#contact">Réserver l'appel diagnostic offert →</a>
+</div>
+
+<script>
+  import { SITE } from "../data/site";
+
+  const LIVE = document.documentElement.getAttribute('data-live') === '1';
+  const LIMITE = 20, CAL = SITE.calendly;
+  const BIENVENUE = "Bonjour, je suis Émilie, l'assistante IA de l'Académie Clarté. Je réponds à vos questions sur le brevet, l'orientation au lycée, le Bachibac ou l'accompagnement proposé par Arnaud. Que souhaitez-vous savoir ?";
+  const fab = document.getElementById('emi-fab')!, panel = document.getElementById('emi-panel')!, log = document.getElementById('emi-log')!,
+      form = document.getElementById('emi-form')!, input = document.getElementById('emi-input') as HTMLTextAreaElement, send = document.getElementById('emi-send') as HTMLButtonElement,
+      chips = document.getElementById('emi-chips')!, left = document.getElementById('emi-left')!;
+  const hist: { role: string; text: string }[] = [];
+  let busy = false, memo = { d: '', n: 0 };
+
+  function today(){ const d=new Date(); return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(); }
+  function compteur(){ let c; try{ c=JSON.parse(localStorage.getItem('emilie-jour')||'null'); }catch(e){ c=memo; } if(!c||c.d!==today()) c={d:today(),n:0}; return c; }
+  function compter(){ const c=compteur(); c.n++; memo=c; try{ localStorage.setItem('emilie-jour',JSON.stringify(c)); }catch(e){} return c.n; }
+  function majRestant(){
+    const r=LIMITE-compteur().n;
+    if(r<=5){ left.hidden=false; left.textContent= r>0 ? (r+' question'+(r>1?'s':'')+' restante'+(r>1?'s':'')+' aujourd\'hui') : "Vous avez atteint la limite du jour. Pour aller plus loin, réservez l'appel avec Arnaud."; }
+    const off=r<=0; input.disabled=off; send.disabled=off||busy;
+  }
+
+  function esc(s: string){ return s.replace(/[&<>"']/g,function(c){return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'} as Record<string,string>)[c];}); }
+  function rendu(t: string){
+    let h=esc(t.trim());
+    h=h.replace(/\*\*(.+?)\*\*/g,'<b>$1</b>');
+    h=h.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
+    h=h.replace(/(^|[\s(])((?:https?:\/\/|www\.)[^\s<)]+[^\s<).,;:!?])/g,function(m,p,u){ return p+'<a href="'+(u.indexOf('http')===0?u:'https://'+u)+'" target="_blank" rel="noopener">'+u.replace(/^https?:\/\//,'')+'</a>'; });
+    h=h.replace(/(^|\s)([\w.+-]+@[\w-]+\.[\w.]+[\w])/g,'$1<b>$2</b>');
+    h=h.replace(/(?:^|\n)((?:[-•] .+(?:\n|$))+)/g,function(m,b){ return '\n<ul>'+b.trim().split('\n').map(function(l: string){return '<li>'+l.replace(/^[-•] /,'')+'</li>';}).join('')+'</ul>'; });
+    return h.replace(/\n{2,}/g,'<br><br>').replace(/\n/g,'<br>').replace(/<br>(<ul>)/g,'$1').replace(/(<\/ul>)<br>/g,'$1');
+  }
+  function bulle(cls: string, html: string){ const d=document.createElement('div'); d.className='emi-msg '+cls; d.innerHTML=html; log.appendChild(d); log.scrollTop=log.scrollHeight; return d; }
+
+  function ouvrir(){
+    panel.hidden=false; fab.hidden=true;
+    if(!log.childElementCount) bulle('bot',rendu(BIENVENUE));
+    majRestant(); setTimeout(function(){ input.focus(); },50);
+  }
+  function fermer(){ panel.hidden=true; fab.hidden=false; fab.focus(); }
+  fab.addEventListener('click',ouvrir);
+  document.getElementById('emi-close')!.addEventListener('click',fermer);
+  panel.addEventListener('keydown',function(e){ if(e.key==='Escape') fermer(); });
+
+  async function poser(q: string){
+    q=q.trim(); if(!q||busy) return;
+    if(compteur().n>=LIMITE){ majRestant(); return; }
+    busy=true; chips.hidden=true; input.value=''; input.style.height='';
+    bulle('me',esc(q)); hist.push({role:'user',text:q}); compter();
+    const t=bulle('bot','<span class="emi-typing" aria-label="Émilie écrit"><i></i><i></i><i></i></span>'); majRestant();
+    try{
+      let rep;
+      if(!LIVE){
+        await new Promise(function(r){setTimeout(r,900)});
+        rep="Ceci est un aperçu : sur le site en ligne, je répondrai ici à votre question. En attendant, vous pouvez réserver l'appel diagnostic offert : "+CAL;
+      } else {
+        const ctl=new AbortController(), to=setTimeout(function(){ctl.abort()},45000);
+        const r=await fetch('/api/coach',{method:'POST',signal:ctl.signal,headers:{'content-type':'application/json'},body:JSON.stringify({coach:'emilie',messages:hist.slice(-16)})});
+        clearTimeout(to);
+        const data=await r.json().catch(function(){return {};});
+        if(!r.ok||!data.reply) throw new Error(data.erreur||"Émilie n'a pas pu répondre. Réessayez dans un instant.");
+        rep=data.reply;
+      }
+      t.innerHTML=rendu(rep); hist.push({role:'assistant',text:rep});
+    }catch(err: any){
+      t.remove(); hist.pop();
+      bulle('err',esc(err.name==='AbortError'?"La réponse prend trop de temps. Réessayez dans un instant.":err.message));
+      input.value=q;
+    }
+    busy=false; majRestant(); log.scrollTop=log.scrollHeight;
+    if(!input.disabled) input.focus();
+  }
+  form.addEventListener('submit',function(e){ e.preventDefault(); poser(input.value); });
+  input.addEventListener('keydown',function(e){ if(e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); poser(input.value); } });
+  input.addEventListener('input',function(){ input.style.height='auto'; input.style.height=Math.min(input.scrollHeight,110)+'px'; });
+  chips.querySelectorAll('button').forEach(function(b){ b.addEventListener('click',function(){ poser(b.textContent || ''); }); });
+</script>

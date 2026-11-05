@@ -1,0 +1,85 @@
+---
+// Gabarit commun à toutes les pages : <head> (GTM en premier), header, footer, éléments fixes et scripts partagés.
+import GtmHead from "../components/tracking/GtmHead.astro";
+import GtmNoscript from "../components/tracking/GtmNoscript.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import CallBar from "../components/CallBar.astro";
+import Emilie from "../components/Emilie.astro";
+import LegalDialogs from "../components/LegalDialogs.astro";
+import { SITE } from "../data/site";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+}
+
+const {
+  title = SITE.title,
+  description = SITE.description,
+  ogTitle = title,
+  ogDescription = description,
+  ogImage = SITE.ogImage,
+} = Astro.props;
+
+// URL absolue si `site` est défini dans astro.config.mjs (recommandé pour les partages sur les réseaux)
+const ogImageUrl = Astro.site ? new URL(ogImage, Astro.site).href : ogImage;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  name: SITE.name,
+  description: "Cours de maths en ligne et Académie Clarté Objectif Brevet, de la 4ème à la Première.",
+  founder: { "@type": "Person", name: "Arnaud Amador" },
+  email: SITE.email,
+  telephone: SITE.phone.intl,
+  sameAs: ["https://www.youtube.com/@clarte-arnaud", "https://www.linkedin.com/in/arnaud-amador-clarte"],
+};
+---
+<!doctype html>
+<html lang="fr" data-live="1">
+<head>
+<GtmHead />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content={description}>
+<meta property="og:title" content={ogTitle}>
+<meta property="og:description" content={ogDescription}>
+<meta property="og:type" content="website">
+<meta property="og:image" content={ogImageUrl}>
+<link rel="icon" type="image/png" href="/img/academie-logo.png">
+<link rel="preload" href="/fonts/gloock-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
+<title>{title}</title>
+<slot name="head" />
+</head>
+<body>
+
+<GtmNoscript />
+
+<Header />
+
+<main id="accueil">
+  <slot />
+</main>
+
+<Footer />
+
+<CallBar />
+
+<Emilie />
+
+<slot name="after-main" />
+
+<LegalDialogs />
+
+<script>
+  import "../scripts/site.ts";
+</script>
+
+</body>
+</html>
