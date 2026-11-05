@@ -1,0 +1,140 @@
+---
+// Résultats, avis écrits filtrables et témoignages vidéo (lus dans /temoignages-videos.json).
+import { SITE, SOCIALS } from "../../data/site";
+---
+<section class="wrap" id="temoignages">
+  <div class="sec-head">
+    <svg class="doodle" viewBox="0 0 230 150" aria-hidden="true"><path d="M120 20 l12 26 l28 3 l-21 19 l6 28 l-25 -14 l-25 14 l6 -28 l-21 -19 l28 -3 z"/><circle cx="60" cy="110" r="22"/><path d="M48 112 l9 9 l16 -18"/><text x="150" y="130">5,0 ★</text></svg>
+    <span class="eyebrow">Témoignages</span>
+    <h2>Ce qu'en disent les <span class="mark">familles<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 Q50 2 100 7 T198 5"/></svg></span></h2>
+  </div>
+  <div class="results">
+    <div class="story">
+      <div class="grade"><s>11</s><span class="to">→</span>TB</div>
+      <div><h3>Angélina, de 11/20 à la mention très bien au brevet, en un trimestre.</h3></div>
+    </div>
+    <div class="story">
+      <div class="grade"><s>8</s><span class="to">→</span>12</div>
+      <div><h3>Gabin pensait avoir 8 ou 9 à l'épreuve de spé maths. Il a obtenu 12.</h3></div>
+    </div>
+  </div>
+
+  <div class="sub">Avis écrits</div>
+  <div class="chips" role="group" aria-label="Filtrer les avis">
+    <button class="chip" type="button" data-f="all" aria-pressed="true">Tous<small>9</small></button>
+    <button class="chip" type="button" data-f="famille" aria-pressed="false">Familles<small>5</small></button>
+    <button class="chip" type="button" data-f="eleve" aria-pressed="false">Élèves<small>4</small></button>
+  </div>
+  <p class="swipe-hint" aria-hidden="true">← faites glisser →</p>
+  <div class="reviews" id="reviews">
+    <article class="review" data-c="famille"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">I</span><div class="who">Isabelle<span>maman · préparation au brevet</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Nous recommandons Arnaud, jeune professeur qui accompagne ma fille de 15 ans pour le brevet, avec beaucoup de sérieux et de bienveillance. Il a su mettre en place un récapitulatif systématique sur feuille blanche, ce qui lui permet de vérifier les acquis, de structurer les notions et de consolider les révisions de manière très efficace. Pour nous, d'avoir un retour sur la séance, sa gentillesse, sa patience et sa pédagogie mettent ma fille en confiance. Elle apprécie sincèrement les moments d'accompagnement et progresse avec plus de sérénité.</p></article>
+    <article class="review" data-c="eleve"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">S</span><div class="who">Sara<span>élève de Première · spé maths</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Mes parents et moi avons décidé de faire appel à un professeur de maths afin de m'aider à rattraper mon retard. Arnaud est très pédagogue et comprend rapidement mes besoins. Il adapte ses explications en fonction de mes difficultés, ce qui m'aide à mieux comprendre les notions travaillées. Je me sens déjà mieux accompagnée dans mon travail.</p></article>
+    <article class="review" data-c="famille"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">G</span><div class="who">Famille de Gabin<span>Première · spé maths</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Gabin avait pris du retard sur certains chapitres de la spécialité mathématiques. Il avait du mal à comprendre les notions et surtout à les appliquer aux exercices. Donc il ne se sentait pas prêt pour l'épreuve. Ce qui a bien marché, c'est que tu sois très à l'écoute de ses besoins, et surtout la façon d'aller à l'essentiel. Il a obtenu la note de 12 alors qu'il pensait avant tes cours avoir 8/9. Il a repris tes explications et cela lui a permis de travailler plus sereinement.</p></article>
+    <article class="review" data-c="famille"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">O</span><div class="who">Océane<span>maman</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Parfait ! Professeur très à l'écoute, professionnel et accessible. Il propose des méthodes modernes, s'adapte au niveau de mon fils et met en place une approche pédagogique efficace pour l'aider à progresser. Son travail est réfléchi et ses explications sont toujours claires. Il sait également tenir compte des difficultés que rencontre mon fils, prendre le temps de réexpliquer si nécessaire et instaurer un climat de confiance. Une excellente pédagogie et un accompagnement de qualité. Je recommande fortement.</p></article>
+    <article class="review" data-c="eleve"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">C</span><div class="who">Charline<span>élève de Première · maths tronc commun</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Je suis une élève de première générale avec maths en tronc commun, et j'ai commencé les cours particuliers à quelques semaines des épreuves. Honnêtement, ça m'a vraiment aidée à tout remettre à niveau sur les chapitres de l'année. Arnaud explique très bien, de façon claire et structurée, ce qui permet de comprendre même les notions les plus compliquées. Il prend le temps de revenir sur les points non compris sans jamais mettre de pression, ce qui rend les séances très agréables et efficaces. La méthode de travail est très bonne : les exercices sont bien choisis, progressifs et adaptés à mon niveau. Tout est bien organisé, et les supports et documents envoyés sont propres et utiles pour réviser ensuite. Grâce à cet accompagnement, je me sens beaucoup plus en confiance en mathématiques à l'approche du bac. Je recommande vivement Arnaud.</p></article>
+    <article class="review" data-c="eleve"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">L</span><div class="who">Louise<span>élève</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Parfait ! Le cours était très bien organisé et cela m'a permis de bien comprendre les notions et d'ensuite pouvoir m'exercer. C'était très intéressant !</p></article>
+    <article class="review" data-c="famille"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">C</span><div class="who">Chantal<span>grand-mère</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Arnaud a été un super prof pendant les grandes vacances pour ma petite-fille, sa pédagogie et sa gentillesse l'ont beaucoup aidée pendant les 4 ans pour sa progression en maths.</p></article>
+    <article class="review" data-c="famille"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">C</span><div class="who">Caroline<span>maman de Juliette</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Parfait ! Mon premier cours avec Arnaud s'est très bien déroulé, il est à l'écoute, calme et agréable.</p></article>
+    <article class="review" data-c="eleve"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">D</span><div class="who">Dorian<span>élève</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Si vous avez des lacunes en maths ou pour du perfectionnement, c'est la meilleure personne à contacter. Explication, compréhension, il a tout.</p></article>
+  </div>
+  <button class="btn btn-line btn-sm showall" type="button" id="showall">Voir les 9 avis</button>
+
+  <div class="sub" style="margin-top:44px">Témoignages vidéo</div>
+  <p class="swipe-hint" aria-hidden="true">← faites glisser →</p>
+  <div class="videos" id="videos"></div>
+  <button class="btn btn-line btn-sm showall" type="button" id="showvideos" hidden>Voir toutes les vidéos</button>
+  <div class="more">
+    <a class="btn btn-line btn-sm li" href={SITE.avis.google} target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.35 11.1H12v2.98h5.35c-.23 1.4-1.66 4.1-5.35 4.1a5.9 5.9 0 0 1 0-11.8c1.82 0 3.04.78 3.74 1.45l2.55-2.45C16.67 3.86 14.55 3 12 3a9 9 0 1 0 0 18c5.2 0 8.64-3.65 8.64-8.8 0-.6-.07-1.05-.15-1.5z"/></svg>Nos avis Google</a>
+    <a class="btn btn-line btn-sm" href={SITE.avis.superprof} target="_blank" rel="noopener">Nos avis Superprof</a>
+    <a class="btn btn-line btn-sm" href={SOCIALS.youtube.href} target="_blank" rel="noopener">Chaîne YouTube</a>
+  </div>
+</section>
+
+<dialog class="vplayer" id="dlg-video" aria-label="Témoignage vidéo">
+  <div class="vplayer-in">
+    <button class="btn btn-line btn-sm close" type="button" data-close>Fermer</button>
+    <div class="frame"></div>
+  </div>
+</dialog>
+
+<script>
+  /* Avis écrits : filtres, "voir tout", "lire la suite" */
+  type Card = HTMLElement & { _rm: HTMLButtonElement };
+  const cards = [].slice.call(document.querySelectorAll('#reviews .review')) as Card[], chips = document.querySelectorAll('.chip'), more = document.getElementById('showall')!;
+  let filter = 'all', expanded = false;
+  const LIMIT = window.matchMedia('(max-width:860px)').matches ? 99 : 6;
+  cards.forEach(function(c){
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'readmore'; b.textContent = 'Lire la suite'; b.hidden = true;
+    b.addEventListener('click', function(){ const o = c.classList.toggle('open'); b.textContent = o ? 'Réduire' : 'Lire la suite'; });
+    c.appendChild(b); c._rm = b;
+  });
+  function render(anim: boolean){
+    let shown = 0;
+    cards.forEach(function(c){
+      const match = filter === 'all' || c.dataset.c === filter;
+      const vis = match && (expanded || filter !== 'all' || shown < LIMIT);
+      if(match && vis) shown++;
+      const was = !c.hidden; c.hidden = !vis;
+      if(vis && anim && !was){ c.classList.remove('pop'); void c.offsetWidth; c.classList.add('pop'); }
+    });
+    more.hidden = filter !== 'all' || expanded;
+    requestAnimationFrame(function(){ cards.forEach(function(c){ if(c.hidden) return; const p = c.querySelector('p')!; c._rm.hidden = c.classList.contains('open') ? false : p.scrollHeight <= p.clientHeight + 2; }); });
+  }
+  chips.forEach(function(ch){ ch.addEventListener('click', function(){
+    filter = (ch as HTMLElement).dataset.f!; chips.forEach(function(x){ x.setAttribute('aria-pressed', x === ch ? 'true' : 'false'); });
+    cards.forEach(function(c){ c.hidden = true; }); render(true);
+  }); });
+  more.addEventListener('click', function(){ expanded = true; render(true); });
+  render(false);
+  window.addEventListener('resize', function(){ render(false); });
+
+  /* Témoignages vidéo : chargés depuis /temoignages-videos.json */
+  (function(){
+    type Video = { nom: string; video: string; classe?: string; legende?: string };
+    const box = document.getElementById('videos')!, btn = document.getElementById('showvideos')!;
+    const dlg = document.getElementById('dlg-video') as HTMLDialogElement, frame = dlg.querySelector('.frame')!;
+    /* Lecture sur place dans une modale ; l'iframe est retirée à la fermeture pour couper le son */
+    function lire(v: Video, id: string, short: boolean){
+      frame.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&playsinline=1" title="Témoignage vidéo de ' + esc(v.nom) + '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+      dlg.classList.toggle('short', short);
+      if(dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+    }
+    function fermer(){ if(dlg.close) dlg.close(); else { dlg.removeAttribute('open'); frame.innerHTML = ''; } }
+    dlg.addEventListener('close', function(){ frame.innerHTML = ''; });
+    dlg.querySelector('[data-close]')!.addEventListener('click', fermer);
+    dlg.addEventListener('click', function(e){ if(e.target === dlg) fermer(); });
+    function ytId(u: string){ const m = /(?:youtu\.be\/|shorts\/|[?&]v=)([\w-]{11})/.exec(u || ''); return m && m[1]; }
+    function esc(s: unknown){ return String(s).replace(/[&<>"']/g, function(c){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'} as Record<string,string>)[c]; }); }
+    function carte(v: Video){
+      const id = ytId(v.video)!, short = /\/shorts\//.test(v.video), a = document.createElement('a');
+      a.className = 'video' + (short ? ' short' : ''); a.href = v.video; a.target = '_blank'; a.rel = 'noopener';
+      a.setAttribute('aria-label', 'Témoignage vidéo de ' + v.nom + (v.classe ? ', élève de ' + v.classe : ''));
+      const img = short
+        ? '<img class="bg" src="https://i.ytimg.com/vi/' + id + '/oardefault.jpg" alt="" loading="lazy"><img class="fg" src="https://i.ytimg.com/vi/' + id + '/oardefault.jpg" alt="" loading="lazy">'
+        : '<img class="fg" src="https://i.ytimg.com/vi/' + id + '/maxresdefault.jpg" srcset="https://i.ytimg.com/vi/' + id + '/mqdefault.jpg 320w, https://i.ytimg.com/vi/' + id + '/maxresdefault.jpg 1280w" sizes="(max-width:860px) 80vw, 380px" alt="" loading="lazy">';
+      a.innerHTML = '<span class="thumb">' + img + (v.classe ? '<span class="badge">' + esc(v.classe) + '</span>' : '') + '<span class="play" aria-hidden="true"></span></span>'
+        + '<span class="cap"><span class="who-v">' + esc(v.nom) + '</span><span>' + esc(v.legende || ('élève de ' + v.classe)) + '</span></span>';
+      a.addEventListener('click', function(e){
+        if(e.ctrlKey || e.metaKey || e.shiftKey || e.button) return;
+        e.preventDefault(); lire(v, id, short);
+      });
+      /* miniature absente : YouTube renvoie une image grise de 120 px, on se rabat sur hqdefault */
+      a.querySelectorAll('img').forEach(function(im){
+        function repli(){ if(/hqdefault/.test(im.src)) return; im.removeAttribute('srcset'); im.src = 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg'; }
+        im.addEventListener('error', repli);
+        im.addEventListener('load', function(){ if(im.naturalWidth <= 120) repli(); });
+      });
+      return a;
+    }
+    fetch('/temoignages-videos.json').then(function(r){ return r.json(); }).then(function(liste: Video[]){
+      const cartes = liste.filter(function(v){ return ytId(v.video); }).map(carte);
+      const LIM = window.matchMedia('(max-width:860px)').matches ? 99 : 6;
+      cartes.forEach(function(c, i){ c.hidden = i >= LIM; box.appendChild(c); });
+      if(cartes.length > LIM){ btn.textContent = 'Voir les ' + cartes.length + ' vidéos'; btn.hidden = false; }
+      btn.addEventListener('click', function(){
+        cartes.forEach(function(c){ if(c.hidden){ c.hidden = false; c.classList.add('pop'); } });
+        btn.hidden = true;
+      });
+    }).catch(function(){});
+  })();
+</script>

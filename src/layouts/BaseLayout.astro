@@ -16,6 +16,8 @@ interface Props {
   ogTitle?: string;
   ogDescription?: string;
   ogImage?: string;
+  /** false : en-tête sans menu (landing pages) */
+  nav?: boolean;
 }
 
 const {
@@ -24,6 +26,7 @@ const {
   ogTitle = title,
   ogDescription = description,
   ogImage = SITE.ogImage,
+  nav = true,
 } = Astro.props;
 
 // URL absolue si `site` est défini dans astro.config.mjs (recommandé pour les partages sur les réseaux)
@@ -61,7 +64,7 @@ const jsonLd = {
 
 <GtmNoscript />
 
-<Header />
+<Header nav={nav} />
 
 <main id="accueil">
   <slot />

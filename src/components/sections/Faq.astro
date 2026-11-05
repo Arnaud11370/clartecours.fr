@@ -1,0 +1,25 @@
+---
+// Questions fréquentes des parents.
+interface Props {
+  /** false : retire les questions propres à l'Académie (pages lycée) */
+  academie?: boolean;
+}
+const { academie = true } = Astro.props;
+---
+<section class="wrap" id="faq">
+  <div class="sec-head">
+    <span class="eyebrow">Questions fréquentes</span>
+    <h2>Ce que les parents me demandent</h2>
+  </div>
+  <div class="faq">
+    {academie && <details open><summary>Mon enfant ne va-t-il pas décrocher, seul devant l'écran ?</summary><div class="ans"><p>C'est la crainte numéro un, et toute l'Académie est construite contre ça :</p><ul><li>chaque leçon a des étapes que l'élève coche, et je vois qui avance et qui bloque ;</li><li>le live du mercredi permet de poser ses questions en direct ;</li><li>un plan d'action est partagé dans un groupe qui inclut les parents ;</li><li>une petite équipe (Lisa, Marie et Julien) m'aide à suivre chaque famille.</li></ul></div></details>}
+    <details><summary>Combien ça coûte ?</summary><div class="ans"><p>Les tarifs dépendent de la formule :</p><ul><li>cours particulier à la séance : 45 € ;</li><li>accès à la formation en ligne de l'Académie : 120 € par mois ;</li><li>accompagnement sur 12 semaines : 1 000 € en 4ème et en Seconde, 1 200 € en 3ème et en Première, soit environ 83 à 100 € par semaine ;</li><li>stages de vacances : de 65 € (1 h 30) à 240 € (6 h).</li></ul><p>Pendant l'appel diagnostic, offert et sans engagement, je vous dis quelle formule correspond à votre enfant.</p></div></details>
+    <details><summary>La visio, c'est aussi efficace qu'en présentiel ?</summary><div class="ans"><p>Oui, à condition que l'élève soit actif, et la visio y aide :</p><ul><li>on travaille sur le même document à l'écran, et votre enfant rédige lui-même pendant que je corrige en direct ;</li><li>il garde une trace écrite de chaque séance, à relire avant un contrôle ;</li><li>pas de trajet : les séances se calent plus facilement, même en semaine ;</li><li>entre les séances, les ressources de l'Académie et le live du mercredi prennent le relais.</li></ul><p>L'appel diagnostic, lui aussi en visio, vous permet de vous faire une idée sans engagement.</p></div></details>
+    <details><summary>Y a-t-il un engagement ?</summary><div class="ans"><p>Aucun pour l'appel diagnostic. L'Académie fonctionne en abonnement : votre enfant garde l'accès tant que vous le souhaitez. Les modalités exactes vous sont expliquées pendant l'appel.</p></div></details>
+    <details><summary>Comment se passe le paiement ?</summary><div class="ans"><p>Par virement. Les cours particuliers sont réglés par forfait, avant les séances, en début de mois ou de trimestre. L'Académie fonctionne en abonnement payé d'avance. La formule adaptée à votre enfant est choisie ensemble pendant l'appel diagnostic.</p></div></details>
+    {academie && <details><summary>Cours particuliers ou Académie : que choisir ?</summary><div class="ans"><p>Les deux se complètent. Les cours particuliers traitent en direct les blocages de votre enfant. L'Académie lui donne de quoi s'entraîner seul entre les séances, avec un suivi de son avancée. On décide ensemble de la bonne formule pendant l'appel diagnostic.</p></div></details>}
+    <details><summary>Que se passe-t-il pendant l'appel diagnostic ?</summary><div class="ans"><p>On échange avec vous et votre enfant : ses notes, ce qui le bloque, ce qu'il a déjà essayé. Je repère ce qui est compris et ce qui est seulement « cru compris », puis je vous propose la formule adaptée, ou je vous oriente ailleurs si ce n'est pas le bon choix.</p></div></details>
+    <details><summary>Mon enfant a déjà un bon niveau, c'est utile ?</summary><div class="ans"><p>Oui. Beaucoup d'élèves passent de « bon » à « très bon » quand ils arrêtent d'appliquer des recettes et comprennent vraiment. C'est souvent ce qui fait la différence au brevet et pour l'orientation au lycée.</p></div></details>
+    <details><summary>Quels niveaux accompagnez-vous ?</summary><div class="ans"><p>Je suis spécialisé de la 4ème à la Première : préparation au brevet, passage au lycée, spécialité maths. L'accompagnement en espagnol pour le Bachibac est aussi possible. J'ai déjà accompagné des élèves d'autres niveaux : si votre enfant est plus jeune, parlons-en pendant l'appel.</p></div></details>
+  </div>
+</section>

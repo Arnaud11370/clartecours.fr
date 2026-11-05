@@ -1,0 +1,30 @@
+---
+// « L'illusion de compréhension » : le problème que Clarté résout, avec le schéma des paliers.
+interface Props {
+  /** Phrase sous le schéma : ce que l'examen visé évalue */
+  palier?: string;
+}
+const { palier = "C'est ce dernier palier que le brevet évalue. C'est là que je travaille." } = Astro.props;
+---
+<section class="wrap" id="methode">
+  <div class="illusion">
+    <div>
+      <span class="eyebrow">Le vrai problème</span>
+      <h2>L'illusion de <span class="mark">compréhension<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 Q50 2 100 7 T198 5"/></svg></span></h2>
+      <p class="lead">Beaucoup d'élèves suivent très bien en classe. Ils hochent la tête, recopient la correction, tout semble clair. Puis devant la copie, seuls, plus rien ne vient.</p>
+      <p class="lead">Ajouter des heures ne règle pas ça. Il faut repérer ce qui est cru compris, le reconstruire, et l'entraîner jusqu'à l'autonomie.</p>
+      <div class="quotes">
+        <q>« Il ne comprend pas quand il est seul. »</q>
+        <q>« Les maths, c'est toujours la bagarre. »</q>
+        <q>« Il stagne, alors qu'il travaille. »</q>
+      </div>
+    </div>
+    <div class="gap" aria-label="Schéma de l'écart entre comprendre et refaire seul">
+      <span class="hand" style="font-size:1.6rem">Ce que je vois souvent au début :</span>
+      <div class="gap-row"><label><span>Suit la correction en classe</span><span>Ça va</span></label><div class="bar"><i style="width:85%"></i></div></div>
+      <div class="gap-row"><label><span>Refait un exercice identique</span><span>Moyen</span></label><div class="bar"><i style="width:55%"></i></div></div>
+      <div class="gap-row"><label><span>Résout un exercice nouveau, seul</span><span>Bloque</span></label><div class="bar alt"><i style="width:22%"></i></div></div>
+      <p>{palier}</p>
+    </div>
+  </div>
+</section>

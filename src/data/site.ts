@@ -10,7 +10,15 @@ export const SITE = {
   whatsapp: "https://wa.me/33662717143",
   calendly: "https://calendly.com/comprendrepourmieuxexpliquer/30min",
   gtm: { id: "GTM-NVLWXKBS", domain: "https://internal.clartecours.fr" },
+  // Pages où lire les avis (et non le lien Google « laisser un avis »)
+  avis: {
+    google: "https://maps.app.goo.gl/t4XjapJY7zKGx6hg6",
+    superprof: "https://www.superprof.fr/comprendre-mathematiques-possible-accompagnement-personnalise-2nde-objectif-brevet-orientation.html",
+  },
 };
+
+// Agenda Calendly tel qu'affiché sur le site (intégré dans #contact et en popup via [data-calendly])
+export const CALENDLY_EMBED = `${SITE.calendly}?hide_gdpr_banner=1&primary_color=b8862e`;
 
 // Réseaux sociaux : source unique de TOUS les liens sociaux du site (pied de page, page d'accueil, sameAs du JSON-LD).
 // `icon` correspond à un nom géré par SocialIcon.astro ; `icons: true` = affiché dans les rangées d'icônes (SocialLinks.astro : pied de page, bloc contact).
@@ -27,9 +35,9 @@ export type SocialIconName = (typeof SOCIALS)[keyof typeof SOCIALS]["icon"];
 export const NAV = [
   { href: "/#methode", label: "Méthode" },
   { href: "/#temoignages", label: "Témoignages" },
-  { href: "/#defi", label: "Défi" },
   { href: "/#offres", label: "Formules" },
   { href: "/#stages", label: "Stages" },
   { href: "/#qui", label: "Qui je suis" },
+  { href: "/#defi", label: "Défi" },
   { href: "/#faq", label: "FAQ" },
 ];

@@ -1,0 +1,21 @@
+---
+// Bandeau de chiffres clés (familles, heures, avis) et bandeau défilant des bénéfices.
+import { SITE } from "../../data/site";
+---
+<div class="wrap">
+  <div class="proof" role="list">
+    <div role="listitem"><b data-to="60" data-suf="+">60+</b><span>familles accompagnées</span></div>
+    <div role="listitem"><b data-to="600" data-suf=" h+">600 h+</b><span>de cours donnés</span></div>
+    <div role="listitem"><b>5,0 ★</b><a class="proof-link" href={SITE.avis.superprof} target="_blank" rel="noopener">sur Superprof, 15 avis</a></div>
+  </div>
+</div>
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>comprendre</span><b>≠</b><span>réciter</span><b>·</b><span>savoir refaire seul</span><b>·</b><span>moins de stress en cours</span><b>·</b><span>plus de confiance</span><b>·</b><span>une méthode, pas des recettes</span><b>·</b>
+    <span>comprendre</span><b>≠</b><span>réciter</span><b>·</b><span>savoir refaire seul</span><b>·</b><span>moins de stress en cours</span><b>·</b><span>plus de confiance</span><b>·</b><span>une méthode, pas des recettes</span><b>·</b>
+  </div>
+</div>
+
+<style>
+  .proof-link{font-size:.88rem;color:var(--ink-soft);text-decoration-color:var(--rule);text-underline-offset:3px}
+</style>

@@ -1,0 +1,50 @@
+---
+// Hero d'une page : accroche, bouton de réservation, preuve sociale et portrait d'Arnaud.
+import { SITE } from "../../data/site";
+
+interface Props {
+  eyebrow: string;
+  lead: string;
+  /** Résultat d'élève affiché à côté de la note Superprof */
+  resultat: string;
+}
+const { eyebrow, lead, resultat } = Astro.props;
+---
+<section class="hero wrap">
+  <div class="floaters" aria-hidden="true">
+    <span style="left:4%;top:8%;font-size:3rem">π</span>
+    <span style="left:46%;top:4%;font-size:2.2rem;animation-delay:-3s">√x</span>
+    <span style="left:88%;top:14%;font-size:2.6rem;animation-delay:-6s">x²</span>
+    <span style="left:38%;top:82%;font-size:2.4rem;animation-delay:-9s">÷</span>
+    <span style="left:92%;top:78%;font-size:3rem;animation-delay:-4s">∑</span>
+    <span style="left:2%;top:70%;font-size:2rem;animation-delay:-11s">a/b</span>
+    <span style="left:64%;top:46%;font-size:2rem;animation-delay:-7s">≠</span>
+  </div>
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">{eyebrow}</span>
+      <h1><slot /></h1>
+      <p class="lead">{lead}</p>
+      <div class="hero-ctas">
+        <a class="btn btn-ink" href="#contact" data-calendly>Réserver mon appel diagnostic offert</a>
+        <a class="btn btn-line" href="#offres">Voir les formules</a>
+      </div>
+      <p class="hero-meta">Gratuit · 30 min en visio · sans engagement</p>
+      <p class="hero-proof"><a href={SITE.avis.superprof} target="_blank" rel="noopener"><span class="stars" aria-hidden="true">★★★★★</span> 5,0 sur Superprof (15 avis)</a><span>{resultat}</span></p>
+    </div>
+    <div class="hero-media">
+      <figure class="portrait"><img src="/img/portrait.jpg" alt="Portrait d'Arnaud, professeur de maths et fondateur de Clarté" width="640" height="800"><span class="badge-hand" aria-hidden="true">Arnaud, votre prof</span></figure>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-meta{margin-top:-12px;font-size:.92rem;color:var(--ink-soft)}
+  .hero-proof{display:flex;flex-wrap:wrap;gap:4px 16px;margin-top:-10px;font-size:.92rem;color:var(--ink-soft)}
+  .hero-proof a{color:var(--ink);font-weight:600;text-decoration:none}
+  .hero-proof a:hover{text-decoration:underline}
+  .hero-proof .stars{color:var(--gold);letter-spacing:2px}
+  .hero-media{display:grid;min-width:0}
+  .hero-media .portrait{justify-self:end;width:100%;max-width:340px;margin:0}
+  @media (max-width:860px){.hero-media .portrait{justify-self:center;max-width:240px}}
+</style>

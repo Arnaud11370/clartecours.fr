@@ -1,0 +1,37 @@
+---
+// Présentation d'Arnaud : parcours, photos, LinkedIn.
+import SocialIcon from "../SocialIcon.astro";
+import { SOCIALS } from "../../data/site";
+---
+<section class="wrap" id="qui">
+  <div class="about">
+    <div class="about-media">
+      <figure class="portrait"><img src="/img/portrait.jpg" alt="Portrait d'Arnaud, fondateur de Clarté" width="640" height="800"><span class="badge-hand" aria-hidden="true">fondateur de Clarté</span></figure>
+      <div class="polas">
+        <figure class="pola p1"><img src="/img/tdf-sourire.jpg" alt="Arnaud en animation sur le Tour de France" width="600" height="800" loading="lazy"><figcaption>Tour de France</figcaption></figure>
+        <figure class="pola p2"><img src="/img/tdf-echange.jpg" alt="Arnaud en échange avec le public sur le Tour de France" width="600" height="800" loading="lazy"><figcaption>expliquer à tous</figcaption></figure>
+        <figure class="pola p3"><img src="/img/tdf-course.jpg" alt="Arnaud sur le parcours du Tour de France" width="600" height="800" loading="lazy"><figcaption>en plein air</figcaption></figure>
+      </div>
+      <p class="hand caption">Été 2026 : animateur avec EF Education First sur le Tour de France. Capter l'attention et expliquer simplement, à tous les âges.</p>
+    </div>
+    <div>
+      <span class="eyebrow">Qui je suis</span>
+      <h2>Bonjour, moi c'est <span class="mark">Arnaud<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 Q50 2 100 7 T198 5"/></svg></span>.</h2>
+      <p class="lead">J'ai toujours aimé expliquer. Au fil des cours, j'ai vu beaucoup d'élèves travailler dur, réussir parfois, sans jamais vraiment comprendre. Le jour où l'exercice change, tout s'écroule.</p>
+      <p class="lead">J'ai compris que le problème n'était pas les maths, mais la façon d'apprendre à penser. C'est pour ça que j'ai créé Clarté : faire comprendre pour de vrai, puis rendre l'élève capable de se débrouiller seul.</p>
+      <ol class="tl" id="tl">
+        <li class="now"><span class="y">2026</span><div><b>L'Académie Clarté et une équipe</b><span>Avec Lisa, Marie et Julien, pour suivre chaque élève et chaque famille · Ambassadeur EF Education First, animateur EF sur le Tour de France · Formation continue en pédagogie avec Les Nouveaux Profs</span></div></li>
+        <li><span class="y">2025</span><div><b>Création de Clarté</b><span>Plus de 60 familles accompagnées et plus de 600 heures de cours depuis</span></div></li>
+        <li><span class="y">2024</span><div><b>Licence de mathématiques, parcours métiers de l'enseignement</b><span>Université de Toulouse : didactique et enseignement des maths</span></div></li>
+        <li><span class="y">2022</span><div><b>Premiers élèves en ligne</b><span>Professeur de maths en visio chez GoStudent, du collège au lycée</span></div></li>
+        <li><span class="y">2020 – 22</span><div><b>Cycle préparatoire intégré en école d'ingénieurs</b><span>ENIT (École nationale d'ingénieurs de Tarbes) : maths, physique, sciences de l'ingénieur</span></div></li>
+        <li><span class="y">2020</span><div><b>Bac S mention très bien</b><span>19/20 en maths, 20/20 en espagnol · Brevet d'initiation aéronautique (BIA)</span></div></li>
+      </ol>
+      <p class="tl-note"><b>Spécialité</b> · de la 4ème à la Première : brevet, passage au lycée, spé maths et orientation. <b>Langues</b> · accompagnement Bachibac possible en espagnol.</p>
+      <div class="about-links">
+        <span class="sign">Arnaud</span>
+        <a class="btn btn-line btn-sm li" href={SOCIALS.linkedin.href} target="_blank" rel="noopener"><SocialIcon name={SOCIALS.linkedin.icon} />Mon LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>

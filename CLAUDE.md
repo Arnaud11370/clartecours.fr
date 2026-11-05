@@ -24,18 +24,22 @@ src/
   components/
     tracking/GtmHead.astro     Script GTM (Stape) : TOUJOURS le premier enfant du <head>
     tracking/GtmNoscript.astro Iframe GTM noscript, juste après <body>
-    Header.astro               En-tête + menu (alimenté par NAV)
+    Header.astro               En-tête + menu (alimenté par NAV, masqué avec nav={false})
     Footer.astro               Pied de page : icônes sociales + boutons des pages légales
-    SocialLinks.astro          Rangée d'icônes sociales réutilisable (footer, contact)
+    SocialLinks.astro          Rangée d'icônes sociales du pied de page
     SocialIcon.astro           Icônes SVG des réseaux sociaux (instagram, tiktok, youtube, linkedin)
     CallBar.astro              Barre d'appel fixe en bas d'écran
     Emilie.astro               Bouton + panneau de l'assistante IA (markup + script)
     LegalDialogs.astro         Mentions légales, CGV, confidentialité (<dialog>)
-  data/site.ts                 Source unique : coordonnées, Calendly, ID GTM, réseaux sociaux (SOCIALS), menu (NAV)
+    Divider.astro              Séparateur décoratif entre deux sections
+    sections/                  Sections de page partagées par l'accueil et les landing pages (markup + script + style)
+      Hero, Preuves, Methode, Temoignages, Etapes, Offres, Stages, QuiJeSuis, Defi, PourQui, Faq, Contact
+  data/site.ts                 Source unique : coordonnées, Calendly (CALENDLY_EMBED), liens d'avis, ID GTM, réseaux sociaux (SOCIALS), menu (NAV)
   scripts/site.ts              JS commun à toutes les pages
-  scripts/home.ts              JS propre à la page d'accueil
   styles/global.css            Styles globaux (tokens, thèmes clair/sombre, composants)
   pages/index.astro            Page d'accueil (une page = un fichier dans src/pages/)
+  pages/brevet.astro           Landing page pub collège (4ème, 3ème) : sans menu, noindex
+  pages/lycee.astro            Landing page pub lycée (Seconde, Première) : sans menu, noindex, sans l'Académie
 public/                        Fichiers servis tels quels : fonts/, img/, robots.txt, temoignages-videos.json
 netlify/
   functions/coach.mjs          API /api/coach (proxy vers l'API Claude, clé côté serveur)
@@ -45,7 +49,7 @@ netlify.toml                   Build Netlify : pnpm build → dist/
 
 ### Le layout
 
-`BaseLayout` accepte `title`, `description`, `ogTitle`, `ogDescription`, `ogImage` (valeurs par défaut dans `SITE`) et trois points d'insertion :
+`BaseLayout` accepte `title`, `description`, `ogTitle`, `ogDescription`, `ogImage` (valeurs par défaut dans `SITE`), `nav` (`false` : en-tête sans menu, pour les landing pages) et trois points d'insertion :
 
 - slot par défaut : contenu placé dans `<main>` ;
 - `slot="head"` : balises `<head>` spécifiques à la page ;
@@ -76,18 +80,21 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 - Le script GTM est en `is:inline` : ne pas le reformater ni le faire passer par le bundler.
 - Ne jamais réécrire un `<head>` dans une page : toute page passe par `BaseLayout`.
 - Classes de suivi GTM à conserver sur les liens : `email-link` (`mailto:`), `whatsapplink` (WhatsApp). Les numéros sont toujours des liens `tel:`.
+- **Numéros de téléphone : toujours affichés en chiffres**, jamais remplacés par un libellé (« Appelez-moi », « Téléphone »…) : `<a href={`tel:${SITE.phone.tel}`}>{SITE.phone.display}</a>`. Google Ads remplace le numéro affiché par son numéro de transfert pour suivre les appels : sans numéro visible dans la page, ce suivi ne fonctionne plus.
+- Le suivi des réservations Calendly (inline et popup) est géré dans GTM : ne rien ajouter côté site.
 
 ### DRY
 
 - Toute info répétée (email, téléphone, WhatsApp, Calendly, menu, ID GTM) vient de `src/data/site.ts`. Ne jamais la recopier en dur : `href={`mailto:${SITE.email}`}`, `href={`tel:${SITE.phone.tel}`}`, `href={SITE.whatsapp}`.
-- **Tous** les liens vers les réseaux sociaux (Instagram, TikTok, YouTube, LinkedIn) passent par `SOCIALS` : `href={SOCIALS.youtube.href}`, `{SOCIALS.youtube.handle}`. Icônes via `<SocialIcon name={SOCIALS.youtube.icon} />` ; `icons: true` les affiche dans les rangées d'icônes `<SocialLinks />` (pied de page, et `tone="dark"` dans le bloc contact) ; le `sameAs` du JSON-LD est généré automatiquement. Nouveau réseau = une entrée dans `SOCIALS` + son SVG dans `SocialIcon.astro`.
+- **Tous** les liens vers les réseaux sociaux (Instagram, TikTok, YouTube, LinkedIn) passent par `SOCIALS` : `href={SOCIALS.youtube.href}`, `{SOCIALS.youtube.handle}`. Icônes via `<SocialIcon name={SOCIALS.youtube.icon} />` ; `icons: true` les affiche dans la rangée d'icônes `<SocialLinks />` du pied de page ; le `sameAs` du JSON-LD est généré automatiquement. Nouveau réseau = une entrée dans `SOCIALS` + son SVG dans `SocialIcon.astro`.
+- Liens vers les avis : `SITE.avis.google` (fiche Google Maps) et `SITE.avis.superprof`. Ne pas utiliser le lien Google « laisser un avis » (`g.page/r/…/review`) pour montrer les avis.
 - Un bloc présent sur plusieurs pages devient un composant dans `src/components/`. Un bloc utilisé sur une seule page reste dans la page.
 - Header, footer, Émilie, barre d'appel et pages légales sont déjà dans le layout : ne pas les remettre dans une page.
 
 ### Liens et chemins
 
 - Chemins d'assets **absolus** depuis `public/` : `/img/portrait.jpg`, `/fonts/…`, `fetch('/temoignages-videos.json')`.
-- Liens vers des sections de l'accueil depuis un composant partagé : `/#contact`, pas `#contact`. Une ancre seule (`#contact`) n'est acceptable qu'à l'intérieur de la page qui contient la section.
+- Liens vers des sections de l'accueil depuis un composant partagé : `/#contact`, pas `#contact`. Une ancre seule (`#contact`) n'est acceptable qu'à l'intérieur de la page qui contient la section, ce qui inclut les composants de `components/sections/` (toujours utilisés avec `<Contact />` sur la même page).
 
 ### Scripts
 
@@ -110,6 +117,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 - Pas de code mort ni de doublons : avant d'écrire une fonction utilitaire, vérifier qu'elle n'existe pas déjà.
 - Toute donnée insérée en `innerHTML` est échappée (`esc()`), notamment les réponses d'Émilie et les données de `temoignages-videos.json`.
 - Garder des changements visuellement neutres quand la demande est technique : vérifier le rendu avant/après.
+
+## Landing pages et tarifs
+
+- Une landing page = un fichier dans `src/pages/` qui assemble les composants de `components/sections/` avec ses propres textes (props du `Hero`, `palier` de `Methode`, `objectif` de `PourQui`, `academie={false}` pour retirer l'Académie). Elle passe `nav={false}` au layout et `<meta slot="head" name="robots" content="noindex">` pour ne pas concurrencer l'accueil sur Google.
+- Tarifs : prix « à partir de » sur les cartes (`Offres`), grille complète des stages (`Stages`), détail complet (dont l'accompagnement sur 12 semaines) uniquement dans la FAQ. Un changement de prix se reporte dans ces trois composants.
+
+## Réservation (Calendly)
+
+- C'est la conversion principale de la page d'accueil, qui sert de landing page aux campagnes Meta et Google Ads.
+- Tout bouton de réservation porte `data-calendly` avec `href="/#contact"` (ou `#contact` dans la page d'accueil) : `scripts/site.ts` ouvre alors l'agenda en popup (`CALENDLY_EMBED`). Sur une page qui ne charge pas le script Calendly, le lien mène simplement à l'agenda intégré dans `#contact`.
+- Bloc `#contact` : pas de lien qui fasse quitter la page (réseaux sociaux, email, avis) à côté de l'agenda ; seuls le téléphone et WhatsApp restent, en secondaire.
 
 ## Émilie (assistante IA)
 

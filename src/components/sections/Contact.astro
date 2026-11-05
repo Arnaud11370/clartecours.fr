@@ -1,0 +1,61 @@
+---
+// Bloc de réservation : agenda Calendly intégré et éléments de réassurance, sans lien qui fasse quitter la page.
+import { SITE, CALENDLY_EMBED } from "../../data/site";
+---
+<section class="wrap" id="contact">
+  <div class="contact">
+    <div class="contact-head">
+      <span class="eyebrow">Premier pas</span>
+      <h2>Parlons de votre enfant</h2>
+      <p class="lead">Choisissez un créneau pour l'appel diagnostic &amp; plan d'action, directement dans mon agenda.</p>
+      <p class="contact-meta">Gratuit · 30 min en visio · sans engagement</p>
+    </div>
+    <div id="calendly-embed" style="min-width:320px;height:700px;"></div>
+    <div class="contact-more">
+      <div class="contact-arnaud">
+        <img src="/img/portrait.jpg" alt="" width="64" height="64" loading="lazy">
+        <p><b>C'est moi qui mène l'appel.</b> Arnaud, professeur de maths et fondateur de Clarté.</p>
+      </div>
+      <div class="call-steps">
+        <h3>Pendant l'appel</h3>
+        <ul>
+          <li>On fait le point avec vous et votre enfant : ses notes, ce qui le bloque, ce qu'il a déjà essayé.</li>
+          <li>Je repère ce qui est compris et ce qui est seulement « cru compris ».</li>
+          <li>Vous repartez avec un plan d'action et la formule adaptée, ou une autre piste si Clarté n'est pas le bon choix.</li>
+        </ul>
+      </div>
+      <figure class="contact-quote">
+        <blockquote>« Il a obtenu la note de 12 alors qu'il pensait avant tes cours avoir 8/9. »</blockquote>
+        <figcaption>Famille de Gabin · Première, spé maths</figcaption>
+      </figure>
+      <p class="contact-alt">Plutôt un appel ou un message ? <a href={`tel:${SITE.phone.tel}`}>{SITE.phone.display}</a> · <a href={SITE.whatsapp} class="whatsapplink" target="_blank" rel="noopener">WhatsApp</a></p>
+    </div>
+  </div>
+</section>
+
+<script src="https://assets.calendly.com/assets/external/widget.js" is:inline></script>
+<script is:inline define:vars={{ calendlyUrl: CALENDLY_EMBED }}>
+  Calendly.initInlineWidget({
+    url: calendlyUrl,
+    parentElement: document.getElementById('calendly-embed'),
+    resize: true
+  });
+</script>
+
+<style>
+  .contact-meta{font-size:.92rem;color:color-mix(in srgb,var(--on-deep) 75%,transparent)}
+  .contact-arnaud{display:flex;align-items:center;gap:14px}
+  .contact-arnaud img{width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top;border:2px solid var(--p-gold);flex:none}
+  .contact-arnaud p{font-size:.95rem;color:color-mix(in srgb,var(--on-deep) 80%,transparent)}
+  .contact-arnaud b{display:block;color:var(--on-deep)}
+  .call-steps{display:grid;gap:10px}
+  .call-steps h3{font-size:1.15rem}
+  .call-steps ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+  .call-steps li{display:grid;grid-template-columns:22px 1fr;gap:6px;font-size:.95rem;color:color-mix(in srgb,var(--on-deep) 85%,transparent)}
+  .call-steps li::before{content:"✓";font-weight:700;color:color-mix(in srgb,var(--p-gold) 70%,#FFFFFF)}
+  .contact-quote{margin:0;padding:16px 18px;border:1px solid color-mix(in srgb,var(--on-deep) 18%,transparent);border-radius:10px;background:color-mix(in srgb,var(--on-deep) 6%,transparent);display:grid;gap:6px}
+  .contact-quote blockquote{margin:0;font-family:var(--hand);font-size:1.4rem;line-height:1.25}
+  .contact-quote figcaption{font-size:.85rem;color:color-mix(in srgb,var(--on-deep) 70%,transparent)}
+  .contact-alt{font-size:.92rem;color:color-mix(in srgb,var(--on-deep) 75%,transparent)}
+  .contact-alt a{color:var(--on-deep);font-weight:600}
+</style>

@@ -1,15 +1,9 @@
 ---
-// Rangée d'icônes des réseaux sociaux (entrées de SOCIALS avec `icons: true`).
-// tone="dark" : version claire, pour un fond foncé (ex. bloc contact).
+// Rangée d'icônes des réseaux sociaux (entrées de SOCIALS avec `icons: true`), affichée dans le pied de page.
 import SocialIcon from "./SocialIcon.astro";
 import { SOCIALS } from "../data/site";
-
-interface Props {
-  tone?: "light" | "dark";
-}
-const { tone = "light" } = Astro.props;
 ---
-<ul class:list={["socials", tone]} aria-label="Clarté sur les réseaux sociaux">
+<ul class="socials" aria-label="Clarté sur les réseaux sociaux">
   {Object.values(SOCIALS).filter((s) => s.icons).map((s) => (
     <li>
       <a href={s.href} target="_blank" rel="noopener" aria-label={`${s.label} (nouvel onglet)`} title={s.label}>
@@ -21,10 +15,8 @@ const { tone = "light" } = Astro.props;
 
 <style>
   .socials{display:flex;gap:8px;margin:0;padding:0;list-style:none}
-  .socials a{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;border:1px solid var(--soc-border);color:var(--soc-color);transition:color .2s,border-color .2s,transform .2s}
-  .socials a:hover{color:var(--soc-hover);border-color:var(--soc-hover);transform:translateY(-2px)}
+  .socials a{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;border:1px solid var(--rule);color:var(--ink-soft);transition:color .2s,border-color .2s,transform .2s}
+  .socials a:hover{color:var(--gold);border-color:var(--gold);transform:translateY(-2px)}
   /* le SVG vient de SocialIcon.astro : hors du scope de ce composant, d'où :global */
   .socials a :global(svg){width:18px;height:18px}
-  .light{--soc-color:var(--ink-soft);--soc-border:var(--rule);--soc-hover:var(--gold)}
-  .dark{--soc-color:color-mix(in srgb,var(--on-deep) 85%,transparent);--soc-border:color-mix(in srgb,var(--on-deep) 30%,transparent);--soc-hover:color-mix(in srgb,var(--p-gold) 70%,#FFFFFF)}
 </style>

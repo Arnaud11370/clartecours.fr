@@ -1,13 +1,20 @@
 ---
+// En-tête : logo, menu des sections de l'accueil et bouton de réservation.
 import { NAV } from "../data/site";
+
+interface Props {
+  /** false : sans menu (landing pages, pour ne pas disperser le visiteur) */
+  nav?: boolean;
+}
+const { nav = true } = Astro.props;
 ---
 <header class="top">
   <div class="top-in">
     <a class="logo" href="/#accueil">Clarté<span>.</span></a>
-    <nav class="nav" aria-label="Navigation principale">
+    {nav && <nav class="nav" aria-label="Navigation principale">
       {NAV.map((item) => <a href={item.href}>{item.label}</a>)}
-    </nav>
-    <a class="btn btn-ink btn-sm" href="/#contact">Appel diagnostic offert</a>
+    </nav>}
+    <a class="btn btn-ink btn-sm" href="/#contact" data-calendly>Appel diagnostic offert</a>
   </div>
   <div class="progress" id="progress" aria-hidden="true"></div>
 </header>

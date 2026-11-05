@@ -1,0 +1,8 @@
+---
+// Séparateur décoratif entre deux sections : vague manuscrite autour d'un symbole mathématique.
+interface Props {
+  symbole: string;
+}
+const { symbole } = Astro.props;
+---
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 220 24" preserveAspectRatio="none"><path d="M2 12 C30 2 50 22 80 12 S130 2 160 12 S200 20 218 12"/></svg><span>{symbole}</span><svg viewBox="0 0 220 24" preserveAspectRatio="none"><path d="M2 12 C30 2 50 22 80 12 S130 2 160 12 S200 20 218 12"/></svg></div>

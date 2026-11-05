@@ -1,0 +1,40 @@
+---
+// Landing page des campagnes « lycée / spé maths » (Seconde, Première) : sans menu, non indexée pour ne pas concurrencer l'accueil.
+// L'Académie (formation collège) n'y est pas présentée.
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Divider from "../components/Divider.astro";
+import Hero from "../components/sections/Hero.astro";
+import Preuves from "../components/sections/Preuves.astro";
+import Methode from "../components/sections/Methode.astro";
+import Temoignages from "../components/sections/Temoignages.astro";
+import Etapes from "../components/sections/Etapes.astro";
+import Offres from "../components/sections/Offres.astro";
+import QuiJeSuis from "../components/sections/QuiJeSuis.astro";
+import PourQui from "../components/sections/PourQui.astro";
+import Faq from "../components/sections/Faq.astro";
+import Contact from "../components/sections/Contact.astro";
+---
+<BaseLayout
+  title="Cours de maths en ligne Seconde et Première, spé maths · Clarté"
+  description="Votre enfant suit en cours de maths mais bloque seul en Seconde ou en spé maths ? Cours de maths en ligne avec Arnaud. Appel diagnostic offert."
+  nav={false}
+>
+  <meta slot="head" name="robots" content="noindex">
+
+  <Hero
+    eyebrow="Cours de maths en ligne · Seconde et Première · Spé maths"
+    lead="Le rythme s'accélère et les exercices changent à chaque chapitre. Je l'aide à reconstruire les notions et à les appliquer seul, de la Seconde à la spé maths de Première."
+    resultat="Gabin : pensait avoir 8/9, a obtenu 12 en spé maths"
+  >Au lycée, comprendre la correction ne suffit plus.</Hero>
+  <Preuves />
+  <Methode palier="C'est ce dernier palier que les contrôles et les épreuves évaluent. C'est là que je travaille." />
+  <Temoignages />
+  <Etapes academie={false} />
+  <Divider symbole="√" />
+  <Offres academie={false} />
+  <QuiJeSuis />
+  <Divider symbole="Δ" />
+  <PourQui objectif="vous voulez qu'il aborde la spé maths et les épreuves avec confiance" />
+  <Faq academie={false} />
+  <Contact />
+</BaseLayout>

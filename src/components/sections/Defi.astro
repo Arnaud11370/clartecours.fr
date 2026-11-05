@@ -1,0 +1,68 @@
+---
+// Mini-jeu « Trouve l'erreur » (exercices de 4ème).
+---
+<section class="wrap" id="defi">
+  <div class="defi">
+    <div>
+      <span class="eyebrow">Défi du mercredi · à essayer</span>
+      <h2>Trouve <span class="mark">l'erreur<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 Q50 2 100 7 T198 5"/></svg></span></h2>
+      <p class="lead">Un élève a rédigé cette correction. Une ligne est fausse. Touche-la.</p>
+      <p class="lead">C'est exactement ce qu'on travaille dans l'Académie : repérer pourquoi une étape est fausse, pas seulement trouver la bonne réponse.</p>
+    </div>
+    <div class="board" id="board" aria-live="polite">
+      <div class="board-top"><span class="lvl" id="d-lvl">Niveau 4ème</span><span class="score" id="d-score">Défi 1 / 4</span></div>
+      <div class="prompt" id="d-prompt">Développer et réduire :</div>
+      <ol class="lines" id="d-lines"></ol>
+      <div class="feedback" id="d-fb">Quelle ligne contient l'erreur ?</div>
+      <div class="board-actions">
+        <button class="btn btn-ink btn-sm" type="button" id="d-next" hidden>Défi suivant</button>
+        <a class="btn btn-line btn-sm" href="#contact" id="d-cta" data-calendly hidden>Réserver l'appel offert</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  /* Défi : trouve l'erreur */
+  const DEFIS = [
+    {lvl:'4ème · Calcul littéral',prompt:'Développer et réduire A = 3(x + 4) − 2x',lines:['A = 3(x + 4) − 2x','A = 3x + 4 − 2x','A = x + 4'],bad:1,why:"Le 3 multiplie <b>tout</b> ce qu'il y a dans la parenthèse, donc aussi le 4.",fix:'A = 3x + 12 − 2x = x + 12'},
+    {lvl:'4ème · Nombres relatifs',prompt:'Calculer B = −3 − (−5)',lines:['B = −3 − (−5)','B = −3 − 5','B = −8'],bad:1,why:"Soustraire un nombre, c'est ajouter son opposé : <b>− (−5)</b> devient <b>+ 5</b>.",fix:'B = −3 + 5 = 2'},
+    {lvl:'4ème · Fractions',prompt:'Calculer C = 2/3 + 1/4',lines:['C = 2/3 + 1/4','C = (2 + 1) / (3 + 4)','C = 3/7'],bad:1,why:"On n'additionne <b>jamais</b> les dénominateurs : il faut d'abord les mettre au même dénominateur.",fix:'C = 8/12 + 3/12 = 11/12'},
+    {lvl:'4ème · Pythagore',prompt:'ABC rectangle en A, AB = 3 cm, AC = 4 cm. Calculer BC.',lines:['BC² = AB² + AC²','BC² = 9 + 16 = 25','BC = 25 cm'],bad:2,why:"25, c'est <b>BC²</b>, pas BC. Il manque la racine carrée.",fix:'BC = √25 = 5 cm'}
+  ];
+  let di = 0, firstTry = 0, tried = false, solved = false;
+  const dl = document.getElementById('d-lines')!, dfb = document.getElementById('d-fb')!, dnext = document.getElementById('d-next')!, dcta = document.getElementById('d-cta')!;
+  function showDefi(){
+    const d = DEFIS[di]; tried = false; solved = false;
+    document.getElementById('d-lvl')!.textContent = 'Niveau ' + d.lvl;
+    document.getElementById('d-score')!.textContent = 'Défi ' + (di + 1) + ' / ' + DEFIS.length;
+    document.getElementById('d-prompt')!.textContent = d.prompt;
+    dl.innerHTML = ''; dnext.hidden = true; dcta.hidden = true;
+    dfb.innerHTML = "Quelle ligne contient l'erreur ?";
+    d.lines.forEach(function(t, i){
+      const li = document.createElement('li'), b = document.createElement('button'); b.type = 'button'; b.textContent = t;
+      b.addEventListener('click', function(){
+        if(solved) return;
+        if(i === d.bad){
+          solved = true; if(!tried) firstTry++;
+          b.classList.add('bad');
+          dfb.innerHTML = '<b>Bien vu !</b> ' + d.why + '<br><span class="fix">' + d.fix + '</span>';
+          dcta.hidden = false;
+          if(di < DEFIS.length - 1){ dnext.hidden = false; } else {
+            dfb.innerHTML += '<br><b>' + firstTry + ' / ' + DEFIS.length + '</b> trouvées du premier coup. Votre enfant hésite sur ce genre d\'erreur ? C\'est exactement ce qu\'on travaille ensemble.';
+            dnext.hidden = false; dnext.textContent = 'Recommencer';
+          }
+        } else {
+          tried = true; b.classList.remove('miss'); void b.offsetWidth; b.classList.add('miss');
+          dfb.innerHTML = "Pas celle-ci : cette ligne est juste. Cherche encore.";
+        }
+      });
+      li.appendChild(b); dl.appendChild(li);
+    });
+  }
+  dnext.addEventListener('click', function(){
+    if(di >= DEFIS.length - 1){ di = 0; firstTry = 0; dnext.textContent = 'Défi suivant'; } else di++;
+    showDefi();
+  });
+  showDefi();
+</script>

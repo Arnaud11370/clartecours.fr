@@ -1,0 +1,14 @@
+---
+// « C'est pour vous si… / Ce n'est pas pour vous si… » : qualifie les visiteurs avant la réservation.
+interface Props {
+  /** Dernier point de « C'est pour vous si… » : l'objectif de la famille */
+  objectif?: string;
+}
+const { objectif = "vous voulez qu'il devienne autonome avant le brevet" } = Astro.props;
+---
+<section class="wrap">
+  <div class="fit">
+    <div class="yes"><h3>C'est pour vous si…</h3><ul><li>votre enfant comprend quand on lui explique, mais pas seul</li><li>il bloque dès que l'exercice change</li><li>{objectif}</li></ul></div>
+    <div class="no"><h3>Ce n'est pas pour vous si…</h3><ul><li>vous cherchez seulement plus d'heures de cours</li><li>il vous faut une solution express la veille d'un contrôle</li><li>vous voulez des recettes à apprendre par cœur</li></ul></div>
+  </div>
+</section>

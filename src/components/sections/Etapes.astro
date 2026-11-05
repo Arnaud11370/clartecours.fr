@@ -1,0 +1,55 @@
+---
+// « Comment ça se passe » : les 3 étapes, puis la semaine type et le programme de l'Académie en onglets.
+interface Props {
+  /** false : masque les onglets de l'Académie (pages lycée) */
+  academie?: boolean;
+}
+const { academie = true } = Astro.props;
+---
+<section class="wrap" id="comment">
+  <div class="sec-head">
+    <svg class="doodle" viewBox="0 0 230 150" aria-hidden="true"><path d="M40 120 L40 30 L170 120 Z"/><path d="M40 106 L54 106 L54 120"/><text x="70" y="60">a² + b² = c²</text><path d="M180 40 q12 -14 24 0 t24 0"/></svg>
+    <span class="eyebrow">Comment ça se passe</span>
+    <h2>Trois étapes, toujours dans cet ordre</h2>
+  </div>
+  <div class="steps">
+    <div class="step"><span class="k">1. Diagnostiquer</span><h3>On repère les faux savoirs</h3><p>Un appel offert pour comprendre la situation : ce qui est vraiment compris, ce qui est cru compris, et ce qui bloquera plus tard.</p></div>
+    <div class="step"><span class="k">2. Reconstruire</span><h3>On explique autrement</h3><p>Jusqu'à ce que l'élève puisse réexpliquer lui-même. Pas de par cœur, pas de recettes : comprendre, puis appliquer.</p></div>
+    <div class="step"><span class="k">3. Rendre autonome</span><h3>On entraîne seul</h3><p>Exercices à niveaux, défis, chasse à l'erreur. Les parents suivent la progression avec un plan d'action clair.</p></div>
+  </div>
+  {academie && <>
+  <div class="tabs" role="tablist" aria-label="En savoir plus">
+    <button class="tab" type="button" role="tab" id="tab-semaine" aria-controls="pane-semaine" aria-selected="true">Une semaine dans l'Académie</button>
+    <button class="tab" type="button" role="tab" id="tab-niveaux" aria-controls="pane-niveaux" aria-selected="false">Le programme par niveau</button>
+  </div>
+  <div class="pane" role="tabpanel" id="pane-semaine" aria-labelledby="tab-semaine">
+    <p class="pane-lead">Votre enfant n'est jamais seul devant l'écran : chaque étape est cochée, suivie, et vous savez où il en est.</p>
+  <p class="swipe-hint" aria-hidden="true">← faites glisser →</p>
+  <div class="week" id="week">
+    <div class="day"><span class="d">Lundi</span><b>La vidéo et la leçon</b><p>J'explique la notion en vidéo, l'élève a la leçon en PDF.</p></div>
+    <div class="day"><span class="d">Mardi</span><b>La fiche à niveaux</b><p>Exercices ●○○ ●●○ ●●●, corrigés.</p></div>
+    <div class="day key"><span class="d">Mercredi</span><b>Le live</b><p>En direct avec moi, avec le défi du mercredi.</p></div>
+    <div class="day"><span class="d">Jeudi</span><b>Je m'entraîne autrement</b><p>Chasse à l'erreur, atelier de rédaction, situations concrètes.</p></div>
+    <div class="day"><span class="d">Vendredi</span><b>Les étapes cochées</b><p>Je vois l'avancée de chaque élève.</p></div>
+    <div class="day"><span class="d">Samedi</span><b>La communauté</b><p>Questions et entraide entre élèves.</p></div>
+    <div class="day key"><span class="d">Dimanche</span><b>Le plan d'action</b><p>Partagé dans le groupe avec les parents.</p></div>
+  </div>
+  <p class="week-note">Exemple de semaine type : le rythme s'adapte à chaque élève.</p>
+  </div>
+  <div class="pane" role="tabpanel" id="pane-niveaux" aria-labelledby="tab-niveaux" hidden>
+  <div class="levels">
+    <div class="level"><span class="n">4e</span><span class="t">L'année du déclic</span><p>14 modules du programme officiel, un module « Fondations » pour reprendre les bases, et un escape game final.</p></div>
+    <div class="level"><span class="n">3e</span><span class="t">Le saut de palier</span><p>Consolider toute l'année et s'entraîner sur ce que le brevet demande vraiment.</p></div>
+    <div class="level"><span class="n">2de</span><span class="t">Le passage au lycée</span><p>Solidifier le calcul et les fonctions, prendre le rythme du lycée et préparer le choix des spécialités.</p></div>
+    <div class="level"><span class="n">1re</span><span class="t">Spé maths</span><p>Second degré, suites, dérivation, exponentielle, probabilités, puis l'expertise de spécialité.</p></div>
+  </div>
+  </div>
+  </>}
+</section>
+
+<script>
+  /* Onglets : semaine type / programme par niveau */
+  document.querySelectorAll('.tab').forEach(function(t){ t.addEventListener('click', function(){
+    document.querySelectorAll('.tab').forEach(function(x){ const on = x === t; x.setAttribute('aria-selected', on ? 'true' : 'false'); document.getElementById(x.getAttribute('aria-controls')!)!.hidden = !on; });
+  }); });
+</script>
