@@ -7,7 +7,7 @@ import Footer from "../components/Footer.astro";
 import CallBar from "../components/CallBar.astro";
 import Emilie from "../components/Emilie.astro";
 import LegalDialogs from "../components/LegalDialogs.astro";
-import { SITE } from "../data/site";
+import { SITE, SOCIALS } from "../data/site";
 import "../styles/global.css";
 
 interface Props {
@@ -37,7 +37,7 @@ const jsonLd = {
   founder: { "@type": "Person", name: "Arnaud Amador" },
   email: SITE.email,
   telephone: SITE.phone.intl,
-  sameAs: ["https://www.youtube.com/@clarte-arnaud", "https://www.linkedin.com/in/arnaud-amador-clarte"],
+  sameAs: Object.values(SOCIALS).map((s) => s.href),
 };
 ---
 <!doctype html>

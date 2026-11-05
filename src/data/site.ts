@@ -12,6 +12,17 @@ export const SITE = {
   gtm: { id: "GTM-NVLWXKBS", domain: "https://internal.clartecours.fr" },
 };
 
+// Réseaux sociaux : source unique de TOUS les liens sociaux du site (pied de page, page d'accueil, sameAs du JSON-LD).
+// `icon` correspond à un nom géré par SocialIcon.astro ; `icons: true` = affiché dans les rangées d'icônes (SocialLinks.astro : pied de page, bloc contact).
+export const SOCIALS = {
+  instagram: { label: "Instagram", href: "https://www.instagram.com/clartecours.fr", handle: "@clartecours.fr", icon: "instagram", icons: true },
+  tiktok: { label: "TikTok", href: "https://www.tiktok.com/@clarte_arnaud", handle: "@clarte_arnaud", icon: "tiktok", icons: true },
+  youtube: { label: "YouTube", href: "https://www.youtube.com/@clarte-arnaud", handle: "@clarte-arnaud", icon: "youtube", icons: true },
+  linkedin: { label: "LinkedIn", href: "https://www.linkedin.com/in/arnaud-amador-clarte", handle: "Arnaud, Clarté", icon: "linkedin", icons: false },
+} as const;
+
+export type SocialIconName = (typeof SOCIALS)[keyof typeof SOCIALS]["icon"];
+
 // Navigation principale (ancres de la page d'accueil, préfixées par "/" pour fonctionner depuis toutes les pages)
 export const NAV = [
   { href: "/#methode", label: "Méthode" },

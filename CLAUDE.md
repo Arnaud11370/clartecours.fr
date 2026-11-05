@@ -25,11 +25,13 @@ src/
     tracking/GtmHead.astro     Script GTM (Stape) : TOUJOURS le premier enfant du <head>
     tracking/GtmNoscript.astro Iframe GTM noscript, juste après <body>
     Header.astro               En-tête + menu (alimenté par NAV)
-    Footer.astro               Pied de page + boutons des pages légales
+    Footer.astro               Pied de page : icônes sociales + boutons des pages légales
+    SocialLinks.astro          Rangée d'icônes sociales réutilisable (footer, contact)
+    SocialIcon.astro           Icônes SVG des réseaux sociaux (instagram, tiktok, youtube, linkedin)
     CallBar.astro              Barre d'appel fixe en bas d'écran
     Emilie.astro               Bouton + panneau de l'assistante IA (markup + script)
     LegalDialogs.astro         Mentions légales, CGV, confidentialité (<dialog>)
-  data/site.ts                 Source unique : coordonnées, Calendly, ID GTM, menu (NAV)
+  data/site.ts                 Source unique : coordonnées, Calendly, ID GTM, réseaux sociaux (SOCIALS), menu (NAV)
   scripts/site.ts              JS commun à toutes les pages
   scripts/home.ts              JS propre à la page d'accueil
   styles/global.css            Styles globaux (tokens, thèmes clair/sombre, composants)
@@ -78,6 +80,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ### DRY
 
 - Toute info répétée (email, téléphone, WhatsApp, Calendly, menu, ID GTM) vient de `src/data/site.ts`. Ne jamais la recopier en dur : `href={`mailto:${SITE.email}`}`, `href={`tel:${SITE.phone.tel}`}`, `href={SITE.whatsapp}`.
+- **Tous** les liens vers les réseaux sociaux (Instagram, TikTok, YouTube, LinkedIn) passent par `SOCIALS` : `href={SOCIALS.youtube.href}`, `{SOCIALS.youtube.handle}`. Icônes via `<SocialIcon name={SOCIALS.youtube.icon} />` ; `icons: true` les affiche dans les rangées d'icônes `<SocialLinks />` (pied de page, et `tone="dark"` dans le bloc contact) ; le `sameAs` du JSON-LD est généré automatiquement. Nouveau réseau = une entrée dans `SOCIALS` + son SVG dans `SocialIcon.astro`.
 - Un bloc présent sur plusieurs pages devient un composant dans `src/components/`. Un bloc utilisé sur une seule page reste dans la page.
 - Header, footer, Émilie, barre d'appel et pages légales sont déjà dans le layout : ne pas les remettre dans une page.
 

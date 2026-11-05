@@ -1,10 +1,17 @@
 ---
+import SocialLinks from "./SocialLinks.astro";
+
 const year = new Date().getFullYear();
 ---
 <footer class="wrap">
   <div class="foot">
     <span>© {year} Clarté · Arnaud, professeur de mathématiques</span>
     <span class="foot-acad"><i aria-hidden="true"></i>Académie Clarté Objectif Brevet</span>
+    <SocialLinks />
     <span><button class="linkish" type="button" data-open="dlg-mentions">Mentions légales</button> · <button class="linkish" type="button" data-open="dlg-privacy">Confidentialité</button> · <button class="linkish" type="button" data-open="dlg-cgv">CGV</button></span>
   </div>
 </footer>
+
+<style>
+  .foot{align-items:center}
+</style>
