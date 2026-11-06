@@ -35,8 +35,7 @@ export type SocialIconName = (typeof SOCIALS)[keyof typeof SOCIALS]["icon"];
 export const NAV = [
   { href: "/#methode", label: "Méthode" },
   { href: "/#temoignages", label: "Témoignages" },
-  { href: "/#offres", label: "Formules" },
-  { href: "/#stages", label: "Stages" },
+  { href: "/#offres", label: "Ce que je propose" },
   { href: "/#qui", label: "Qui je suis" },
   { href: "/#defi", label: "Défi" },
   { href: "/#faq", label: "FAQ" },

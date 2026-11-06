@@ -16,6 +16,8 @@ pnpm add <pkg>    # ajouter une dépendance (-D pour une dépendance de dev)
 
 Node ≥ 22.23.4 requis par Astro 7 (Netlify : `NODE_VERSION = "24"` dans `netlify.toml`).
 
+**Fin de session : toujours arrêter le serveur Astro** (`pnpm dev`, `pnpm preview`) démarré pendant la session, pour ne pas laisser le port occupé.
+
 ## Architecture
 
 ```
@@ -33,7 +35,7 @@ src/
     LegalDialogs.astro         Mentions légales, CGV, confidentialité (<dialog>)
     Divider.astro              Séparateur décoratif entre deux sections
     sections/                  Sections de page partagées par l'accueil et les landing pages (markup + script + style)
-      Hero, Preuves, Methode, Temoignages, Etapes, Offres, Stages, QuiJeSuis, Defi, PourQui, Faq, Contact
+      Hero, Preuves, Methode, Temoignages, Etapes, Offres, QuiJeSuis, Defi, PourQui, Faq, Contact
   data/site.ts                 Source unique : coordonnées, Calendly (CALENDLY_EMBED), liens d'avis, ID GTM, réseaux sociaux (SOCIALS), menu (NAV)
   scripts/site.ts              JS commun à toutes les pages
   styles/global.css            Styles globaux (tokens, thèmes clair/sombre, composants)
@@ -121,7 +123,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ## Landing pages et tarifs
 
 - Une landing page = un fichier dans `src/pages/` qui assemble les composants de `components/sections/` avec ses propres textes (props du `Hero`, `palier` de `Methode`, `objectif` de `PourQui`, `academie={false}` pour retirer l'Académie). Elle passe `nav={false}` au layout et `<meta slot="head" name="robots" content="noindex">` pour ne pas concurrencer l'accueil sur Google.
-- Tarifs : prix « à partir de » sur les cartes (`Offres`), grille complète des stages (`Stages`), détail complet (dont l'accompagnement sur 12 semaines) uniquement dans la FAQ. Un changement de prix se reporte dans ces trois composants.
+- Offres : la section « Ce que je propose » (`Offres`) présente toutes les offres (Académie, cours particuliers, accompagnement sur 12 semaines, stages) en cartes identiques, sans aucun prix. Une offre = une entrée dans le tableau `cartes`.
+- Tarifs : uniquement dans la FAQ (`Combien ça coûte ?`). Un changement de prix ne se reporte que là.
 
 ## Réservation (Calendly)
 

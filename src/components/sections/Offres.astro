@@ -1,64 +1,66 @@
 ---
-// Formules : appel diagnostic offert, Académie et cours particuliers, avec les prix d'appel.
-// Seuls les prix « à partir de » sont affichés ici : le détail (dont l'accompagnement sur 12 semaines) est dans la FAQ.
+// « Ce que je propose » : toutes les offres (formules et stages) en cartes identiques, sans tarif : les prix sont dans la FAQ.
 interface Props {
   /** false : masque l'Académie (formation collège), pour les pages lycée */
   academie?: boolean;
 }
 const { academie = true } = Astro.props;
+
+const cartes = [
+  ...(academie ? [{
+    id: "academie",
+    tag: "4ème · 3ème",
+    titre: "Académie Clarté Objectif Brevet",
+    phrase: "La formation en ligne, avec un vrai suivi.",
+    points: ["Cours en vidéo et fiches à niveaux", "Live avec moi chaque mercredi", "Plan d'action partagé avec les parents"],
+  }] : []),
+  {
+    id: "cours",
+    tag: "4ème → Première",
+    titre: "Cours particuliers",
+    phrase: "En individuel, sur les blocages de votre enfant.",
+    points: ["En visio, avec moi", "Brevet, passage au lycée, spé maths", "Option Bachibac (maths en espagnol)"],
+  },
+  {
+    id: "accompagnement",
+    tag: "4ème → Première",
+    titre: "Accompagnement sur 12 semaines",
+    phrase: "Un trimestre pour viser un objectif précis.",
+    points: ["Construit sur ses échéances", "Ses chapitres, son rythme", "Un plan d'action clair pour les parents"],
+  },
+  {
+    id: "stages",
+    tag: "Vacances scolaires",
+    titre: "Stages de renforcement",
+    phrase: "Pour combler les lacunes et repartir du bon pied.",
+    points: ["En visio, avec moi", "De 1 à 4 séances d'1 h 30", "Places limitées à chaque session"],
+  },
+];
 ---
 <section class="wrap" id="offres">
   <div class="sec-head">
     <svg class="doodle" viewBox="0 0 230 150" aria-hidden="true"><line x1="20" y1="130" x2="220" y2="130"/><line x1="40" y1="145" x2="40" y2="10"/><path d="M60 25 Q130 230 200 25"/><circle cx="130" cy="127" r="4"/><text x="150" y="70">f(x) = x²</text></svg>
-    <span class="eyebrow">Formules</span>
-    {academie ? <>
-      <h2>Deux façons de travailler ensemble</h2>
-      <p class="lead">Tout commence par un appel diagnostic offert. On choisit ensuite la formule qui correspond à votre enfant. Les deux se complètent : les cours traitent ses blocages en direct, l'Académie l'entraîne entre les séances.</p>
-    </> : <>
-      <h2>Un accompagnement sur mesure</h2>
-      <p class="lead">Tout commence par un appel diagnostic offert. On construit ensuite l'accompagnement qui correspond à votre enfant : ses chapitres, son rythme, ses échéances.</p>
-    </>}
+    <span class="eyebrow">Formules et stages</span>
+    <h2>Ce que je propose</h2>
+    <p class="lead">{academie ? "Quatre" : "Trois"} façons de travailler ensemble, selon le besoin de votre enfant.</p>
+  </div>
+  <div class:list={["offers", { quatre: academie }]}>
+    {cartes.map((c) => (
+      <article class="offer" id={c.id}>
+        <span class="tag">{c.tag}</span>
+        <h3>{c.titre}</h3>
+        <p class="muted">{c.phrase}</p>
+        <ul>{c.points.map((p) => <li>{p}</li>)}</ul>
+      </article>
+    ))}
   </div>
   <div class="diag">
     <div class="badge">Offert</div>
     <div>
-      <h3>D'abord, l'appel diagnostic &amp; plan d'action</h3>
-      <p>30 minutes en visio avec le parent et l'élève, sans engagement. On repère ce qui est compris et ce qui est cru compris, et vous repartez avec un plan d'action concret.</p>
+      <h3>Tout commence par l'appel diagnostic</h3>
+      <p>30 minutes en visio, sans engagement. On choisit ensemble ce qui convient à votre enfant.</p>
     </div>
     <a class="btn btn-ink" href="#contact" data-calendly>Réserver mon appel</a>
-  </div>
-  <div class:list={["offers", academie ? "two" : "solo"]}>
-    {academie && <article class="offer main" id="academie">
-      <div class="acad-head">
-        <div class="acad-badge"><span class="acad-mark" role="img" aria-label="Logo de l'Académie Clarté"></span></div>
-        <span class="tag">Collège · Brevet</span>
-      </div>
-      <h3>Académie Clarté Objectif Brevet</h3>
-      <p class="muted">La formation en ligne pour la 4ème et la 3ème, avec un vrai suivi.</p>
-      <div class="acad-stats"><div><b>Mer.</b><span>live chaque semaine</span></div><div><b>Parents</b><span>plan d'action partagé</span></div><div><b>Étapes</b><span>je suis son avancée</span></div></div>
-      <ul>
-        <li>Cours en vidéo que j'explique moi-même, leçons PDF et fiches à niveaux</li>
-        <li>Live chaque mercredi avec le défi de la semaine</li>
-        <li>Escape game, situations concrètes, chasse à l'erreur</li>
-        <li>Plans d'action partagés avec les parents</li>
-        <li>Communauté d'entraide entre élèves</li>
-      </ul>
-      <p class="price">120 €<span class="hand">par mois, accès à la formation</span></p>
-      <a class="btn" href="#contact" data-calendly>Réserver un appel diagnostic</a>
-    </article>}
-    <article class="offer">
-      <span class="tag">Sur mesure</span>
-      <h3>Cours particuliers</h3>
-      <p class="muted">Pour un accompagnement individuel, de la 4ème à la Première.</p>
-      <ul>
-        <li>4ème, 3ème, Seconde, Première (autres niveaux : parlons-en à l'appel)</li>
-        <li>Préparation brevet et orientation lycée</li>
-        <li>Option Bachibac (maths en espagnol)</li>
-        <li>Stages de renforcement pendant les vacances</li>
-      </ul>
-      <p class="price">dès 45 €<span class="hand">la séance</span></p>
-      <a class="btn btn-line" href="#contact">Me contacter</a>
-    </article>
   </div>
 </section>
 
@@ -77,5 +79,8 @@ const { academie = true } = Astro.props;
 </script>
 
 <style>
-  .solo{grid-template-columns:1fr;max-width:620px}
+  /* En 2×2 : sur 4 colonnes, les cartes trop étroites étirent le texte sur des lignes de 2 ou 3 mots */
+  .offers.quatre{grid-template-columns:repeat(2,1fr)}
+  .diag{margin:24px 0 0}
+  @media (max-width:600px){.offers.quatre{grid-template-columns:1fr}}
 </style>
