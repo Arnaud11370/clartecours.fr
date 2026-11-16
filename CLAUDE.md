@@ -124,7 +124,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 - Une landing page = un fichier dans `src/pages/` qui assemble les composants de `components/sections/` avec ses propres textes (props du `Hero`, `palier` de `Methode`, `objectif` de `PourQui`, `academie={false}` pour retirer l'Académie). Elle passe `nav={false}` au layout et `<meta slot="head" name="robots" content="noindex">` pour ne pas concurrencer l'accueil sur Google.
 - Offres : la section « Ce que je propose » (`Offres`) présente toutes les offres (Académie, cours particuliers, accompagnement sur 12 semaines, stages) en cartes identiques, sans aucun prix. Une offre = une entrée dans le tableau `cartes`.
-- Tarifs : uniquement dans la FAQ (`Combien ça coûte ?`). Un changement de prix ne se reporte que là.
+- Tarifs : **aucun prix affiché sur le site**. La FAQ (`Combien ça coûte ?`) renvoie vers l'appel diagnostic, où Arnaud communique le tarif par écrit (comme le prévoient les CGV).
 
 ## Réservation (Calendly)
 
