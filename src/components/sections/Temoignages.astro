@@ -1,6 +1,8 @@
 ---
 // Résultats, avis écrits filtrables et témoignages vidéo (lus dans /temoignages-videos.json).
+import Avis from "../Avis.astro";
 import { SITE, SOCIALS } from "../../data/site";
+import { AVIS, RESULTATS } from "../../data/avis";
 ---
 <section class="wrap" id="temoignages">
   <div class="sec-head">
@@ -9,14 +11,12 @@ import { SITE, SOCIALS } from "../../data/site";
     <h2>Ce qu'en disent les <span class="mark">familles<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 Q50 2 100 7 T198 5"/></svg></span></h2>
   </div>
   <div class="results">
-    <div class="story">
-      <div class="grade"><s>11</s><span class="to">→</span>TB</div>
-      <div><h3>Angélina, de 11/20 à la mention très bien au brevet, en un trimestre.</h3></div>
-    </div>
-    <div class="story">
-      <div class="grade"><s>8</s><span class="to">→</span>12</div>
-      <div><h3>Gabin pensait avoir 8 ou 9 à l'épreuve de spé maths. Il a obtenu 12.</h3></div>
-    </div>
+    {[RESULTATS.angelina, RESULTATS.gabin].map((r) => (
+      <div class="story">
+        <div class="grade"><s>{r.avant}</s><span class="to">→</span>{r.apres}</div>
+        <div><h3>{r.titre}</h3></div>
+      </div>
+    ))}
   </div>
 
   <div class="sub">Avis écrits</div>
@@ -27,15 +27,7 @@ import { SITE, SOCIALS } from "../../data/site";
   </div>
   <p class="swipe-hint" aria-hidden="true">← faites glisser →</p>
   <div class="reviews" id="reviews">
-    <article class="review" data-c="famille"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">I</span><div class="who">Isabelle<span>maman · préparation au brevet</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Nous recommandons Arnaud, jeune professeur qui accompagne ma fille de 15 ans pour le brevet, avec beaucoup de sérieux et de bienveillance. Il a su mettre en place un récapitulatif systématique sur feuille blanche, ce qui lui permet de vérifier les acquis, de structurer les notions et de consolider les révisions de manière très efficace. Pour nous, d'avoir un retour sur la séance, sa gentillesse, sa patience et sa pédagogie mettent ma fille en confiance. Elle apprécie sincèrement les moments d'accompagnement et progresse avec plus de sérénité.</p></article>
-    <article class="review" data-c="eleve"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">S</span><div class="who">Sara<span>élève de Première · spé maths</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Mes parents et moi avons décidé de faire appel à un professeur de maths afin de m'aider à rattraper mon retard. Arnaud est très pédagogue et comprend rapidement mes besoins. Il adapte ses explications en fonction de mes difficultés, ce qui m'aide à mieux comprendre les notions travaillées. Je me sens déjà mieux accompagnée dans mon travail.</p></article>
-    <article class="review" data-c="famille"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">G</span><div class="who">Famille de Gabin<span>Première · spé maths</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Gabin avait pris du retard sur certains chapitres de la spécialité mathématiques. Il avait du mal à comprendre les notions et surtout à les appliquer aux exercices. Donc il ne se sentait pas prêt pour l'épreuve. Ce qui a bien marché, c'est que tu sois très à l'écoute de ses besoins, et surtout la façon d'aller à l'essentiel. Il a obtenu la note de 12 alors qu'il pensait avant tes cours avoir 8/9. Il a repris tes explications et cela lui a permis de travailler plus sereinement.</p></article>
-    <article class="review" data-c="famille"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">O</span><div class="who">Océane<span>maman</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Parfait ! Professeur très à l'écoute, professionnel et accessible. Il propose des méthodes modernes, s'adapte au niveau de mon fils et met en place une approche pédagogique efficace pour l'aider à progresser. Son travail est réfléchi et ses explications sont toujours claires. Il sait également tenir compte des difficultés que rencontre mon fils, prendre le temps de réexpliquer si nécessaire et instaurer un climat de confiance. Une excellente pédagogie et un accompagnement de qualité. Je recommande fortement.</p></article>
-    <article class="review" data-c="eleve"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">C</span><div class="who">Charline<span>élève de Première · maths tronc commun</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Je suis une élève de première générale avec maths en tronc commun, et j'ai commencé les cours particuliers à quelques semaines des épreuves. Honnêtement, ça m'a vraiment aidée à tout remettre à niveau sur les chapitres de l'année. Arnaud explique très bien, de façon claire et structurée, ce qui permet de comprendre même les notions les plus compliquées. Il prend le temps de revenir sur les points non compris sans jamais mettre de pression, ce qui rend les séances très agréables et efficaces. La méthode de travail est très bonne : les exercices sont bien choisis, progressifs et adaptés à mon niveau. Tout est bien organisé, et les supports et documents envoyés sont propres et utiles pour réviser ensuite. Grâce à cet accompagnement, je me sens beaucoup plus en confiance en mathématiques à l'approche du bac. Je recommande vivement Arnaud.</p></article>
-    <article class="review" data-c="eleve"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">L</span><div class="who">Louise<span>élève</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Parfait ! Le cours était très bien organisé et cela m'a permis de bien comprendre les notions et d'ensuite pouvoir m'exercer. C'était très intéressant !</p></article>
-    <article class="review" data-c="famille"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">C</span><div class="who">Chantal<span>grand-mère</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Arnaud a été un super prof pendant les grandes vacances pour ma petite-fille, sa pédagogie et sa gentillesse l'ont beaucoup aidée pendant les 4 ans pour sa progression en maths.</p></article>
-    <article class="review" data-c="famille"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">C</span><div class="who">Caroline<span>maman de Juliette</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Parfait ! Mon premier cours avec Arnaud s'est très bien déroulé, il est à l'écoute, calme et agréable.</p></article>
-    <article class="review" data-c="eleve"><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">D</span><div class="who">Dorian<span>élève</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>Si vous avez des lacunes en maths ou pour du perfectionnement, c'est la meilleure personne à contacter. Explication, compréhension, il a tout.</p></article>
+    {AVIS.map((a) => <Avis avis={a} />)}
   </div>
   <button class="btn btn-line btn-sm showall" type="button" id="showall">Voir les 9 avis</button>
 

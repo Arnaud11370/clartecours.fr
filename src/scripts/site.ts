@@ -2,9 +2,9 @@
 
 document.documentElement.removeAttribute('data-palette');
 
-/* Barre d'appel : cachée tant qu'un autre accès à la réservation est à l'écran (boutons du hero, section contact) */
+/* Barre d'appel : cachée tant qu'un autre accès à la réservation est à l'écran (boutons du hero, section contact ou #reserver des landing épurées) */
 const cb = document.getElementById('callbar');
-const reservations = document.querySelectorAll('.hero-ctas, #contact');
+const reservations = document.querySelectorAll('.hero-ctas, #contact, #reserver');
 if (cb && reservations.length && 'IntersectionObserver' in window) {
   const visibles = new Set<Element>();
   const io = new IntersectionObserver(function (es) {

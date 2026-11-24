@@ -1,0 +1,26 @@
+---
+// En-tête minimal des landing pages publicitaires : logo non cliquable (aucune sortie de page) et contact direct.
+// Le numéro reste affiché en chiffres : Google Ads le remplace par son numéro de transfert pour suivre les appels.
+import IconeContact from "./IconeContact.astro";
+import { SITE } from "../data/site";
+---
+<header class="top">
+  <div class="top-in">
+    <span class="logo">Clarté<span>.</span></span>
+    <div class="top-contact">
+      <a class="top-tel" href={`tel:${SITE.phone.tel}`} data-emplacement="en-tete"><IconeContact nom="telephone" />{SITE.phone.display}</a>
+      <a class="top-wa whatsapplink" href={SITE.whatsapp} target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp" data-emplacement="en-tete"><IconeContact nom="whatsapp" /></a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .top-in{padding-block:8px}
+  .top-contact{display:flex;align-items:center;gap:6px}
+  .top-tel,.top-wa{display:inline-flex;align-items:center;justify-content:center;min-height:44px;color:var(--ink);text-decoration:none;border-radius:999px}
+  .top-tel{gap:8px;padding-inline:10px;font-weight:600;font-size:.95rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .top-wa{width:44px;border:1.5px solid var(--rule)}
+  .top-tel:hover,.top-wa:hover{background:var(--gold-soft)}
+  .top-contact :global(svg){width:20px;height:20px;flex:none}
+  @media (max-width:380px){.top-tel{font-size:.88rem;padding-inline:6px;gap:6px}.top-in{padding-inline:14px}}
+</style>

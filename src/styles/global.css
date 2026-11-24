@@ -549,3 +549,11 @@ footer{padding-block:40px 120px}
 .portrait img,.pola img{height:auto}
 .story > .grade{display:block}
 @media (max-width:860px){.results .story{grid-template-columns:auto 1fr;align-items:center;gap:16px}.results .grade{font-size:2.1rem}.results h3{font-size:1.1rem}}
+
+/* Barre de réservation des landing épurées (CallBar mobile) : mobile seulement, 64 px de haut bordure comprise + zone de sécurité de l'iPhone */
+.callbar.mobile{padding:7px 16px calc(8px + env(safe-area-inset-bottom,0px))}
+.callbar.mobile .btn{min-height:48px;padding-block:0}
+.callbar.mobile .btn-ink{background:var(--deep);border-color:var(--deep);color:var(--on-deep)}
+.callbar.mobile .wa{width:48px;padding:0}
+.callbar.mobile .wa svg{width:24px;height:24px}
+@media (min-width:861px){.callbar.mobile{display:none}}

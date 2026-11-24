@@ -1,0 +1,10 @@
+---
+// Carte d'un avis écrit (texte publié mot pour mot, voir data/avis.ts).
+import type { Avis } from "../data/avis";
+
+interface Props {
+  avis: Avis;
+}
+const { avis } = Astro.props;
+---
+<article class="review" data-c={avis.categorie}><span class="q" aria-hidden="true">“</span><div class="head"><span class="ini">{avis.initiale}</span><div class="who">{avis.nom}<span>{avis.role}</span></div></div><span class="stars" aria-hidden="true">★★★★★</span><p>{avis.texte}</p></article>

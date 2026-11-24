@@ -1,0 +1,419 @@
+---
+// Landing Google Ads « cours de maths en mini-groupe » : un seul objectif, la réservation de l'appel diagnostic (Calendly).
+// Gabarit épuré (sans menu ni Émilie). Prix et paramètres de l'offre : data/mini-groupe.ts, jamais en dur ici.
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Avis from "../components/Avis.astro";
+import AgendaCalendly from "../components/AgendaCalendly.astro";
+import IconeContact from "../components/IconeContact.astro";
+import { SITE } from "../data/site";
+import { AVIS, RESULTATS, CITATIONS_PARENTS } from "../data/avis";
+import { MINI_GROUPE, euros, formatDuree, prixMin, plageDurees, tailleGroupe, forfaitsDuNiveau } from "../data/mini-groupe";
+
+const url = new URL(MINI_GROUPE.route, SITE.url).href;
+const titre = `Cours de maths en mini-groupe en visio (4ème → 1ère) · dès ${euros(prixMin)} · Clarté`;
+const description = `Cours de maths en visio en mini-groupe de ${tailleGroupe}, de la 4ème à la Première, avec Arnaud. Tarif dégressif dès ${euros(prixMin)} la séance. Appel diagnostic gratuit.`;
+
+const avecForfaits = MINI_GROUPE.forfaits.length > 0;
+const niveaux = MINI_GROUPE.niveaux.map((n) => ({ ...n, forfaits: forfaitsDuNiveau(n) }));
+// Avis mis en avant : ceux des familles (parents, grand-mère), mot pour mot
+const avisFamilles = AVIS.filter((a) => a.categorie === "famille");
+
+const faits = [
+  `${tailleGroupe} max`,
+  `${plageDurees} selon le niveau`,
+  MINI_GROUPE.frequence,
+  "En visio, depuis la maison",
+  ...(MINI_GROUPE.groupesParNiveau === true ? ["Élèves du même niveau"] : []),
+];
+
+const CTA = "Réserver mon appel gratuit";
+---
+<BaseLayout title={titre} description={description} ogImage={new URL(SITE.ogImage, SITE.url).href} epure>
+  <link slot="head" rel="canonical" href={url}>
+  <meta slot="head" property="og:url" content={url}>
+  <!-- Police du sous-titre du hero (élément LCP sur mobile) : chargée en même temps que les CSS au lieu d'après -->
+  <link slot="head" rel="preload" href="/fonts/figtree-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- 1. Hero : tout l'essentiel au-dessus de la ligne de flottaison sur mobile (390 × 844) -->
+  <section class="wrap lp-hero">
+    <div class="lp-hero-grid">
+      <div class="lp-hero-copy">
+        <p class="lp-surtitre"><img class="lp-vignette" src="/img/portrait.jpg" alt="" width="600" height="720" fetchpriority="high"><span class="eyebrow">Cours de maths en visio · de la 4ème à la Première</span></p>
+        {/* Variantes de H1 pour de futurs tests A/B :
+            - « Votre enfant bloque seul en maths ? Des cours en mini-groupe pour le faire réfléchir »
+            - « Cours particuliers de maths en mini-groupe (3-4 élèves) : dès 45 € la séance » (générer les chiffres depuis data/mini-groupe.ts) */}
+        <h1>Cours de maths en mini-groupe de {tailleGroupe}, en visio</h1>
+        <p class="lead">Votre enfant comprend en classe mais bloque seul ? Chaque semaine, Arnaud réunit {tailleGroupe} pour chercher ensemble, expliquer leur raisonnement et repartir capables de refaire seuls.</p>
+        <p class="lp-badge">Dès {euros(prixMin)} la séance · tarif dégressif</p>
+        <div class="hero-ctas lp-hero-cta">
+          <a class="btn btn-ink lp-cta" href="#reserver" data-calendly data-emplacement="hero">{CTA}</a>
+          <p class="lp-micro">30 min en visio · gratuit · sans engagement</p>
+        </div>
+        <a class="lp-lien-tarifs" href="#tarifs">Voir les tarifs <span aria-hidden="true">↓</span></a>
+        <ul class="lp-preuve" aria-label="En chiffres">
+          <li><span class="lp-etoile" aria-hidden="true">★</span> 5,0 sur Superprof (15 avis)</li>
+          <li>60+ familles accompagnées</li>
+          <li>600 h+ de cours</li>
+        </ul>
+      </div>
+      <div class="lp-hero-media">
+        <figure class="portrait"><img src="/img/portrait.jpg" alt="Portrait d'Arnaud, professeur de maths et fondateur de Clarté" width="600" height="720" fetchpriority="high"><span class="badge-hand" aria-hidden="true">Arnaud, votre prof</span></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Le problème -->
+  <section class="wrap lp-probleme">
+    <div class="sec-head">
+      <span class="eyebrow">Le problème</span>
+      <h2>Il comprend en classe. Il bloque seul.</h2>
+      <p class="lead">Ce que les parents nous disent souvent :</p>
+    </div>
+    <ul class="lp-citations">
+      {CITATIONS_PARENTS.map((c) => <li>« {c} »</li>)}
+    </ul>
+    <p class="lead lp-transition">Rajouter des heures d'explication ne suffit pas. Il doit apprendre à chercher et à expliquer lui-même.</p>
+  </section>
+
+  <!-- 3. Pourquoi en mini-groupe : l'argument central -->
+  <section class="wrap" id="pourquoi">
+    <div class="sec-head">
+      <span class="eyebrow">Pourquoi en mini-groupe</span>
+      <h2>En mini-groupe, votre enfant ne se contente plus d'écouter</h2>
+    </div>
+    <div class="lp-atouts">
+      <article class="lp-atout">
+        <svg class="lp-icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v10H10l-5 4v-4H4z"/><path d="M8 9h8M8 12h5"/></svg>
+        <h3>Il explique son raisonnement.</h3>
+        <p>Devant les autres, il doit dire comment il cherche. C'est là qu'on voit ce qu'il a vraiment compris.</p>
+      </article>
+      <article class="lp-atout">
+        <svg class="lp-icone" viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="8" r="3"/><circle cx="16.5" cy="9" r="2.5"/><path d="M2.5 19c.5-3.2 2.7-5 5.5-5s5 1.8 5.5 5M13.5 14.6c.9-.7 1.9-1.1 3-1.1 2.4 0 4.2 1.6 4.6 4.5"/></svg>
+        <h3>Il apprend des autres.</h3>
+        <p>Il découvre d'autres façons d'attaquer un exercice, et voit qu'il n'est pas le seul à bloquer.</p>
+      </article>
+      <article class="lp-atout">
+        <svg class="lp-icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1-4L16 5l3 3L8 19z"/><path d="M14 7l3 3"/></svg>
+        <h3>Arnaud mène la séance.</h3>
+        <p>Il relance, corrige et fait participer chaque élève. Avec {MINI_GROUPE.eleves.min} ou {MINI_GROUPE.eleves.max} élèves, personne ne passe inaperçu.</p>
+      </article>
+      <article class="lp-atout">
+        <svg class="lp-icone" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4M8.5 14.5l2 2 4-4"/></svg>
+        <h3>Un rendez-vous chaque semaine.</h3>
+        <p>La régularité qui fait progresser, au lieu d'un cours en urgence la veille du contrôle.</p>
+      </article>
+    </div>
+    <div class="lp-relance">
+      <a class="btn btn-ink lp-cta" href="#reserver" data-calendly data-emplacement="pourquoi">{CTA}</a>
+    </div>
+  </section>
+
+  <!-- 4. Comment se passe une séance -->
+  <section class="wrap" id="seance">
+    <div class="sec-head">
+      <span class="eyebrow">En pratique</span>
+      <h2>Comment se passe une séance</h2>
+    </div>
+    <ul class="lp-faits">
+      {faits.map((f) => <li>{f}</li>)}
+    </ul>
+    <h3 class="lp-sous-titre">La méthode d'Arnaud, en trois étapes</h3>
+    <div class="steps">
+      <div class="step"><span class="k">1. Diagnostiquer</span><h4>On repère les faux savoirs</h4><p>En expliquant comment il s'y prend, chaque élève montre ce qu'il a vraiment compris et ce qu'il croit seulement avoir compris.</p></div>
+      <div class="step"><span class="k">2. Reconstruire</span><h4>On explique autrement</h4><p>Chaque élève réexplique la notion au groupe, avec ses mots. Pas de par cœur, pas de recettes.</p></div>
+      <div class="step"><span class="k">3. Rendre autonome</span><h4>On entraîne seul</h4><p>Il refait seul un exercice, même modifié. Vous suivez sa progression avec un plan d'action partagé.</p></div>
+    </div>
+  </section>
+
+  <!-- 5. Tarifs (prix calculés depuis data/mini-groupe.ts) -->
+  <section class="wrap" id="tarifs">
+    <div class="sec-head">
+      <span class="eyebrow">Tarifs</span>
+      <h2>Des tarifs clairs, dégressifs</h2>
+    </div>
+    <div class="lp-niveaux">
+      {niveaux.map((n) => (
+        <article class="lp-niveau">
+          <h3>{n.libelle}</h3>
+          <p class="lp-duree"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span><b>{formatDuree(n.duree)}</b> par séance</span></p>
+          <p class="lp-niveau-info">{tailleGroupe} · {MINI_GROUPE.frequence.toLowerCase()}</p>
+          <p class="lp-prix"><b>{euros(n.prix)}</b><span>{avecForfaits ? "la séance à l'unité" : "la séance"} de {formatDuree(n.duree)}</span></p>
+          {n.forfaits.length > 0 && (
+            <ul class="lp-forfaits">
+              {n.forfaits.map((f) => (
+                <li>
+                  <span class="lp-forfait-nb">{f.seances} séances</span>
+                  <span><b>{euros(f.prixSeance)}</b> la séance{f.economie > 0 && <span class="lp-eco">soit {euros(f.economie)} économisés</span>}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </article>
+      ))}
+    </div>
+    <p class="lp-degressif">
+      <b>Tarif dégressif</b> : plus vous prenez de séances, plus le prix par séance baisse.{!avecForfaits && " Arnaud vous donne le détail pendant l'appel."}
+    </p>
+    <div class="lp-inclus">
+      <h3>Inclus dans chaque formule</h3>
+      <ul>
+        <li>L'appel diagnostic de 30 min, offert</li>
+        <li>Un plan d'action partagé avec vous, les parents</li>
+        <li>Le suivi de l'équipe Clarté (Lisa, Marie et Julien)</li>
+        <li>Séance reportable si vous prévenez 24 h avant</li>
+      </ul>
+    </div>
+    <p class="lp-petit">Paiement par virement, forfait réglé avant les séances. TVA non applicable, art. 293 B du CGI.</p>
+    <div class="lp-relance">
+      <a class="btn btn-ink lp-cta" href="#reserver" data-calendly data-emplacement="tarifs">{CTA}</a>
+      <p class="lp-micro">Pendant l'appel, Arnaud vous indique le groupe et le créneau adaptés à votre enfant.</p>
+    </div>
+  </section>
+
+  <!-- 6. Résultats et témoignages (obtenus avec Arnaud, pas forcément en mini-groupe : formulation générale) -->
+  <section class="wrap" id="avis">
+    <div class="sec-head">
+      <span class="eyebrow">Témoignages</span>
+      <h2>Ce qu'en disent les familles</h2>
+      <p class="lead">Résultats et avis de familles accompagnées par Arnaud.</p>
+    </div>
+    <div class="results">
+      {[RESULTATS.angelina, RESULTATS.gabin].map((r) => (
+        <div class="story">
+          <div class="grade" aria-hidden="true"><s>{r.avant}</s><span class="to">→</span>{r.apres}</div>
+          <div><h3>{r.titre}</h3></div>
+        </div>
+      ))}
+    </div>
+    <p class="swipe-hint" aria-hidden="true">← faites glisser →</p>
+    <div class="reviews lp-avis">
+      {avisFamilles.map((a) => <Avis avis={a} />)}
+    </div>
+    <div class="more">
+      <a class="btn btn-line btn-sm" href={SITE.avis.superprof} target="_blank" rel="noopener">Nos avis Superprof</a>
+      <a class="btn btn-line btn-sm" href={SITE.avis.google} target="_blank" rel="noopener">Nos avis Google</a>
+    </div>
+  </section>
+
+  <!-- 7. Qui est Arnaud -->
+  <section class="wrap" id="arnaud">
+    <div class="lp-arnaud">
+      <img src="/img/portrait.jpg" alt="Portrait d'Arnaud, professeur de maths et fondateur de Clarté" width="600" height="720" loading="lazy">
+      <div>
+        <h2>Bonjour, moi c'est Arnaud.</h2>
+        <p class="lead">Je suis professeur de maths. Je me vois comme un traducteur entre le cours et l'élève : je reformule jusqu'à ce que votre enfant sache refaire seul. J'ai créé Clarté en 2025.</p>
+        <ul class="lp-reperes">
+          <li>Bac S mention TB (19/20 en maths)</li>
+          <li>Licence de maths, parcours enseignement</li>
+          <li>Prof en visio depuis 2022</li>
+          <li>60+ familles accompagnées</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Comment démarrer -->
+  <section class="wrap" id="demarrer">
+    <div class="sec-head">
+      <span class="eyebrow">Pour commencer</span>
+      <h2>Comment démarrer</h2>
+    </div>
+    <ol class="lp-demarrer">
+      <li>Vous réservez un appel gratuit de 30 min.</li>
+      <li>Arnaud fait le point avec vous sur les notes et les blocages de votre enfant, et vous propose le groupe et le créneau adaptés.</li>
+      <li>Votre enfant rejoint sa première séance.</li>
+    </ol>
+    <div class="lp-relance">
+      <a class="btn btn-ink lp-cta" href="#reserver" data-calendly data-emplacement="demarrer">{CTA}</a>
+    </div>
+  </section>
+
+  <!-- 9. FAQ -->
+  <section class="wrap" id="faq">
+    <div class="sec-head">
+      <span class="eyebrow">Questions fréquentes</span>
+      <h2>Vos questions sur le mini-groupe</h2>
+    </div>
+    <div class="faq">
+      <details><summary>Combien coûtent les cours en mini-groupe ?</summary><div class="ans">
+        <ul>{niveaux.map((n) => <li><b>{n.libelle}</b> : {euros(n.prix)} la séance de {formatDuree(n.duree)}</li>)}</ul>
+        <p>Le tarif est dégressif : plus vous prenez de séances, plus le prix par séance baisse. {avecForfaits ? <a href="#tarifs">Voir le détail des forfaits.</a> : "Arnaud vous donne le détail pendant l'appel."}</p>
+      </div></details>
+      {/* TODO(Arnaud) : valider la formulation de cette réponse */}
+      <details><summary>Mon enfant est timide, va-t-il oser participer ?</summary><div class="ans">
+        <p>Avec {MINI_GROUPE.eleves.min} ou {MINI_GROUPE.eleves.max} élèves, pas de pression comme en classe. Arnaud interroge chacun à son tour, et une erreur expliquée à voix haute est souvent ce qui fait le plus progresser.</p>
+      </div></details>
+      {/* TODO(Arnaud) : réponse à confirmer, voir groupesParNiveau dans data/mini-groupe.ts (question masquée tant que ce n'est pas confirmé) */}
+      {MINI_GROUPE.groupesParNiveau === true && (
+        <details><summary>Les élèves du groupe ont-ils le même niveau ?</summary><div class="ans">
+          <p>Oui : les groupes sont constitués par niveau. Pendant l'appel diagnostic, Arnaud vous indique le groupe adapté à votre enfant.</p>
+        </div></details>
+      )}
+      {/* Réponse reprise de l'accueil, adaptée au mini-groupe (sans les ressources de l'Académie). TODO(Arnaud) : valider */}
+      <details><summary>La visio, c'est vraiment efficace ?</summary><div class="ans">
+        <p>Oui, à condition que l'élève soit actif, et la visio y aide :</p>
+        <ul>
+          <li>on travaille sur le même document à l'écran, et votre enfant rédige lui-même pendant qu'Arnaud corrige en direct ;</li>
+          <li>il garde une trace écrite de chaque séance, à relire avant un contrôle ;</li>
+          <li>pas de trajet : les séances se calent plus facilement, même en semaine.</li>
+        </ul>
+        <p>L'appel diagnostic, lui aussi en visio, vous permet de vous faire une idée sans engagement.</p>
+      </div></details>
+      {/* Règle des CGV (article 7). TODO(Arnaud) : comment se rattrape une séance reportée en groupe ? */}
+      <details><summary>Et si mon enfant rate une séance ?</summary><div class="ans">
+        <p>Prévenez au moins 24 h avant : la séance peut être reportée. Passé ce délai, elle est due et décomptée du forfait, sauf cas de force majeure (maladie justifiée, urgence familiale).</p>
+      </div></details>
+      {/* TODO(Arnaud) : confirmer qu'il n'y a ni abonnement ni engagement de durée */}
+      <details><summary>Y a-t-il un engagement ?</summary><div class="ans">
+        <p>Vous réglez un forfait de séances, avant les séances.</p>
+      </div></details>
+      <details><summary>Et si le groupe ne convient pas à mon enfant ?</summary><div class="ans">
+        <p>C'est justement l'objet de l'appel diagnostic. Si un autre format lui correspond mieux (suivi sur un trimestre, entraînement en autonomie avec l'Académie…), Arnaud vous le dira.</p>
+      </div></details>
+      <details><summary>Comment se passe l'appel diagnostic ?</summary><div class="ans">
+        <p>Arnaud échange avec vous et votre enfant : ses notes, ce qui le bloque, ce qu'il a déjà essayé. Il repère ce qui est compris et ce qui est seulement « cru compris », puis vous propose la formule adaptée, ou vous oriente ailleurs si ce n'est pas le bon choix.</p>
+      </div></details>
+    </div>
+  </section>
+
+  <!-- 10. Réservation : Calendly chargé seulement au besoin (bouton ou approche de la section) -->
+  <section class="wrap" id="reserver">
+    <div class="contact">
+      <div class="contact-head">
+        <span class="eyebrow">Appel diagnostic offert</span>
+        <h2>Parlons de votre enfant</h2>
+        <p class="lead">30 minutes en visio, gratuites et sans engagement, pour savoir si le mini-groupe est la bonne solution.</p>
+      </div>
+      <div class="cal-slot">
+        <AgendaCalendly differe utmContent={MINI_GROUPE.suivi} />
+      </div>
+      <div class="contact-more lp-ecrire">
+        <p class="lp-ecrire-titre">Vous préférez écrire ?</p>
+        <a class="btn lp-wa whatsapplink" href={SITE.whatsapp} target="_blank" rel="noopener" data-emplacement="reserver"><IconeContact nom="whatsapp" />Écrire sur WhatsApp</a>
+        <p><a class="lp-tel" href={`tel:${SITE.phone.tel}`} data-emplacement="reserver">Appeler le {SITE.phone.display}</a></p>
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="after-main">
+    <script>
+      import { suivreLanding } from "../scripts/suivi-landing";
+      import { MINI_GROUPE } from "../data/mini-groupe";
+      suivreLanding(MINI_GROUPE.suivi);
+    </script>
+  </Fragment>
+</BaseLayout>
+
+<style>
+  /* Doré lisible (contraste AA) pour les petits textes : plus foncé en clair, plus clair en sombre */
+  section{--or-texte:color-mix(in srgb,var(--gold) 66%,var(--ink))}
+  .sec-head .eyebrow,.lp-surtitre .eyebrow{color:var(--or-texte)}
+  .sec-head{margin-bottom:32px}
+  .lp-cta{min-height:52px;font-size:1.05rem}
+  .lp-micro{font-size:.92rem;color:var(--ink-soft)}
+  .lp-relance{display:grid;justify-items:start;gap:10px;margin-top:32px}
+
+  /* 1. Hero */
+  .lp-hero{padding-block:28px 48px}
+  .lp-hero-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:48px;align-items:center}
+  .lp-hero-copy{display:grid;gap:16px;justify-items:start;min-width:0}
+  .lp-surtitre{display:flex;align-items:center;gap:12px}
+  .lp-vignette{display:none;width:44px;height:44px;border-radius:50%;object-fit:cover;object-position:top;border:2px solid var(--gold);flex:none}
+  .lp-hero h1{font-size:clamp(2rem,5.4vw,3.6rem)}
+  .lp-hero .lead{font-size:1.12rem}
+  .lp-badge{display:inline-block;padding:6px 14px;border-radius:999px;background:var(--gold-soft);border:1.5px solid var(--gold);font-weight:700;color:var(--ink)}
+  .lp-hero-cta{display:grid;gap:8px;justify-items:start}
+  .lp-lien-tarifs{font-weight:600;color:var(--ink);text-underline-offset:4px;text-decoration-color:var(--gold);text-decoration-thickness:2px;min-height:44px;display:inline-flex;align-items:center;margin-block:-10px}
+  .lp-preuve{display:flex;flex-wrap:wrap;gap:2px 0;margin:0;padding:0;list-style:none;font-size:.92rem;color:var(--ink-soft)}
+  .lp-preuve li:not(:last-child)::after{content:"·";margin-inline:8px}
+  .lp-preuve li:first-child{color:var(--ink);font-weight:600}
+  .lp-etoile{color:var(--gold)}
+  .lp-hero-media{display:grid;min-width:0}
+  .lp-hero-media .portrait{justify-self:end;width:100%;max-width:340px;margin:0}
+  @media (max-width:860px){
+    .lp-hero{padding-block:20px 40px}
+    .lp-hero-grid{grid-template-columns:1fr}
+    .lp-hero-media{display:none}
+    .lp-vignette{display:block}
+    .lp-hero-copy{gap:14px}
+    .lp-hero .lead{font-size:1.02rem}
+    .lp-cta{width:100%}
+    .lp-hero-cta{justify-items:stretch;width:100%}
+    .lp-relance{justify-items:stretch}
+  }
+
+  /* 2. Problème */
+  .lp-citations{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:0;padding:0;list-style:none}
+  .lp-citations li{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:20px 22px;font-family:var(--hand);font-size:1.5rem;line-height:1.2}
+  .lp-transition{margin-top:28px;color:var(--ink);font-weight:500}
+  @media (max-width:860px){.lp-citations{grid-template-columns:1fr;gap:10px}.lp-citations li{padding:14px 18px}}
+
+  /* 3. Pourquoi */
+  .lp-atouts{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .lp-atout{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:24px;display:grid;gap:10px;align-content:start}
+  .lp-atout h3{font-size:1.35rem}
+  .lp-atout p{color:var(--ink-soft)}
+  .lp-icone{width:40px;height:40px;fill:none;stroke:var(--gold);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  @media (max-width:700px){.lp-atouts{grid-template-columns:1fr;gap:14px}.lp-atout{padding:20px}}
+
+  /* 4. Séance */
+  .lp-faits{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:0 0 44px;padding:0;list-style:none}
+  .lp-faits li{display:grid;place-items:center;text-align:center;min-height:64px;padding:12px 16px;border-radius:999px;border:1.5px solid var(--ink);background:var(--card);font-weight:600;line-height:1.3}
+  .lp-sous-titre{margin-bottom:24px}
+  .step h4{font-family:var(--display);font-weight:400;font-size:1.45rem;line-height:1.08;margin:0}
+  @media (max-width:860px){.lp-faits{grid-template-columns:1fr 1fr;gap:10px}.lp-faits li{border-radius:14px;font-size:.95rem}}
+
+  /* 5. Tarifs */
+  .lp-niveaux{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .lp-niveau{background:var(--card);border:1.5px solid color-mix(in srgb,var(--gold) 55%,var(--rule));border-radius:10px;padding:26px;display:grid;gap:8px;align-content:start}
+  /* Durée mise en avant : c'est ce qui distingue les deux formules, avant le prix */
+  .lp-duree{display:inline-flex;align-items:center;gap:10px;justify-self:start;margin:4px 0 0;padding:8px 18px 8px 12px;border-radius:999px;background:var(--gold-soft);border:1.5px solid color-mix(in srgb,var(--gold) 55%,var(--rule));font-size:1.05rem;line-height:1.2}
+  .lp-duree svg{width:26px;height:26px;flex:none;fill:none;stroke:var(--or-texte);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .lp-duree b{font-family:var(--display);font-weight:400;font-size:1.7rem;font-variant-numeric:tabular-nums;margin-right:2px}
+  .lp-niveau-info{color:var(--ink-soft);font-size:.95rem}
+  .lp-prix{display:flex;align-items:baseline;gap:10px;margin-top:6px}
+  .lp-prix b{font-family:var(--display);font-weight:400;font-size:clamp(3rem,9vw,4rem);line-height:1;font-variant-numeric:tabular-nums}
+  .lp-prix span{color:var(--ink-soft)}
+  .lp-forfaits{margin:10px 0 0;padding:0;list-style:none;display:grid;border-top:1px solid var(--rule)}
+  .lp-forfaits li{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 12px;padding:10px 0;border-bottom:1px solid var(--rule)}
+  .lp-forfait-nb{font-weight:600}
+  .lp-eco{display:block;font-size:.88rem;color:var(--or-texte);font-weight:600;text-align:right}
+  .lp-degressif{margin-top:20px;padding:16px 20px;border-radius:10px;background:var(--gold-soft);border:1.5px dashed var(--gold);max-width:none}
+  .lp-inclus{margin-top:28px;display:grid;gap:12px}
+  .lp-inclus h3{font-size:1.3rem}
+  .lp-inclus ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:10px 24px}
+  .lp-inclus li{display:grid;grid-template-columns:24px 1fr;gap:6px}
+  .lp-inclus li::before{content:"✓";font-weight:700;color:var(--or-texte)}
+  .lp-petit{margin-top:20px;font-size:.88rem;color:var(--ink-soft)}
+  @media (max-width:860px){.lp-niveaux,.lp-inclus ul{grid-template-columns:1fr}.lp-niveaux{gap:14px}.lp-niveau{padding:22px}}
+
+  /* 6. Avis : texte complet (pas de « lire la suite » ni de script) */
+  .lp-avis :global(.review p){-webkit-line-clamp:unset;display:block}
+  .lp-avis{margin-bottom:12px}
+
+  /* 7. Arnaud */
+  .lp-arnaud{display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:center}
+  .lp-arnaud img{width:200px;height:200px;border-radius:50%;object-fit:cover;object-position:top;border:3px solid var(--gold)}
+  .lp-arnaud > div{display:grid;gap:16px;min-width:0}
+  .lp-reperes{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:8px 20px}
+  .lp-reperes li{display:grid;grid-template-columns:20px 1fr;gap:6px;font-weight:500}
+  .lp-reperes li::before{content:"•";color:var(--gold);font-weight:700}
+  @media (max-width:700px){.lp-arnaud{grid-template-columns:1fr;gap:20px}.lp-arnaud img{width:120px;height:120px}.lp-reperes{grid-template-columns:1fr}}
+
+  /* 8. Démarrer */
+  .lp-demarrer{margin:0;padding:0;list-style:none;counter-reset:etape;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .lp-demarrer li{counter-increment:etape;display:grid;gap:10px;align-content:start;padding-top:16px;border-top:2px solid var(--ink)}
+  .lp-demarrer li::before{content:counter(etape);font-family:var(--display);font-size:2.6rem;line-height:1;color:var(--or-texte)}
+  @media (max-width:860px){.lp-demarrer{grid-template-columns:1fr;gap:18px}.lp-demarrer li{grid-template-columns:44px 1fr;align-items:baseline;gap:8px}}
+
+  /* 10. Réservation */
+  /* Symboles décoratifs injectés par site.ts : presque invisibles à côté du bloc sombre, et signalés comme texte peu contrasté */
+  #reserver > :global(.deco){display:none}
+  .contact > .cal-slot{grid-area:cal;display:block}
+  .lp-ecrire{justify-items:start}
+  .lp-ecrire-titre{font-family:var(--display);font-size:1.4rem}
+  .lp-wa{background:transparent;color:var(--on-deep);border-color:color-mix(in srgb,var(--on-deep) 55%,transparent);min-height:48px}
+  .lp-wa :global(svg){width:22px;height:22px}
+  .lp-tel{display:inline-flex;align-items:center;min-height:44px;color:var(--on-deep);font-weight:600;text-underline-offset:4px}
+  @media (max-width:860px){.lp-wa{width:100%}}
+</style>

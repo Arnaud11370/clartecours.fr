@@ -1,6 +1,22 @@
 ---
-// Barre de réservation fixe en bas d'écran (cachée quand les boutons du hero ou la section #contact sont visibles, voir scripts/site.ts)
+// Barre de réservation fixe en bas d'écran (cachée quand les boutons du hero ou la section de réservation sont visibles, voir scripts/site.ts)
+import IconeContact from "./IconeContact.astro";
+import { SITE } from "../data/site";
+
+interface Props {
+  libelle?: string;
+  /** Ancre de la section de réservation */
+  href?: string;
+  /** true : ajoute un bouton icône WhatsApp */
+  whatsapp?: boolean;
+  /** true : mobile seulement, compacte, masquée jusqu'à ce que le hero sorte de l'écran (landing épurée) */
+  mobile?: boolean;
+  /** Emplacement transmis aux événements de suivi des landing pages */
+  emplacement?: string;
+}
+const { libelle = "Réserver mon appel offert", href = "/#contact", whatsapp = false, mobile = false, emplacement } = Astro.props;
 ---
-<div class="callbar" id="callbar">
-  <a class="btn btn-ink" href="/#contact" data-calendly>Réserver mon appel offert</a>
+<div class:list={["callbar", { mobile, away: mobile }]} id="callbar">
+  <a class="btn btn-ink" href={href} data-calendly data-emplacement={emplacement}>{libelle}</a>
+  {whatsapp && <a class="btn wa whatsapplink" href={SITE.whatsapp} target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp" data-emplacement={emplacement}><IconeContact nom="whatsapp" /></a>}
 </div>

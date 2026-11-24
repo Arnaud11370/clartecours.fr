@@ -27,21 +27,29 @@ src/
     tracking/GtmHead.astro     Script GTM (Stape) : TOUJOURS le premier enfant du <head>
     tracking/GtmNoscript.astro Iframe GTM noscript, juste après <body>
     Header.astro               En-tête + menu (alimenté par NAV, masqué avec nav={false})
+    HeaderEpure.astro          En-tête des landing épurées : logo non cliquable, téléphone (en chiffres) et WhatsApp
     Footer.astro               Pied de page : icônes sociales + boutons des pages légales
     SocialLinks.astro          Rangée d'icônes sociales du pied de page
     SocialIcon.astro           Icônes SVG des réseaux sociaux (instagram, tiktok, youtube, linkedin)
-    CallBar.astro              Barre d'appel fixe en bas d'écran
+    CallBar.astro              Barre d'appel fixe en bas d'écran (variante `mobile` + WhatsApp pour les landing épurées)
+    AgendaCalendly.astro       Agenda Calendly (iframe unique, plein écran via [data-calendly]) ; `differe` = chargé à la demande
+    Avis.astro                 Carte d'un avis écrit (données dans data/avis.ts)
+    IconeContact.astro         Icônes téléphone et WhatsApp
     Emilie.astro               Bouton + panneau de l'assistante IA (markup + script)
     LegalDialogs.astro         Mentions légales, CGV, confidentialité (<dialog>)
     Divider.astro              Séparateur décoratif entre deux sections
     sections/                  Sections de page partagées par l'accueil et les landing pages (markup + script + style)
       Hero, Preuves, Methode, Temoignages, Etapes, Offres, QuiJeSuis, Defi, PourQui, Faq, Contact
-  data/site.ts                 Source unique : coordonnées, Calendly (CALENDLY_EMBED), liens d'avis, ID GTM, réseaux sociaux (SOCIALS), menu (NAV)
+  data/site.ts                 Source unique : coordonnées, domaine (SITE.url), Calendly (CALENDLY_EMBED), liens d'avis, ID GTM, réseaux sociaux (SOCIALS), menu (NAV)
+  data/avis.ts                 Avis écrits, résultats (Angélina, Gabin) et citations de parents, mot pour mot
+  data/mini-groupe.ts          Offre mini-groupe : taille, niveaux, durées, PRIX, forfaits dégressifs (source unique)
   scripts/site.ts              JS commun à toutes les pages
+  scripts/suivi-landing.ts     Événements dataLayer `lp_*` des landing pages (entonnoir de réservation)
   styles/global.css            Styles globaux (tokens, thèmes clair/sombre, composants)
   pages/index.astro            Page d'accueil (une page = un fichier dans src/pages/)
   pages/brevet.astro           Landing page pub collège (4ème, 3ème) : sans menu, noindex
   pages/lycee.astro            Landing page pub lycée (Seconde, Première) : sans menu, noindex, sans l'Académie
+  pages/cours-particuliers.astro         Landing Google Ads « mini-groupe » : gabarit épuré, prix affichés, INDEXABLE
 public/                        Fichiers servis tels quels : fonts/, img/, robots.txt, temoignages-videos.json
 netlify/
   functions/coach.mjs          API /api/coach (proxy vers l'API Claude, clé côté serveur)
@@ -51,7 +59,7 @@ netlify.toml                   Build Netlify : pnpm build → dist/
 
 ### Le layout
 
-`BaseLayout` accepte `title`, `description`, `ogTitle`, `ogDescription`, `ogImage` (valeurs par défaut dans `SITE`), `nav` (`false` : en-tête sans menu, pour les landing pages) et trois points d'insertion :
+`BaseLayout` accepte `title`, `description`, `ogTitle`, `ogDescription`, `ogImage` (valeurs par défaut dans `SITE`), `nav` (`false` : en-tête sans menu, pour les landing pages), `epure` (`true` : en-tête `HeaderEpure`, pied de page légal seul, barre de réservation mobile vers `#reserver`, sans Émilie) et trois points d'insertion :
 
 - slot par défaut : contenu placé dans `<main>` ;
 - `slot="head"` : balises `<head>` spécifiques à la page ;
@@ -84,6 +92,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 - Classes de suivi GTM à conserver sur les liens : `email-link` (`mailto:`), `whatsapplink` (WhatsApp). Les numéros sont toujours des liens `tel:`.
 - **Numéros de téléphone : toujours affichés en chiffres**, jamais remplacés par un libellé (« Appelez-moi », « Téléphone »…) : `<a href={`tel:${SITE.phone.tel}`}>{SITE.phone.display}</a>`. Google Ads remplace le numéro affiché par son numéro de transfert pour suivre les appels : sans numéro visible dans la page, ce suivi ne fonctionne plus.
 - Le suivi des réservations Calendly (inline et popup) est géré dans GTM : ne rien ajouter côté site.
+- Landing pages : `scripts/suivi-landing.ts` pousse en plus des événements d'entonnoir (`lp_cta_clic`, `lp_agenda_vu`, `lp_agenda_affiche`, `lp_creneau_choisi`, `lp_contact_clic`) avec `landing_id`. Ils ne remplacent pas les conversions GTM existantes.
 
 ### DRY
 
@@ -125,11 +134,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 - Une landing page = un fichier dans `src/pages/` qui assemble les composants de `components/sections/` avec ses propres textes (props du `Hero`, `palier` de `Methode`, `objectif` de `PourQui`, `academie={false}` pour retirer l'Académie). Elle passe `nav={false}` au layout et `<meta slot="head" name="robots" content="noindex">` pour ne pas concurrencer l'accueil sur Google.
 - Offres : la section « Ce que je propose » (`Offres`) présente toutes les offres (Académie, cours particuliers, accompagnement sur 12 semaines, stages) en cartes identiques, sans aucun prix. Une offre = une entrée dans le tableau `cartes`.
 - Tarifs : **aucun prix affiché sur le site**. La FAQ (`Combien ça coûte ?`) renvoie vers l'appel diagnostic, où Arnaud communique le tarif par écrit (comme le prévoient les CGV).
+- **Exception : `/cours-particuliers`** (demande explicite pour le trafic Google Ads « prix cours de maths »). Ses prix, durées et forfaits viennent uniquement de `src/data/mini-groupe.ts` : badge « Dès … », titre, cartes, FAQ et économies des forfaits sont calculés, jamais écrits en dur. Les valeurs marquées `TODO(Arnaud)` attendent sa validation.
+- Landing épurée (`epure`) : la section de réservation a l'id `#reserver` et contient `<AgendaCalendly differe utmContent="…" />` ; les boutons portent `data-calendly`, `href="#reserver"` et `data-emplacement` (suivi).
 
 ## Réservation (Calendly)
 
 - C'est la conversion principale de la page d'accueil, qui sert de landing page aux campagnes Meta et Google Ads.
-- Tout bouton de réservation porte `data-calendly` avec `href="/#contact"` (ou `#contact` dans la page d'accueil) : le script de `Contact.astro` affiche alors en plein écran l'agenda déjà chargé dans `#contact`. On ne crée jamais de seconde iframe (pas d'`initPopupWidget`) : l'agenda Calendly pèse ~3 Mo, le recharger au clic ajoutait plusieurs secondes d'attente. Sur une page sans `<Contact />`, le lien mène simplement à `/#contact`.
+- Tout bouton de réservation porte `data-calendly` avec `href="/#contact"` (ou `#contact` dans la page d'accueil, `#reserver` dans une landing épurée) : le script d'`AgendaCalendly.astro` affiche alors en plein écran l'agenda déjà chargé dans `#contact`. On ne crée jamais de seconde iframe (pas d'`initPopupWidget`) : l'agenda Calendly pèse ~3 Mo, le recharger au clic ajoutait plusieurs secondes d'attente. Sur une page sans `<Contact />`, le lien mène simplement à `/#contact`.
 - L'iframe reste masquée derrière un placeholder (`.cal-wait`) jusqu'à ce que Calendly signale qu'il est affiché (`data-pret`).
 - Bloc `#contact` : pas de lien qui fasse quitter la page (réseaux sociaux, email, avis) à côté de l'agenda ; seuls le téléphone et WhatsApp restent, en secondaire.
 

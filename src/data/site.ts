@@ -1,6 +1,8 @@
 // Informations communes à tout le site : à modifier ici une seule fois.
 export const SITE = {
   name: "Clarté",
+  // Domaine de production (URL canonique et og:image absolue des pages qui en ont besoin)
+  url: "https://clartecours.fr",
   title: "Clarté · Cours de maths avec Arnaud",
   description:
     "Cours de maths en ligne de la 4ème à la Première. Votre enfant comprend en classe mais bloque seul ? Appel diagnostic offert avec Arnaud, fondateur de Clarté.",

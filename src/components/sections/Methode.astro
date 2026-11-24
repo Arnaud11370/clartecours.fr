@@ -1,5 +1,7 @@
 ---
 // « L'illusion de compréhension » : le problème que Clarté résout, avec le schéma des paliers.
+import { CITATIONS_PARENTS } from "../../data/avis";
+
 interface Props {
   /** Phrase sous le schéma : ce que l'examen visé évalue */
   palier?: string;
@@ -14,9 +16,7 @@ const { palier = "C'est ce dernier palier que le brevet évalue. C'est là que j
       <p class="lead">Beaucoup d'élèves suivent très bien en classe. Ils hochent la tête, recopient la correction, tout semble clair. Puis devant la copie, seuls, plus rien ne vient.</p>
       <p class="lead">Ajouter des heures ne règle pas ça. Il faut repérer ce qui est cru compris, le reconstruire, et l'entraîner jusqu'à l'autonomie.</p>
       <div class="quotes">
-        <q>« Il ne comprend pas quand il est seul. »</q>
-        <q>« Les maths, c'est toujours la bagarre. »</q>
-        <q>« Il stagne, alors qu'il travaille. »</q>
+        {CITATIONS_PARENTS.map((c) => <q>« {c} »</q>)}
       </div>
     </div>
     <div class="gap" aria-label="Schéma de l'écart entre comprendre et refaire seul">

@@ -1,0 +1,164 @@
+---
+// Agenda Calendly intégré (iframe unique), affiché en plein écran par tout bouton [data-calendly] de la page.
+// differe : Calendly (~3 Mo) n'est chargé qu'au premier geste vers un bouton ou à l'approche de l'agenda, pour ne pas peser sur le chargement initial.
+import { CALENDLY_EMBED } from "../data/site";
+
+interface Props {
+  /** true : chargement à la demande (landing pages publicitaires) ; false : chargé dès l'ouverture de la page (accueil) */
+  differe?: boolean;
+  /** utm_content transmis à Calendly quand l'URL de la page n'en a pas ; les autres paramètres UTM de la page sont transmis tels quels */
+  utmContent?: string;
+}
+const { differe = false, utmContent } = Astro.props;
+---
+<div class="cal-box" id="calendly-box">
+  <button class="cal-close" type="button" aria-label="Fermer l'agenda">×</button>
+  <div id="calendly-embed" style="min-width:320px;height:700px;" data-url={CALENDLY_EMBED} data-differe={differe ? "" : undefined} data-utm-content={utmContent}>
+    <div class="cal-wait">
+      <div class="cal-wait-head" aria-hidden="true"><span class="sk sk-rond"></span><span class="sk sk-ligne"></span><span class="sk sk-ligne sk-court"></span></div>
+      <p class="cal-wait-txt">Chargement de mon agenda…</p>
+      <div class="cal-wait-grille" aria-hidden="true">{Array.from({ length: 35 }, () => <span class="sk"></span>)}</div>
+    </div>
+  </div>
+</div>
+
+{!differe && <script src="https://assets.calendly.com/assets/external/widget.js" is:inline></script>}
+
+<script>
+  /* Chargement de l'agenda et ouverture en plein écran.
+     On ne déplace ni ne recrée l'iframe (ça la rechargerait) : une fois Calendly prêt, l'ouverture est instantanée. */
+  type CalendlyApi = { initInlineWidget(options: Record<string, unknown>): void };
+  const WIDGET = 'https://assets.calendly.com/assets/external/widget.js';
+
+  const boite = document.getElementById('calendly-box');
+  const embed = document.getElementById('calendly-embed');
+  if (boite && embed) {
+    const place = boite.parentElement!;
+    const fermer = boite.querySelector<HTMLButtonElement>('.cal-close')!;
+    let retour: HTMLElement | null = null;
+    let lance = false;
+
+    // L'iframe reste masquée derrière le placeholder tant que Calendly n'a rien affiché (sinon page blanche pendant le chargement)
+    const pret = function () { embed.setAttribute('data-pret', ''); };
+    addEventListener('message', function (e) {
+      if (e.origin === 'https://calendly.com' && e.data && e.data.event === 'calendly.event_type_viewed') pret();
+    });
+
+    /* Paramètres UTM de la page, transmis à Calendly (utm_content par défaut si l'URL n'en a pas) */
+    /* (seuls les paramètres présents sont transmis : Calendly écrirait « undefined » sinon) */
+    const utm = function () {
+      const p = new URLSearchParams(location.search);
+      const valeurs: Record<string, string> = {};
+      ['source', 'medium', 'campaign', 'content', 'term'].forEach(function (cle) {
+        const v = p.get('utm_' + cle) || (cle === 'content' ? embed.dataset.utmContent : '');
+        if (v) valeurs['utm' + cle[0].toUpperCase() + cle.slice(1)] = v;
+      });
+      return valeurs;
+    };
+
+    const initialiser = function () {
+      const cal = (window as unknown as { Calendly?: CalendlyApi }).Calendly;
+      if (!cal) return;
+      cal.initInlineWidget({ url: embed.dataset.url, parentElement: embed, resize: true, ...(embed.dataset.utmContent ? { utm: utm() } : {}) });
+      // Filet de sécurité si Calendly ne prévient pas : on affiche peu après le chargement de l'iframe
+      // (widget.js ne la crée qu'une fois le DOM prêt)
+      const brancher = function () {
+        const iframe = embed.querySelector('iframe');
+        if (iframe) iframe.addEventListener('load', function () { setTimeout(pret, 1500); });
+      };
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', brancher); else brancher();
+    };
+
+    const lancer = function () {
+      if (lance) return;
+      lance = true;
+      if ((window as unknown as { Calendly?: CalendlyApi }).Calendly) { initialiser(); return; }
+      const s = document.createElement('script');
+      s.src = WIDGET; s.async = true; s.onload = initialiser;
+      document.head.appendChild(s);
+    };
+
+    if (!embed.hasAttribute('data-differe')) lancer();
+    else {
+      // Chargement anticipé : dès que le doigt ou la souris se pose sur un bouton de réservation, ou à l'approche de l'agenda
+      ['pointerdown', 'focusin'].forEach(function (type) {
+        document.addEventListener(type, function (e) { if ((e.target as Element).closest?.('[data-calendly]')) lancer(); }, { passive: true });
+      });
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(function (es) {
+          if (es.some(function (e) { return e.isIntersecting; })) { io.disconnect(); lancer(); }
+        }, { rootMargin: '0px 0px 100% 0px' });
+        io.observe(boite);
+      } else lancer();
+    }
+
+    const ouvrir = function () {
+      lancer();
+      place.style.height = place.offsetHeight + 'px'; // garde la place dans la page : pas de saut de mise en page derrière
+      boite.classList.add('pop');
+      boite.setAttribute('role', 'dialog'); boite.setAttribute('aria-modal', 'true'); boite.setAttribute('aria-label', 'Agenda de réservation');
+      document.documentElement.classList.add('cal-ouvert');
+      retour = document.activeElement as HTMLElement | null;
+      fermer.focus();
+    };
+    const refermer = function () {
+      boite.classList.remove('pop');
+      boite.removeAttribute('role'); boite.removeAttribute('aria-modal'); boite.removeAttribute('aria-label');
+      document.documentElement.classList.remove('cal-ouvert');
+      place.style.height = '';
+      retour?.focus();
+    };
+
+    document.addEventListener('click', function (e) {
+      const lien = (e.target as Element).closest('[data-calendly]');
+      if (!lien || e.ctrlKey || e.metaKey || e.shiftKey) return;
+      e.preventDefault();
+      ouvrir();
+    });
+    fermer.addEventListener('click', refermer);
+    boite.addEventListener('click', function (e) { if (e.target === boite && boite.classList.contains('pop')) refermer(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && boite.classList.contains('pop')) refermer(); });
+  }
+</script>
+
+<style>
+  /* Placeholder de chargement et mode plein écran (pensés pour un bloc sur fond --deep) */
+  /* position + isolation : le placeholder (absolu, z-index -1) reste derrière l'iframe */
+  /* min-height : Calendly annonce d'abord une hauteur de 26px avant d'afficher l'agenda, le bloc ne doit pas s'écraser */
+  #calendly-embed{display:block;position:relative;isolation:isolate;min-height:700px}
+  #calendly-embed :global(iframe){display:block;border-radius:10px;opacity:0;transition:opacity .4s}
+  #calendly-embed[data-pret] :global(iframe){opacity:1}
+  #calendly-embed :global(.calendly-spinner){display:none}
+  .cal-wait{position:absolute;inset:0;z-index:-1;display:grid;align-content:start;gap:22px;padding:32px 24px;border:1px solid color-mix(in srgb,var(--on-deep) 14%,transparent);border-radius:10px}
+  #calendly-embed[data-pret] .cal-wait{visibility:hidden;transition:visibility 0s .4s}
+  .cal-wait-head{display:grid;justify-items:center;gap:10px}
+  .sk{display:block;border-radius:6px;background:color-mix(in srgb,var(--on-deep) 12%,transparent);animation:calAttente 1.4s ease-in-out infinite}
+  .sk-rond{width:56px;height:56px;border-radius:50%}
+  .sk-ligne{height:12px;width:55%;max-width:240px}
+  .sk-court{width:35%;max-width:150px}
+  .cal-wait-txt{margin:0;text-align:center;font-family:var(--hand);font-size:1.5rem;color:color-mix(in srgb,var(--on-deep) 80%,transparent)}
+  .cal-wait-grille{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;width:100%;max-width:340px;justify-self:center}
+  .cal-wait-grille .sk{aspect-ratio:1;border-radius:50%}
+  .cal-wait-grille .sk:nth-child(7n+3),.cal-wait-grille .sk:nth-child(5n+4){background:color-mix(in srgb,var(--p-gold) 35%,transparent)}
+  @keyframes calAttente{50%{opacity:.45}}
+
+  .cal-close{display:none}
+  :global(html.cal-ouvert){overflow:hidden}
+  /* Le bloc qui contient l'agenda est un contexte d'empilement (z-index:1, voir global.css) : on le remonte au-dessus de l'en-tête, de la barre d'appel et d'Émilie */
+  :global(html.cal-ouvert section.wrap > .contact){z-index:50}
+  .cal-box.pop{position:fixed;inset:0;z-index:1;display:grid;place-items:center;padding:64px 24px 24px;background:color-mix(in srgb,var(--deep) 85%,transparent);backdrop-filter:blur(4px);animation:calOuvre .25s ease both}
+  .cal-box.pop #calendly-embed{width:min(1000px,100%);height:min(760px,100%) !important;min-height:0;border-radius:10px;background:var(--deep)}
+  .cal-box.pop .cal-close{display:grid;place-items:center;position:absolute;top:14px;right:18px;width:42px;height:42px;border-radius:50%;border:1px solid color-mix(in srgb,var(--on-deep) 30%,transparent);background:color-mix(in srgb,var(--on-deep) 10%,transparent);color:var(--on-deep);font:inherit;font-size:1.6rem;line-height:1;cursor:pointer}
+  .cal-box.pop .cal-close:hover{background:color-mix(in srgb,var(--on-deep) 20%,transparent)}
+  @keyframes calOuvre{from{opacity:0}}
+  @media (max-width:860px){
+    .cal-box.pop{padding:calc(60px + env(safe-area-inset-top,0px)) 0 env(safe-area-inset-bottom,0px)}
+    .cal-box.pop #calendly-embed{height:100% !important}
+    .cal-box.pop #calendly-embed :global(iframe){border-radius:10px 10px 0 0}
+    .cal-box.pop .cal-close{top:calc(9px + env(safe-area-inset-top,0px))}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .sk,.cal-box.pop{animation:none}
+    #calendly-embed :global(iframe){transition:none}
+  }
+</style>

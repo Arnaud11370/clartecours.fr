@@ -1,13 +1,20 @@
 ---
+// Pied de page : mentions, icônes sociales et boutons des pages légales.
 import SocialLinks from "./SocialLinks.astro";
+
+interface Props {
+  /** true : pages légales seules (landing épurée : aucun lien qui fasse quitter la page) */
+  epure?: boolean;
+}
+const { epure = false } = Astro.props;
 
 const year = new Date().getFullYear();
 ---
 <footer class="wrap">
   <div class="foot">
     <span>© {year} Clarté · Arnaud, professeur de mathématiques</span>
-    <span class="foot-acad"><i aria-hidden="true"></i>Académie Clarté Objectif Brevet</span>
-    <SocialLinks />
+    {!epure && <span class="foot-acad"><i aria-hidden="true"></i>Académie Clarté Objectif Brevet</span>}
+    {!epure && <SocialLinks />}
     <span><button class="linkish" type="button" data-open="dlg-mentions">Mentions légales</button> · <button class="linkish" type="button" data-open="dlg-privacy">Confidentialité</button> · <button class="linkish" type="button" data-open="dlg-cgv">CGV</button></span>
   </div>
 </footer>
