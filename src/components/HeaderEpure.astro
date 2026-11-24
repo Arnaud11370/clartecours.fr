@@ -1,5 +1,6 @@
 ---
-// En-tête minimal des landing pages publicitaires : logo non cliquable, petit menu d'ancres internes (aucune sortie de page) et bouton de réservation.
+// En-tête minimal des landing pages publicitaires : logo non cliquable, menu d'ancres internes (aucune sortie de page) et bouton de réservation.
+// Sur mobile, le menu se replie derrière un bouton hamburger placé entre le logo et le bouton de réservation.
 
 export interface LienMenu {
   href: string;
@@ -14,27 +15,68 @@ const { menu = [] } = Astro.props;
 <header class="top top-epure">
   <div class="top-in">
     <span class="logo">Clarté<span>.</span></span>
-    {menu.length > 0 && <nav class="menu" aria-label="Sections de la page">
-      {menu.map((l) => <a href={l.href}>{l.libelle}</a>)}
-    </nav>}
+    {menu.length > 0 && <>
+      <button class="burger" type="button" aria-expanded="false" aria-controls="menu-epure" aria-label="Ouvrir le menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path class="b1" d="M4 7h16"/><path class="b2" d="M4 12h16"/><path class="b3" d="M4 17h16"/></svg>
+      </button>
+      <nav class="menu" id="menu-epure" aria-label="Sections de la page">
+        {menu.map((l) => <a href={l.href}>{l.libelle}</a>)}
+      </nav>
+    </>}
     <a class="btn btn-ink top-cta" href="#reserver" data-calendly data-emplacement="en-tete">Réserver un appel</a>
   </div>
 </header>
 
+<script>
+  /* Menu mobile : ouverture au bouton, fermeture au choix d'une section, à Échap ou au toucher en dehors */
+  const entete = document.querySelector<HTMLElement>('.top-epure');
+  const burger = entete?.querySelector<HTMLButtonElement>('.burger');
+  if (entete && burger) {
+    const basculer = function (ouvert: boolean) {
+      entete.toggleAttribute('data-ouvert', ouvert);
+      burger.setAttribute('aria-expanded', String(ouvert));
+      burger.setAttribute('aria-label', ouvert ? 'Fermer le menu' : 'Ouvrir le menu');
+    };
+    burger.addEventListener('click', function () { basculer(!entete.hasAttribute('data-ouvert')); });
+    entete.querySelectorAll('.menu a').forEach(function (a) { a.addEventListener('click', function () { basculer(false); }); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && entete.hasAttribute('data-ouvert')) { basculer(false); burger.focus(); }
+    });
+    document.addEventListener('click', function (e) {
+      if (entete.hasAttribute('data-ouvert') && !entete.contains(e.target as Node)) basculer(false);
+    });
+  }
+</script>
+
 <style>
-  /* L'en-tête est collant : les ancres du menu doivent s'arrêter sous lui, pas derrière (valeurs = hauteur de l'en-tête moins la marge haute des sections) ; :has car ce CSS est partagé avec les autres pages */
+  /* L'en-tête est collant : les ancres du menu doivent s'arrêter sous lui, pas derrière (valeur = hauteur de l'en-tête moins la marge haute des sections) ; :has car ce CSS est partagé avec les autres pages */
   :global(html:has(.top-epure)){scroll-padding-top:28px}
-  .top-in{padding-block:8px;flex-wrap:wrap}
+  .top-in{padding-block:8px}
   .top-cta{min-height:44px;padding:0 18px;font-size:.95rem;white-space:nowrap}
   .menu{display:flex;gap:26px;margin-left:auto;margin-right:10px;font-size:.95rem;font-weight:500}
   .menu a{display:inline-flex;align-items:center;min-height:44px;color:var(--ink-soft);text-decoration:none;text-underline-offset:6px;text-decoration-thickness:2px;text-decoration-color:var(--gold)}
   .menu a:hover{color:var(--ink);text-decoration-line:underline}
-  /* Mobile : le menu passe sur une seconde ligne, sous le logo et le bouton */
+  .burger{display:none}
+
   @media (max-width:860px){
-    .top-in{row-gap:0;padding-bottom:0}
-    .menu{order:3;width:100%;margin:0;justify-content:space-around;gap:8px;border-top:1px solid var(--rule);font-size:.92rem}
-    .menu a{min-height:40px;padding-inline:12px}
-    :global(html:has(.top-epure)){scroll-padding-top:60px}
+    /* Pas de filet sous l'en-tête sur mobile : le fond flouté suffit à le détacher */
+    .top{border-bottom:0}
+    .top-in{gap:6px}
+    .burger{display:grid;place-items:center;width:44px;height:44px;margin-left:auto;padding:0;border:0;border-radius:999px;background:transparent;color:var(--ink);cursor:pointer}
+    @media (hover:hover){.burger:hover{background:var(--gold-soft)}}
+    .burger svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+    .burger path{transition:transform .25s cubic-bezier(.2,.7,.2,1),opacity .2s;transform-origin:12px 12px}
+    [data-ouvert] .b1{transform:translateY(5px) rotate(45deg)}
+    [data-ouvert] .b2{opacity:0}
+    [data-ouvert] .b3{transform:translateY(-5px) rotate(-45deg)}
+
+    /* Panneau déroulant sous l'en-tête, masqué tant que le menu est fermé */
+    .menu{position:absolute;top:100%;left:0;right:0;margin:0;flex-direction:column;gap:0;padding:6px 20px 14px;background:var(--paper);box-shadow:0 18px 30px -22px rgba(0,0,0,.45);font-size:1.15rem;
+      visibility:hidden;opacity:0;transform:translateY(-6px);transition:opacity .2s,transform .2s,visibility 0s .2s}
+    [data-ouvert] .menu{visibility:visible;opacity:1;transform:none;transition:opacity .2s,transform .2s}
+    .menu a{min-height:52px;color:var(--ink);font-family:var(--display)}
+    .menu a + a{border-top:1px solid var(--rule)}
   }
   @media (max-width:380px){.top-cta{padding-inline:14px;font-size:.9rem}.top-in{padding-inline:14px}}
+  @media (prefers-reduced-motion:reduce){.burger path,.menu{transition:none}}
 </style>

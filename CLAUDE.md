@@ -27,7 +27,7 @@ src/
     tracking/GtmHead.astro     Script GTM (Stape) : TOUJOURS le premier enfant du <head>
     tracking/GtmNoscript.astro Iframe GTM noscript, juste après <body>
     Header.astro               En-tête + menu (alimenté par NAV, masqué avec nav={false})
-    HeaderEpure.astro          En-tête des landing épurées : logo non cliquable, menu d'ancres (`menuEpure`) et bouton de réservation
+    HeaderEpure.astro          En-tête des landing épurées : logo non cliquable, menu d'ancres (`menuEpure`, hamburger sur mobile) et bouton de réservation
     Footer.astro               Pied de page : icônes sociales + boutons des pages légales
     SocialLinks.astro          Rangée d'icônes sociales du pied de page
     SocialIcon.astro           Icônes SVG des réseaux sociaux (instagram, tiktok, youtube, linkedin)
