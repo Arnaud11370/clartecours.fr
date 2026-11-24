@@ -27,14 +27,13 @@ src/
     tracking/GtmHead.astro     Script GTM (Stape) : TOUJOURS le premier enfant du <head>
     tracking/GtmNoscript.astro Iframe GTM noscript, juste après <body>
     Header.astro               En-tête + menu (alimenté par NAV, masqué avec nav={false})
-    HeaderEpure.astro          En-tête des landing épurées : logo non cliquable, téléphone (en chiffres) et WhatsApp
+    HeaderEpure.astro          En-tête des landing épurées : logo non cliquable, menu d'ancres (`menuEpure`) et bouton de réservation
     Footer.astro               Pied de page : icônes sociales + boutons des pages légales
     SocialLinks.astro          Rangée d'icônes sociales du pied de page
     SocialIcon.astro           Icônes SVG des réseaux sociaux (instagram, tiktok, youtube, linkedin)
-    CallBar.astro              Barre d'appel fixe en bas d'écran (variante `mobile` + WhatsApp pour les landing épurées)
+    CallBar.astro              Barre d'appel fixe en bas d'écran (variante `mobile` pour les landing épurées)
     AgendaCalendly.astro       Agenda Calendly (iframe unique, plein écran via [data-calendly]) ; `differe` = chargé à la demande
     Avis.astro                 Carte d'un avis écrit (données dans data/avis.ts)
-    IconeContact.astro         Icônes téléphone et WhatsApp
     Emilie.astro               Bouton + panneau de l'assistante IA (markup + script)
     LegalDialogs.astro         Mentions légales, CGV, confidentialité (<dialog>)
     Divider.astro              Séparateur décoratif entre deux sections
@@ -59,7 +58,7 @@ netlify.toml                   Build Netlify : pnpm build → dist/
 
 ### Le layout
 
-`BaseLayout` accepte `title`, `description`, `ogTitle`, `ogDescription`, `ogImage` (valeurs par défaut dans `SITE`), `nav` (`false` : en-tête sans menu, pour les landing pages), `epure` (`true` : en-tête `HeaderEpure`, pied de page légal seul, barre de réservation mobile vers `#reserver`, sans Émilie) et trois points d'insertion :
+`BaseLayout` accepte `title`, `description`, `ogTitle`, `ogDescription`, `ogImage` (valeurs par défaut dans `SITE`), `nav` (`false` : en-tête sans menu, pour les landing pages), `epure` (`true` : en-tête `HeaderEpure` avec bouton de réservation et menu d'ancres facultatif `menuEpure`, pied de page légal seul, barre de réservation mobile vers `#reserver`, sans Émilie, sans téléphone ni WhatsApp) et trois points d'insertion :
 
 - slot par défaut : contenu placé dans `<main>` ;
 - `slot="head"` : balises `<head>` spécifiques à la page ;
@@ -90,9 +89,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 - Le script GTM est en `is:inline` : ne pas le reformater ni le faire passer par le bundler.
 - Ne jamais réécrire un `<head>` dans une page : toute page passe par `BaseLayout`.
 - Classes de suivi GTM à conserver sur les liens : `email-link` (`mailto:`), `whatsapplink` (WhatsApp). Les numéros sont toujours des liens `tel:`.
-- **Numéros de téléphone : toujours affichés en chiffres**, jamais remplacés par un libellé (« Appelez-moi », « Téléphone »…) : `<a href={`tel:${SITE.phone.tel}`}>{SITE.phone.display}</a>`. Google Ads remplace le numéro affiché par son numéro de transfert pour suivre les appels : sans numéro visible dans la page, ce suivi ne fonctionne plus.
+- **Numéros de téléphone : toujours affichés en chiffres**, jamais remplacés par un libellé (« Appelez-moi », « Téléphone »…) : `<a href={`tel:${SITE.phone.tel}`}>{SITE.phone.display}</a>`. Google Ads remplace le numéro affiché par son numéro de transfert pour suivre les appels : sans numéro visible dans la page, ce suivi ne fonctionne plus. Exception voulue : `/cours-particuliers` n'affiche ni téléphone ni WhatsApp (seule conversion : la réservation Calendly).
 - Le suivi des réservations Calendly (inline et popup) est géré dans GTM : ne rien ajouter côté site.
-- Landing pages : `scripts/suivi-landing.ts` pousse en plus des événements d'entonnoir (`lp_cta_clic`, `lp_agenda_vu`, `lp_agenda_affiche`, `lp_creneau_choisi`, `lp_contact_clic`) avec `landing_id`. Ils ne remplacent pas les conversions GTM existantes.
+- Landing pages : `scripts/suivi-landing.ts` pousse en plus des événements d'entonnoir (`lp_cta_clic`, `lp_agenda_vu`, `lp_agenda_affiche`, `lp_creneau_choisi`) avec `landing_id`. Ils ne remplacent pas les conversions GTM existantes.
 
 ### DRY
 

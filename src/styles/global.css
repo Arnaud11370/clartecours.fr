@@ -554,6 +554,4 @@ footer{padding-block:40px 120px}
 .callbar.mobile{padding:7px 16px calc(8px + env(safe-area-inset-bottom,0px))}
 .callbar.mobile .btn{min-height:48px;padding-block:0}
 .callbar.mobile .btn-ink{background:var(--deep);border-color:var(--deep);color:var(--on-deep)}
-.callbar.mobile .wa{width:48px;padding:0}
-.callbar.mobile .wa svg{width:24px;height:24px}
 @media (min-width:861px){.callbar.mobile{display:none}}

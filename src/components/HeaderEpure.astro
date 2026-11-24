@@ -1,26 +1,40 @@
 ---
-// En-tête minimal des landing pages publicitaires : logo non cliquable (aucune sortie de page) et contact direct.
-// Le numéro reste affiché en chiffres : Google Ads le remplace par son numéro de transfert pour suivre les appels.
-import IconeContact from "./IconeContact.astro";
-import { SITE } from "../data/site";
+// En-tête minimal des landing pages publicitaires : logo non cliquable, petit menu d'ancres internes (aucune sortie de page) et bouton de réservation.
+
+export interface LienMenu {
+  href: string;
+  libelle: string;
+}
+interface Props {
+  /** Ancres de la page (ex. #tarifs) ; sans menu si vide */
+  menu?: LienMenu[];
+}
+const { menu = [] } = Astro.props;
 ---
-<header class="top">
+<header class="top top-epure">
   <div class="top-in">
     <span class="logo">Clarté<span>.</span></span>
-    <div class="top-contact">
-      <a class="top-tel" href={`tel:${SITE.phone.tel}`} data-emplacement="en-tete"><IconeContact nom="telephone" />{SITE.phone.display}</a>
-      <a class="top-wa whatsapplink" href={SITE.whatsapp} target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp" data-emplacement="en-tete"><IconeContact nom="whatsapp" /></a>
-    </div>
+    {menu.length > 0 && <nav class="menu" aria-label="Sections de la page">
+      {menu.map((l) => <a href={l.href}>{l.libelle}</a>)}
+    </nav>}
+    <a class="btn btn-ink top-cta" href="#reserver" data-calendly data-emplacement="en-tete">Réserver un appel</a>
   </div>
 </header>
 
 <style>
-  .top-in{padding-block:8px}
-  .top-contact{display:flex;align-items:center;gap:6px}
-  .top-tel,.top-wa{display:inline-flex;align-items:center;justify-content:center;min-height:44px;color:var(--ink);text-decoration:none;border-radius:999px}
-  .top-tel{gap:8px;padding-inline:10px;font-weight:600;font-size:.95rem;font-variant-numeric:tabular-nums;white-space:nowrap}
-  .top-wa{width:44px;border:1.5px solid var(--rule)}
-  .top-tel:hover,.top-wa:hover{background:var(--gold-soft)}
-  .top-contact :global(svg){width:20px;height:20px;flex:none}
-  @media (max-width:380px){.top-tel{font-size:.88rem;padding-inline:6px;gap:6px}.top-in{padding-inline:14px}}
+  /* L'en-tête est collant : les ancres du menu doivent s'arrêter sous lui, pas derrière (valeurs = hauteur de l'en-tête moins la marge haute des sections) ; :has car ce CSS est partagé avec les autres pages */
+  :global(html:has(.top-epure)){scroll-padding-top:28px}
+  .top-in{padding-block:8px;flex-wrap:wrap}
+  .top-cta{min-height:44px;padding:0 18px;font-size:.95rem;white-space:nowrap}
+  .menu{display:flex;gap:26px;margin-left:auto;margin-right:10px;font-size:.95rem;font-weight:500}
+  .menu a{display:inline-flex;align-items:center;min-height:44px;color:var(--ink-soft);text-decoration:none;text-underline-offset:6px;text-decoration-thickness:2px;text-decoration-color:var(--gold)}
+  .menu a:hover{color:var(--ink);text-decoration-line:underline}
+  /* Mobile : le menu passe sur une seconde ligne, sous le logo et le bouton */
+  @media (max-width:860px){
+    .top-in{row-gap:0;padding-bottom:0}
+    .menu{order:3;width:100%;margin:0;justify-content:space-around;gap:8px;border-top:1px solid var(--rule);font-size:.92rem}
+    .menu a{min-height:40px}
+    :global(html:has(.top-epure)){scroll-padding-top:60px}
+  }
+  @media (max-width:380px){.top-cta{padding-inline:14px;font-size:.9rem}.top-in{padding-inline:14px}}
 </style>

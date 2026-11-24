@@ -2,11 +2,10 @@
 // Landing Google Ads « cours de maths en mini-groupe » : un seul objectif, la réservation de l'appel diagnostic (Calendly).
 // Gabarit épuré (sans menu ni Émilie). Prix et paramètres de l'offre : data/mini-groupe.ts, jamais en dur ici.
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Avis from "../components/Avis.astro";
 import AgendaCalendly from "../components/AgendaCalendly.astro";
-import IconeContact from "../components/IconeContact.astro";
+import Temoignages from "../components/sections/Temoignages.astro";
 import { SITE } from "../data/site";
-import { AVIS, RESULTATS, CITATIONS_PARENTS } from "../data/avis";
+import { CITATIONS_PARENTS } from "../data/avis";
 import { MINI_GROUPE, euros, formatDuree, prixMin, plageDurees, tailleGroupe, forfaitsDuNiveau } from "../data/mini-groupe";
 
 const url = new URL(MINI_GROUPE.route, SITE.url).href;
@@ -16,7 +15,6 @@ const description = `Cours de maths en visio en mini-groupe de ${tailleGroupe}, 
 const avecForfaits = MINI_GROUPE.forfaits.length > 0;
 const niveaux = MINI_GROUPE.niveaux.map((n) => ({ ...n, forfaits: forfaitsDuNiveau(n) }));
 // Avis mis en avant : ceux des familles (parents, grand-mère), mot pour mot
-const avisFamilles = AVIS.filter((a) => a.categorie === "famille");
 
 const faits = [
   `${tailleGroupe} max`,
@@ -27,8 +25,13 @@ const faits = [
 ];
 
 const CTA = "Réserver mon appel gratuit";
+const menu = [
+  { href: "#tarifs", libelle: "Tarifs" },
+  { href: "#temoignages", libelle: "Avis" },
+  { href: "#seance", libelle: "Fonctionnement" },
+];
 ---
-<BaseLayout title={titre} description={description} ogImage={new URL(SITE.ogImage, SITE.url).href} epure>
+<BaseLayout title={titre} description={description} ogImage={new URL(SITE.ogImage, SITE.url).href} epure menuEpure={menu}>
   <link slot="head" rel="canonical" href={url}>
   <meta slot="head" property="og:url" content={url}>
   <!-- Police du sous-titre du hero (élément LCP sur mobile) : chargée en même temps que les CSS au lieu d'après -->
@@ -43,7 +46,7 @@ const CTA = "Réserver mon appel gratuit";
             - « Votre enfant bloque seul en maths ? Des cours en mini-groupe pour le faire réfléchir »
             - « Cours particuliers de maths en mini-groupe (3-4 élèves) : dès 45 € la séance » (générer les chiffres depuis data/mini-groupe.ts) */}
         <h1>Cours de maths en mini-groupe de {tailleGroupe}, en visio</h1>
-        <p class="lead">Votre enfant comprend en classe mais bloque seul ? Chaque semaine, Arnaud réunit {tailleGroupe} pour chercher ensemble, expliquer leur raisonnement et repartir capables de refaire seuls.</p>
+        <p class="lead">Votre enfant comprend en classe mais bloque seul ? Chaque semaine, Arnaud réunit {tailleGroupe}. Ils cherchent ensemble, expliquent leur raisonnement et apprennent à refaire les exercices seuls.</p>
         <p class="lp-badge">Dès {euros(prixMin)} la séance · tarif dégressif</p>
         <div class="hero-ctas lp-hero-cta">
           <a class="btn btn-ink lp-cta" href="#reserver" data-calendly data-emplacement="hero">{CTA}</a>
@@ -67,7 +70,7 @@ const CTA = "Réserver mon appel gratuit";
     <div class="sec-head">
       <span class="eyebrow">Le problème</span>
       <h2>Il comprend en classe. Il bloque seul.</h2>
-      <p class="lead">Ce que les parents nous disent souvent :</p>
+      <p class="lead">Ce que les parents nous disent souvent&nbsp;:</p>
     </div>
     <ul class="lp-citations">
       {CITATIONS_PARENTS.map((c) => <li>« {c} »</li>)}
@@ -170,30 +173,8 @@ const CTA = "Réserver mon appel gratuit";
     </div>
   </section>
 
-  <!-- 6. Résultats et témoignages (obtenus avec Arnaud, pas forcément en mini-groupe : formulation générale) -->
-  <section class="wrap" id="avis">
-    <div class="sec-head">
-      <span class="eyebrow">Témoignages</span>
-      <h2>Ce qu'en disent les familles</h2>
-      <p class="lead">Résultats et avis de familles accompagnées par Arnaud.</p>
-    </div>
-    <div class="results">
-      {[RESULTATS.angelina, RESULTATS.gabin].map((r) => (
-        <div class="story">
-          <div class="grade" aria-hidden="true"><s>{r.avant}</s><span class="to">→</span>{r.apres}</div>
-          <div><h3>{r.titre}</h3></div>
-        </div>
-      ))}
-    </div>
-    <p class="swipe-hint" aria-hidden="true">← faites glisser →</p>
-    <div class="reviews lp-avis">
-      {avisFamilles.map((a) => <Avis avis={a} />)}
-    </div>
-    <div class="more">
-      <a class="btn btn-line btn-sm" href={SITE.avis.superprof} target="_blank" rel="noopener">Nos avis Superprof</a>
-      <a class="btn btn-line btn-sm" href={SITE.avis.google} target="_blank" rel="noopener">Nos avis Google</a>
-    </div>
-  </section>
+  <!-- 6. Résultats, avis écrits et vidéo : même section que l'accueil -->
+  <Temoignages />
 
   <!-- 7. Qui est Arnaud -->
   <section class="wrap" id="arnaud">
@@ -287,11 +268,6 @@ const CTA = "Réserver mon appel gratuit";
       <div class="cal-slot">
         <AgendaCalendly differe utmContent={MINI_GROUPE.suivi} />
       </div>
-      <div class="contact-more lp-ecrire">
-        <p class="lp-ecrire-titre">Vous préférez écrire ?</p>
-        <a class="btn lp-wa whatsapplink" href={SITE.whatsapp} target="_blank" rel="noopener" data-emplacement="reserver"><IconeContact nom="whatsapp" />Écrire sur WhatsApp</a>
-        <p><a class="lp-tel" href={`tel:${SITE.phone.tel}`} data-emplacement="reserver">Appeler le {SITE.phone.display}</a></p>
-      </div>
     </div>
   </section>
 
@@ -312,6 +288,19 @@ const CTA = "Réserver mon appel gratuit";
   .lp-cta{min-height:52px;font-size:1.05rem}
   .lp-micro{font-size:.92rem;color:var(--ink-soft)}
   .lp-relance{display:grid;justify-items:start;gap:10px;margin-top:32px}
+
+  /* Rythme des sections : le papier ligné alterne avec des feuilles unies teintées, en pleine largeur,
+     pour qu'on voie d'un coup d'œil où un chapitre s'arrête. Le problème prend la teinte rose de la marge (le « stylo rouge »),
+     les autres feuilles la teinte dorée. border-image peint le fond au-delà de .wrap sans élargir la page ni couper les débords. */
+  .lp-probleme,#seance,:global(main > #temoignages),#demarrer{
+    --fond:color-mix(in srgb,var(--gold) 10%,var(--paper));
+    --bord:color-mix(in srgb,var(--gold) 22%,var(--rule));
+    border-image:linear-gradient(var(--bord) 0 1px,var(--fond) 1px calc(100% - 1px),var(--bord) calc(100% - 1px)) fill 0 / 0 / 0 100vmax;
+  }
+  .lp-probleme{
+    --fond:color-mix(in srgb,var(--margin) 16%,var(--paper));
+    --bord:color-mix(in srgb,var(--margin) 45%,var(--rule));
+  }
 
   /* 1. Hero */
   .lp-hero{padding-block:28px 48px}
@@ -387,10 +376,6 @@ const CTA = "Réserver mon appel gratuit";
   .lp-petit{margin-top:20px;font-size:.88rem;color:var(--ink-soft)}
   @media (max-width:860px){.lp-niveaux,.lp-inclus ul{grid-template-columns:1fr}.lp-niveaux{gap:14px}.lp-niveau{padding:22px}}
 
-  /* 6. Avis : texte complet (pas de « lire la suite » ni de script) */
-  .lp-avis :global(.review p){-webkit-line-clamp:unset;display:block}
-  .lp-avis{margin-bottom:12px}
-
   /* 7. Arnaud */
   .lp-arnaud{display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:center}
   .lp-arnaud img{width:200px;height:200px;border-radius:50%;object-fit:cover;object-position:top;border:3px solid var(--gold)}
@@ -410,10 +395,7 @@ const CTA = "Réserver mon appel gratuit";
   /* Symboles décoratifs injectés par site.ts : presque invisibles à côté du bloc sombre, et signalés comme texte peu contrasté */
   #reserver > :global(.deco){display:none}
   .contact > .cal-slot{grid-area:cal;display:block}
-  .lp-ecrire{justify-items:start}
-  .lp-ecrire-titre{font-family:var(--display);font-size:1.4rem}
-  .lp-wa{background:transparent;color:var(--on-deep);border-color:color-mix(in srgb,var(--on-deep) 55%,transparent);min-height:48px}
-  .lp-wa :global(svg){width:22px;height:22px}
-  .lp-tel{display:inline-flex;align-items:center;min-height:44px;color:var(--on-deep);font-weight:600;text-underline-offset:4px}
-  @media (max-width:860px){.lp-wa{width:100%}}
+  /* Pas de bloc « contact-more » ici (ni téléphone ni WhatsApp) : on retire sa zone pour ne pas laisser de vide */
+  .contact{grid-template-areas:"head cal";grid-template-rows:auto;align-items:start}
+  @media (max-width:860px){.contact{grid-template-areas:"head" "cal"}}
 </style>

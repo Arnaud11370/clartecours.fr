@@ -20,7 +20,8 @@ export interface Forfait {
 export const MINI_GROUPE = {
   /** Identifiant de la landing : utm_content par défaut envoyé à Calendly et `landing_id` des événements dataLayer */
   suivi: "landing-mini-groupe",
-  route: "/cours-particuliers",
+  /** Avec la barre finale : Netlify redirige /cours-particuliers vers /cours-particuliers/ (canonical et URL des annonces) */
+  route: "/cours-particuliers/",
   eleves: { min: 3, max: 4 },
   frequence: "Chaque semaine",
   // Durée et prix d'une séance par niveau.

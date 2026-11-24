@@ -1,6 +1,5 @@
 // Événements dataLayer des landing pages (lus par GTM) pour suivre l'entonnoir : clic sur un bouton, agenda vu, agenda affiché, créneau choisi.
-// La conversion « RDV Calendly » et les conversions WhatsApp / téléphone restent gérées par GTM comme sur l'accueil :
-// les liens gardent la classe `whatsapplink` et le format `tel:`, rien n'est à changer pour elles.
+// La conversion « RDV Calendly » reste gérée par GTM comme sur l'accueil.
 
 type Donnees = Record<string, string>;
 
@@ -18,19 +17,12 @@ export function suivreLanding(landingId: string) {
     pousser('lp_agenda_vu', { agenda_mode: mode });
   };
 
-  /* Clics : chaque lien suivi porte data-emplacement (hero, pourquoi, tarifs, demarrer, barre-fixe, en-tete, reserver) */
+  /* Clics sur les boutons de réservation : chacun porte data-emplacement (en-tete, hero, pourquoi, tarifs, demarrer, barre-fixe) */
   document.addEventListener('click', function (e) {
-    const lien = (e.target as Element).closest<HTMLAnchorElement>('a[data-emplacement]');
+    const lien = (e.target as Element).closest<HTMLAnchorElement>('a[data-calendly][data-emplacement]');
     if (!lien) return;
-    const emplacement = lien.dataset.emplacement!;
-    if (lien.hasAttribute('data-calendly')) {
-      pousser('lp_cta_clic', { cta_emplacement: emplacement });
-      agendaVu('plein-ecran');
-    } else if (lien.classList.contains('whatsapplink')) {
-      pousser('lp_contact_clic', { canal: 'whatsapp', cta_emplacement: emplacement });
-    } else if (lien.href.startsWith('tel:')) {
-      pousser('lp_contact_clic', { canal: 'telephone', cta_emplacement: emplacement });
-    }
+    pousser('lp_cta_clic', { cta_emplacement: lien.dataset.emplacement! });
+    agendaVu('plein-ecran');
   });
 
   const agenda = document.getElementById('calendly-embed');

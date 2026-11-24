@@ -3,7 +3,7 @@
 import GtmHead from "../components/tracking/GtmHead.astro";
 import GtmNoscript from "../components/tracking/GtmNoscript.astro";
 import Header from "../components/Header.astro";
-import HeaderEpure from "../components/HeaderEpure.astro";
+import HeaderEpure, { type LienMenu } from "../components/HeaderEpure.astro";
 import Footer from "../components/Footer.astro";
 import CallBar from "../components/CallBar.astro";
 import Emilie from "../components/Emilie.astro";
@@ -19,8 +19,10 @@ interface Props {
   ogImage?: string;
   /** false : en-tête sans menu (landing pages) */
   nav?: boolean;
-  /** true : landing publicitaire épurée (en-tête logo + contact, pied de page légal, barre de réservation mobile vers #reserver, sans Émilie) */
+  /** true : landing publicitaire épurée (en-tête logo + bouton de réservation, pied de page légal, barre de réservation mobile vers #reserver, sans Émilie) */
   epure?: boolean;
+  /** Landing épurée : petit menu d'ancres de la page dans l'en-tête */
+  menuEpure?: LienMenu[];
 }
 
 const {
@@ -31,6 +33,7 @@ const {
   ogImage = SITE.ogImage,
   nav = true,
   epure = false,
+  menuEpure,
 } = Astro.props;
 
 // URL absolue si `site` est défini dans astro.config.mjs (recommandé pour les partages sur les réseaux)
@@ -71,7 +74,7 @@ const jsonLd = {
 
 <GtmNoscript />
 
-{epure ? <HeaderEpure /> : <Header nav={nav} />}
+{epure ? <HeaderEpure menu={menuEpure} /> : <Header nav={nav} />}
 
 <main id="accueil">
   <slot />
@@ -80,7 +83,7 @@ const jsonLd = {
 <Footer epure={epure} />
 
 {epure
-  ? <CallBar libelle="Appel gratuit" href="#reserver" whatsapp mobile emplacement="barre-fixe" />
+  ? <CallBar libelle="Réserver mon appel gratuit" href="#reserver" mobile emplacement="barre-fixe" />
   : <CallBar />}
 
 {!epure && <Emilie />}
