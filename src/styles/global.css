@@ -12,7 +12,7 @@ img{max-width:100%}
 
 
 /* Layout: une page de cahier ligné, marge rouge à gauche, annotations manuscrites ; sections empilées, une colonne sur mobile.
-   Les palettes ne définissent que 3 teintes de base (--p-*), tout le reste en découle, en clair comme en sombre. */
+   Les palettes ne définissent que 3 teintes de base (--p-*), tout le reste en découle. Le site est uniquement en thème clair. */
 :root{
   --p-ink:#1B2A4A; --p-gold:#B8862E; --p-margin:#E8B4A6;
   --paper:#FBFAF6;
@@ -34,29 +34,6 @@ img{max-width:100%}
 :root[data-palette="bordeaux"]{--p-ink:#4A1F2B;--p-gold:#A8823D;--p-margin:#E3B3B8}
 :root[data-palette="ardoise"]{--p-ink:#24313D;--p-gold:#C85B3E;--p-margin:#F0B9A8}
 :root[data-palette="ocean"]{--p-ink:#0F3D4C;--p-gold:#C99A2E;--p-margin:#E8B9A6}
-
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --paper:color-mix(in srgb,var(--p-ink) 70%,#05070C);
-  --line:color-mix(in srgb,var(--p-ink) 60%,#2A3346);
-  --margin:color-mix(in srgb,var(--p-margin) 45%,#2A1518);
-  --ink:#EEF1F7;--ink-soft:#AEB7C8;
-  --gold:color-mix(in srgb,var(--p-gold) 78%,#FFFFFF);
-  --gold-soft:color-mix(in srgb,var(--p-gold) 18%,#0B0F18);
-  --card:color-mix(in srgb,var(--p-ink) 55%,#151B27);
-  --rule:color-mix(in srgb,var(--p-ink) 40%,#3A4358);
-  --deep:color-mix(in srgb,var(--p-ink) 85%,#000000);
-  --on-deep:#EEF1F7;color-scheme:dark}}
-:root[data-theme="dark"]{
-  --paper:color-mix(in srgb,var(--p-ink) 70%,#05070C);
-  --line:color-mix(in srgb,var(--p-ink) 60%,#2A3346);
-  --margin:color-mix(in srgb,var(--p-margin) 45%,#2A1518);
-  --ink:#EEF1F7;--ink-soft:#AEB7C8;
-  --gold:color-mix(in srgb,var(--p-gold) 78%,#FFFFFF);
-  --gold-soft:color-mix(in srgb,var(--p-gold) 18%,#0B0F18);
-  --card:color-mix(in srgb,var(--p-ink) 55%,#151B27);
-  --rule:color-mix(in srgb,var(--p-ink) 40%,#3A4358);
-  --deep:color-mix(in srgb,var(--p-ink) 85%,#000000);
-  --on-deep:#EEF1F7;color-scheme:dark}
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}

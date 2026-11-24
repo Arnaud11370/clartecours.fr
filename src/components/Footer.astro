@@ -10,15 +10,17 @@ const { epure = false } = Astro.props;
 
 const year = new Date().getFullYear();
 ---
-<footer class="wrap">
+<footer class:list={["wrap", { epure }]}>
   <div class="foot">
     <span>© {year} Clarté · Arnaud, professeur de mathématiques</span>
     {!epure && <span class="foot-acad"><i aria-hidden="true"></i>Académie Clarté Objectif Brevet</span>}
     {!epure && <SocialLinks />}
-    <span><button class="linkish" type="button" data-open="dlg-mentions">Mentions légales</button> · <button class="linkish" type="button" data-open="dlg-privacy">Confidentialité</button> · <button class="linkish" type="button" data-open="dlg-cgv">CGV</button></span>
+    <span class="foot-legal"><button class="linkish" type="button" data-open="dlg-mentions">Mentions légales</button> · <button class="linkish" type="button" data-open="dlg-privacy">Confidentialité</button> · <button class="linkish" type="button" data-open="dlg-cgv">CGV</button></span>
   </div>
 </footer>
 
 <style>
   .foot{align-items:center}
+  /* Landing épurée (trafic mobile publicitaire) : liens légaux assez hauts pour le doigt */
+  .epure .foot-legal .linkish{display:inline-flex;align-items:center;min-height:44px}
 </style>

@@ -166,10 +166,8 @@ const menu = [
         <li>Séance reportable si vous prévenez 24 h avant</li>
       </ul>
     </div>
-    <p class="lp-petit">Paiement par virement, forfait réglé avant les séances. TVA non applicable, art. 293 B du CGI.</p>
     <div class="lp-relance">
       <a class="btn btn-ink lp-cta" href="#reserver" data-calendly data-emplacement="tarifs">{CTA}</a>
-      <p class="lp-micro">Pendant l'appel, Arnaud vous indique le groupe et le créneau adaptés à votre enfant.</p>
     </div>
   </section>
 
@@ -281,7 +279,7 @@ const menu = [
 </BaseLayout>
 
 <style>
-  /* Doré lisible (contraste AA) pour les petits textes : plus foncé en clair, plus clair en sombre */
+  /* Doré lisible (contraste AA) pour les petits textes */
   section{--or-texte:color-mix(in srgb,var(--gold) 66%,var(--ink))}
   .sec-head .eyebrow,.lp-surtitre .eyebrow{color:var(--or-texte)}
   .sec-head{margin-bottom:32px}
@@ -297,6 +295,8 @@ const menu = [
     --bord:color-mix(in srgb,var(--gold) 22%,var(--rule));
     border-image:linear-gradient(var(--bord) 0 1px,var(--fond) 1px calc(100% - 1px),var(--bord) calc(100% - 1px)) fill 0 / 0 / 0 100vmax;
   }
+  /* « Lire la suite » des avis : zone tactile de 44 px sans changer la mise en page (marges négatives), doré lisible (AA) */
+  :global(main > #temoignages .review .readmore){min-height:44px;margin-block:-10px;color:color-mix(in srgb,var(--gold) 66%,var(--ink))}
   .lp-probleme{
     --fond:color-mix(in srgb,var(--margin) 16%,var(--paper));
     --bord:color-mix(in srgb,var(--margin) 45%,var(--rule));
@@ -343,7 +343,13 @@ const menu = [
   .lp-atout h3{font-size:1.35rem}
   .lp-atout p{color:var(--ink-soft)}
   .lp-icone{width:40px;height:40px;fill:none;stroke:var(--gold);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-  @media (max-width:700px){.lp-atouts{grid-template-columns:1fr;gap:14px}.lp-atout{padding:20px}}
+  /* Mobile : l'icône passe à gauche du titre, les quatre cartes restent lisibles sans s'étirer sur deux écrans */
+  @media (max-width:700px){
+    .lp-atouts{grid-template-columns:1fr;gap:12px}
+    .lp-atout{padding:18px 20px;grid-template-columns:auto 1fr;align-items:center;column-gap:12px;row-gap:8px}
+    .lp-atout p{grid-column:1 / -1}
+    .lp-icone{width:30px;height:30px}
+  }
 
   /* 4. Séance */
   .lp-faits{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:0 0 44px;padding:0;list-style:none}
@@ -373,7 +379,6 @@ const menu = [
   .lp-inclus ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:10px 24px}
   .lp-inclus li{display:grid;grid-template-columns:24px 1fr;gap:6px}
   .lp-inclus li::before{content:"✓";font-weight:700;color:var(--or-texte)}
-  .lp-petit{margin-top:20px;font-size:.88rem;color:var(--ink-soft)}
   @media (max-width:860px){.lp-niveaux,.lp-inclus ul{grid-template-columns:1fr}.lp-niveaux{gap:14px}.lp-niveau{padding:22px}}
 
   /* 7. Arnaud */

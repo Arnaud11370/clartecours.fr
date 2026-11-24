@@ -44,7 +44,7 @@ src/
   data/mini-groupe.ts          Offre mini-groupe : taille, niveaux, durées, PRIX, forfaits dégressifs (source unique)
   scripts/site.ts              JS commun à toutes les pages
   scripts/suivi-landing.ts     Événements dataLayer `lp_*` des landing pages (entonnoir de réservation)
-  styles/global.css            Styles globaux (tokens, thèmes clair/sombre, composants)
+  styles/global.css            Styles globaux (tokens, thème clair uniquement, composants)
   pages/index.astro            Page d'accueil (une page = un fichier dans src/pages/)
   pages/brevet.astro           Landing page pub collège (4ème, 3ème) : sans menu, noindex
   pages/lycee.astro            Landing page pub lycée (Seconde, Première) : sans menu, noindex, sans l'Académie
@@ -115,10 +115,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 ### Styles
 
-- Les couleurs passent **toujours** par les tokens CSS (`--ink`, `--paper`, `--gold`, `--card`, `--rule`, `--deep`…), dérivés de 3 teintes de base `--p-ink`, `--p-gold`, `--p-margin`. Pas de couleur en dur qui casserait le mode sombre.
+- Les couleurs passent **toujours** par les tokens CSS (`--ink`, `--paper`, `--gold`, `--card`, `--rule`, `--deep`…), dérivés de 3 teintes de base `--p-ink`, `--p-gold`, `--p-margin`. Pas de couleur en dur : une palette se change en modifiant ces 3 teintes. Le site est volontairement en thème clair uniquement (le mode sombre a été retiré, il rendait mal) : ne pas le réintroduire.
 - Polices : `--display` (Gloock, titres), `--body` (Figtree, texte), `--hand` (Caveat, annotations manuscrites).
 - `global.css` contient des couches de surcharges successives (« V3 », « V7 »…) : l'ordre des règles compte. Pour du style propre à un nouveau composant, préférer un `<style>` scopé dans le `.astro` plutôt que d'allonger `global.css`.
-- Tester à 375 px de large (mobile) et en mode sombre.
+- Tester à 375 px de large (mobile).
 
 ### Clean code
 
